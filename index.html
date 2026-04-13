@@ -436,6 +436,19 @@ body{
   background:none;border:none;color:var(--white-muted);
   font-size:18px;cursor:pointer;padding:4px;
 }
+.add-item-section{
+  display:flex;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);
+}
+.add-item-input{
+  flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);
+  background:var(--bg-card);color:var(--white);font-size:15px;
+  font-family:var(--font);
+}
+.add-item-input::placeholder{color:var(--white-muted)}
+.add-item-btn{
+  width:40px;height:40px;border-radius:50%;background:var(--green-btn);
+  border:none;color:var(--white);font-size:20px;cursor:pointer;
+}
 
 /* ===== DATE CONFIRMATION ===== */
 .date-confirm-title{
@@ -1136,6 +1149,10 @@ body{
     <div class="market-list-note">
       These items will be ready in your cart once a date is confirmed.
     </div>
+    <div class="add-item-section">
+      <input type="text" id="new-item-input" placeholder="Add new item..." class="add-item-input">
+      <button onclick="addMarketItem()" class="add-item-btn">+</button>
+    </div>
     <div class="market-item">
       <div class="market-item-left"><span>&#x1FAD0;</span><span class="market-item-name">Blueberries</span></div>
       <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
@@ -1187,6 +1204,10 @@ body{
     <div class="market-list-header">Your Market List</div>
     <div class="market-list-note">
       These items will be ready in your cart once a date is confirmed.
+    </div>
+    <div class="add-item-section">
+      <input type="text" id="new-item-input-confirmed" placeholder="Add new item..." class="add-item-input">
+      <button onclick="addMarketItemConfirmed()" class="add-item-btn">+</button>
     </div>
     <div class="market-item">
       <div class="market-item-left"><span>&#x1FAD0;</span><span class="market-item-name">Blueberries</span></div>
@@ -1897,6 +1918,51 @@ function toggleShelves() {
     extra.style.display = 'none';
     btn.textContent = 'Tap to expand';
   }
+}
+
+// Add market item
+function addMarketItem() {
+  const input = document.getElementById('new-item-input');
+  const itemName = input.value.trim();
+  if (itemName === '') return;
+  
+  const scrollArea = document.querySelector('#screen-market-list .scroll-area');
+  const addSection = scrollArea.querySelector('.add-item-section');
+  
+  const newItem = document.createElement('div');
+  newItem.className = 'market-item';
+  newItem.innerHTML = `
+    <div class="market-item-left">
+      <span>&#x1F6D2;</span>
+      <span class="market-item-name">${itemName}</span>
+    </div>
+    <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
+  `;
+  
+  scrollArea.insertBefore(newItem, addSection.nextSibling);
+  input.value = '';
+}
+
+function addMarketItemConfirmed() {
+  const input = document.getElementById('new-item-input-confirmed');
+  const itemName = input.value.trim();
+  if (itemName === '') return;
+  
+  const scrollArea = document.querySelector('#screen-market-list-confirmed .scroll-area');
+  const addSection = scrollArea.querySelector('.add-item-section');
+  
+  const newItem = document.createElement('div');
+  newItem.className = 'market-item';
+  newItem.innerHTML = `
+    <div class="market-item-left">
+      <span>&#x1F6D2;</span>
+      <span class="market-item-name">${itemName}</span>
+    </div>
+    <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
+  `;
+  
+  scrollArea.insertBefore(newItem, addSection.nextSibling);
+  input.value = '';
 }
 
 // Add to list
