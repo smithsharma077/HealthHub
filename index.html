@@ -1999,3 +1999,1939 @@ document.querySelector('.nav-link').classList.add('current');
 </script>
 </body>
 </html>
+.status-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px 8px;flex-shrink:0;
+  color:var(--white);font-size:13px;font-weight:600;
+}
+.status-icons{display:flex;align-items:center;gap:6px;font-size:12px}
+
+/* SCROLLABLE CONTENT */
+.scroll-area{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
+.scroll-area::-webkit-scrollbar{display:none}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  display:flex;align-items:center;justify-content:space-around;
+  padding:10px 0 16px;flex-shrink:0;
+  border-top:1px solid var(--border);
+  background:var(--bg);
+}
+.bottom-nav button{
+  background:none;border:none;color:var(--gray);
+  font-size:22px;cursor:pointer;padding:8px;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+}
+.bottom-nav button.active{color:var(--white)}
+
+/* APP ICONS ROW */
+.app-icons{
+  display:flex;justify-content:center;gap:12px;
+  padding:12px 20px;flex-shrink:0;
+}
+.app-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;cursor:pointer;
+}
+
+/* PAGE DOTS */
+.page-dots{
+  display:flex;justify-content:center;gap:6px;
+  padding:8px 0;flex-shrink:0;
+}
+.page-dots .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gray-light);
+}
+.page-dots .dot.active{background:var(--white)}
+
+/* COMMON BUTTON */
+.btn{
+  width:100%;padding:14px;border:none;border-radius:var(--radius-sm);
+  font-family:var(--font);font-size:15px;font-weight:600;
+  cursor:pointer;text-align:center;
+}
+.btn-green{background:var(--green-btn);color:var(--white)}
+.btn-green:hover{background:#257a4a}
+.btn-outline{
+  background:transparent;color:var(--green-text);
+  border:1.5px solid var(--green-text);
+}
+
+/* BANNER */
+.banner{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 16px;border-radius:var(--radius-xs);
+  font-size:13px;font-weight:500;margin:0 20px 12px;
+}
+.banner-green{background:var(--green-light);color:var(--green-text)}
+.banner-red{background:rgba(255,59,48,0.15);color:#FF6B6B}
+
+/* CARDS */
+.card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:16px;
+}
+
+/* BADGE */
+.badge{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:4px 10px;border-radius:20px;
+  font-size:11px;font-weight:600;
+}
+.badge-green{background:var(--green-light);color:var(--green-text)}
+.badge-red{background:rgba(255,59,48,0.2);color:#FF6B6B}
+.badge-orange{background:rgba(255,149,0,0.2);color:var(--orange)}
+
+/* ===== SCREEN 1: DASHBOARD ===== */
+.dashboard-greeting{
+  font-size:22px;font-weight:700;color:var(--white);
+  padding:4px 20px 12px;
+}
+.dashboard-top{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  padding:0 20px 12px;
+}
+.weather-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;
+}
+.weather-temp{font-size:42px;font-weight:700;color:var(--white);line-height:1}
+.weather-label{font-size:13px;color:var(--white-dim);margin-top:4px}
+.weather-icon{font-size:40px;text-align:right}
+.time-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;
+}
+.time-display{font-size:36px;font-weight:700;color:var(--white);line-height:1}
+.time-date{font-size:12px;color:var(--white-dim);margin-top:6px}
+.time-icon{font-size:36px;margin-bottom:6px}
+
+.dashboard-bottom{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  padding:0 20px 12px;
+}
+.market-list-card,.reminders-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:14px;
+}
+.card-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:10px}
+.list-item{
+  display:flex;align-items:center;gap:8px;
+  padding:4px 0;font-size:13px;color:var(--white);
+}
+.list-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.reminder-item{padding:6px 0}
+.reminder-title{font-size:13px;color:var(--white);font-weight:500}
+.reminder-time{font-size:11px;color:var(--white-muted)}
+.reminder-divider{display:flex;align-items:center;justify-content:space-between}
+.add-btn{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,0.15);border:none;
+  color:var(--white);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.alert-bar{
+  display:flex;align-items:center;gap:8px;
+  background:var(--bg-card);border-radius:var(--radius-sm);
+  padding:12px 16px;margin:0 20px 12px;
+  font-size:12px;color:var(--white-dim);
+}
+
+/* ===== SCREEN 2: HOME PAGE ===== */
+.home-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:4px 20px 12px;
+}
+.home-greeting{font-size:20px;font-weight:700;color:var(--white)}
+.live-badge{
+  display:flex;align-items:center;gap:6px;
+  background:var(--green);padding:6px 12px;border-radius:20px;
+  font-size:11px;font-weight:600;color:var(--white);
+}
+.home-section{padding:0 20px;margin-bottom:16px}
+.voting-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:16px;
+}
+.voting-header{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:12px;
+}
+.voting-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--bg-card2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+}
+.voting-title{font-size:14px;font-weight:600;color:var(--white);flex:1}
+.vote-bar-row{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:6px;font-size:12px;color:var(--white-dim);
+}
+.vote-bar{flex:1;height:6px;background:var(--bg-card2);border-radius:3px;overflow:hidden}
+.vote-bar-fill{height:100%;background:var(--gray);border-radius:3px}
+.vote-count{min-width:50px;text-align:right;font-size:11px}
+.low-items{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:16px;
+}
+.low-items-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:10px}
+.low-items-grid{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;
+}
+.low-item{
+  display:flex;align-items:center;gap:4px;
+  font-size:12px;color:var(--white-dim);
+}
+.preorder-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:14px;display:flex;align-items:center;gap:10px;
+}
+.preorder-lock{font-size:16px;color:var(--white-muted)}
+.preorder-text{font-size:12px;color:var(--white-muted)}
+
+/* ===== SCREEN 3: VOTING ===== */
+.vote-screen-title{
+  font-size:22px;font-weight:700;color:var(--white);
+  padding:4px 20px 12px;
+}
+.vote-day{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+.vote-day-left{display:flex;align-items:center;gap:12px}
+.radio{
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--gray);display:flex;
+  align-items:center;justify-content:center;flex-shrink:0;
+}
+.radio.selected{border-color:var(--green);background:var(--green)}
+.radio.selected::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--white)}
+.vote-day-name{font-size:15px;color:var(--white);font-weight:500}
+.vote-day-right{display:flex;align-items:center;gap:8px}
+.vote-progress{width:100px;height:5px;background:var(--bg-card2);border-radius:3px;overflow:hidden}
+.vote-progress-fill{height:100%;border-radius:3px}
+.vote-progress-fill.gray{background:var(--gray)}
+.vote-progress-fill.green{background:var(--green)}
+.vote-count-text{font-size:12px;color:var(--white-dim);min-width:50px;text-align:right}
+
+/* TIME SLOTS */
+.time-slots{
+  padding:8px 20px 8px 52px;
+  display:none;flex-direction:column;gap:8px;
+}
+.time-slots.show{display:flex}
+.time-slot{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg-card);border-radius:var(--radius-xs);
+  padding:12px 16px;cursor:pointer;
+  border:1.5px solid transparent;
+}
+.time-slot.selected{background:rgba(52,199,89,0.15);border-color:var(--green)}
+.time-slot-name{font-size:14px;color:var(--white)}
+.time-slot-votes{font-size:12px;color:var(--white-dim)}
+
+/* VOTE CONFIRMED */
+.vote-confirmed-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:40px 30px;text-align:center;margin:20px;
+}
+.vote-check{
+  width:60px;height:60px;border-radius:50%;
+  background:var(--green);margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;color:var(--white);
+}
+.vote-confirmed-title{font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px}
+.vote-confirmed-sub{font-size:13px;color:var(--white-dim);margin-bottom:20px;line-height:1.4}
+
+/* ===== YOUR SELECTED DAYS ===== */
+.selected-days-title{
+  font-size:14px;font-weight:600;color:var(--white);
+  padding:12px 20px;background:var(--bg-card);
+  margin:0 20px 8px;border-radius:var(--radius-sm);
+}
+.selected-day-block{
+  background:var(--bg-card);border-radius:var(--radius-sm);
+  padding:12px 16px;margin:0 20px 8px;
+}
+.selected-day-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:8px;
+}
+.selected-day-name{
+  display:flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;color:var(--white);
+}
+
+/* ===== PRE-ORDERING ===== */
+.preorder-alert{
+  background:rgba(229,57,53,0.12);border-radius:var(--radius-sm);
+  padding:12px 16px;margin:0 20px 12px;
+  font-size:12px;color:#FF6B6B;line-height:1.4;
+}
+.camera-section{
+  background:var(--bg-card);border-radius:var(--radius);
+  margin:0 20px 12px;overflow:hidden;
+}
+.camera-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;
+}
+.camera-title{font-size:14px;font-weight:700;color:var(--white)}
+.live-dot{
+  display:flex;align-items:center;gap:4px;
+  font-size:11px;font-weight:600;color:var(--red);
+}
+.live-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red)}
+.shelf-label{
+  font-size:11px;font-weight:600;color:var(--white-dim);
+  padding:4px 16px 8px;text-transform:uppercase;
+}
+.shelf-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  padding:0 16px 12px;
+}
+.shelf-item{
+  border-radius:8px;overflow:hidden;position:relative;
+  aspect-ratio:1;
+}
+.shelf-item img{width:100%;height:100%;object-fit:cover}
+.shelf-item-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(0,0,0,0.6);padding:4px 6px;
+  font-size:10px;color:var(--white);text-align:center;
+}
+.camera-expand{
+  width:100%;padding:10px;border:none;
+  background:var(--bg-card2);color:var(--white-dim);
+  font-size:13px;font-family:var(--font);cursor:pointer;
+}
+.freshness-section{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:16px;margin:0 20px 12px;
+}
+.freshness-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:12px;
+}
+.freshness-title{font-size:14px;font-weight:700;color:var(--white)}
+.freshness-sort{font-size:11px;color:var(--white-muted)}
+.freshness-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 0;
+}
+.freshness-left{display:flex;align-items:center;gap:10px}
+.freshness-emoji{font-size:18px}
+.freshness-name{font-size:14px;font-weight:500;color:var(--white)}
+.freshness-add{
+  display:flex;align-items:center;gap:4px;
+  background:var(--green-light);border:none;
+  color:var(--green-text);font-size:12px;font-weight:600;
+  padding:6px 12px;border-radius:6px;cursor:pointer;
+  font-family:var(--font);
+}
+.freshness-added{
+  display:flex;align-items:center;gap:4px;
+  font-size:12px;color:var(--white-muted);
+}
+.toss-badge{
+  display:inline-block;
+  background:var(--red-badge);color:var(--white);
+  font-size:10px;font-weight:600;
+  padding:3px 8px;border-radius:4px;margin-top:2px;
+}
+.remaining-badge{
+  display:inline-block;
+  background:var(--orange-badge);color:var(--white);
+  font-size:10px;font-weight:600;
+  padding:3px 8px;border-radius:4px;margin-top:2px;
+}
+
+/* ===== MARKET LIST ===== */
+.market-list-header{
+  font-size:22px;font-weight:700;color:var(--white);
+  padding:4px 20px 8px;
+}
+.market-list-note{
+  background:var(--green-light);border-radius:var(--radius-xs);
+  padding:10px 16px;margin:0 20px 16px;
+  font-size:12px;color:var(--green-text);
+}
+.market-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;border-bottom:1px solid var(--border);
+}
+.market-item-left{display:flex;align-items:center;gap:10px}
+.market-item-name{font-size:15px;color:var(--white);font-weight:500}
+.delete-btn{
+  background:none;border:none;color:var(--white-muted);
+  font-size:18px;cursor:pointer;padding:4px;
+}
+.add-item-section{
+  display:flex;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);
+}
+.add-item-input{
+  flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);
+  background:var(--bg-card);color:var(--white);font-size:15px;
+  font-family:var(--font);
+}
+.add-item-input::placeholder{color:var(--white-muted)}
+.add-item-btn{
+  width:40px;height:40px;border-radius:50%;background:var(--green-btn);
+  border:none;color:var(--white);font-size:20px;cursor:pointer;
+}
+
+/* ===== DATE CONFIRMATION ===== */
+.date-confirm-title{
+  font-size:20px;font-weight:700;color:var(--white);
+  padding:4px 20px 16px;
+}
+.date-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:30px;margin:0 20px;text-align:center;
+}
+.date-icon{font-size:40px;margin-bottom:12px}
+.date-main{font-size:26px;font-weight:700;color:var(--white);margin-bottom:4px}
+.date-time{font-size:15px;color:var(--white-dim);margin-bottom:16px}
+.date-progress{
+  width:80%;height:6px;background:var(--bg-card2);
+  border-radius:3px;margin:0 auto 8px;overflow:hidden;
+}
+.date-progress-fill{height:100%;background:var(--white);border-radius:3px;width:70%}
+.date-votes{font-size:12px;color:var(--white-dim)}
+
+/* ===== HOME PAGE WITH CONFIRMATION ===== */
+.market-visit-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:20px;text-align:center;margin-bottom:16px;
+}
+.market-visit-title{font-size:14px;font-weight:600;color:var(--white-dim);margin-bottom:8px}
+
+/* ===== HEALTH MART ===== */
+.mart-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:4px 20px 8px;
+}
+.mart-title{font-size:22px;font-weight:700;color:var(--white)}
+.mart-actions{display:flex;align-items:center;gap:8px}
+.mart-btn{
+  display:flex;align-items:center;gap:4px;
+  background:var(--bg-card);border:none;
+  color:var(--white);font-size:12px;font-weight:500;
+  padding:6px 12px;border-radius:20px;cursor:pointer;
+  font-family:var(--font);
+}
+.mart-tabs{
+  display:flex;gap:8px;padding:0 20px 12px;
+}
+.mart-tab{
+  padding:6px 14px;border-radius:20px;
+  font-size:12px;font-weight:600;cursor:pointer;
+  border:1.5px solid var(--border);color:var(--white-dim);
+  background:transparent;font-family:var(--font);
+}
+.mart-tab.active{background:var(--white);color:var(--bg);border-color:var(--white)}
+.mart-layout{
+  display:flex;flex:1;overflow:hidden;
+}
+.mart-categories{
+  width:70px;flex-shrink:0;display:flex;flex-direction:column;
+  align-items:center;gap:12px;padding:8px 0;
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+}
+.mart-cat{
+  text-align:center;cursor:pointer;padding:4px;
+}
+.mart-cat-icon{font-size:24px;margin-bottom:2px}
+.mart-cat-name{font-size:9px;color:var(--white-dim);font-weight:500}
+.mart-cat.active .mart-cat-name{color:var(--white)}
+.mart-products{
+  flex:1;overflow-y:auto;padding:8px 12px;
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  align-content:start;
+}
+.product-card{
+  background:var(--bg-card);border-radius:var(--radius-sm);
+  overflow:hidden;
+}
+.product-img{
+  width:100%;aspect-ratio:1.2;object-fit:cover;
+  background:var(--bg-card2);display:flex;align-items:center;
+  justify-content:center;font-size:40px;
+}
+.product-info{padding:8px 10px}
+.product-name{font-size:13px;font-weight:600;color:var(--white)}
+.product-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:2px;
+}
+.product-stock{font-size:10px;color:var(--white-muted)}
+.product-price{font-size:12px;font-weight:600;color:var(--white)}
+.product-qty{
+  display:flex;align-items:center;gap:0;margin-top:6px;
+}
+.qty-btn{
+  width:28px;height:28px;border-radius:6px;
+  background:var(--green);border:none;
+  color:var(--white);font-size:16px;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;
+  justify-content:center;
+}
+.qty-val{
+  width:32px;text-align:center;
+  font-size:14px;font-weight:600;color:var(--white);
+}
+.product-add{
+  width:100%;padding:6px;border:none;
+  background:transparent;color:var(--white);
+  font-size:12px;font-weight:600;cursor:pointer;
+  font-family:var(--font);margin-top:4px;
+}
+.product-add.added{background:var(--green);border-radius:6px;color:var(--white)}
+
+/* ===== CART ===== */
+.cart-title{
+  font-size:22px;font-weight:700;color:var(--white);
+  padding:4px 20px 12px;
+}
+.cart-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 20px;border-bottom:1px solid var(--border);
+}
+.cart-item-img{
+  width:70px;height:70px;border-radius:10px;
+  background:var(--bg-card2);object-fit:cover;
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;overflow:hidden;
+}
+.cart-item-details{flex:1}
+.cart-item-name{font-size:14px;font-weight:600;color:var(--white)}
+.cart-item-price-unit{font-size:11px;color:var(--white-muted)}
+.cart-item-total{font-size:15px;font-weight:600;color:var(--white);margin-top:4px}
+.cart-item-actions{display:flex;align-items:center;gap:2px}
+.cart-delete{
+  background:none;border:none;color:var(--white-muted);
+  font-size:18px;cursor:pointer;padding:4px;margin-left:8px;
+}
+.cart-summary{padding:20px;border-top:1px solid var(--border)}
+.cart-row{
+  display:flex;justify-content:space-between;
+  padding:4px 0;font-size:13px;color:var(--white-dim);
+}
+.cart-total{
+  display:flex;justify-content:space-between;
+  padding:10px 0 16px;font-size:18px;font-weight:700;color:var(--white);
+}
+
+/* ===== ORDER CONFIRMATION ===== */
+.order-title{
+  font-size:22px;font-weight:700;color:var(--white);
+  padding:4px 20px 12px;text-align:center;
+}
+.order-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:20px;margin:0 20px;text-align:center;
+}
+.order-desc{font-size:13px;color:var(--white-dim);line-height:1.5;margin-bottom:16px}
+.qr-placeholder{
+  width:180px;height:180px;margin:0 auto 12px;
+  background:var(--white);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  padding:12px;
+}
+.qr-grid{
+  width:100%;height:100%;
+  display:grid;grid-template-columns:repeat(10,1fr);
+  grid-template-rows:repeat(10,1fr);gap:1px;
+}
+.qr-cell{background:#000}
+.qr-cell.w{background:#fff}
+.order-scan{font-size:12px;color:var(--white-dim);margin-top:8px}
+.order-charge{
+  font-size:13px;color:var(--white-dim);
+  padding:16px 20px;text-align:center;
+}
+
+/* ===== DASHBOARD VARIANT ===== */
+.market-arriving-banner{
+  display:flex;align-items:center;gap:10px;
+  background:var(--green-light);border-radius:var(--radius-sm);
+  padding:12px 16px;margin:0 20px 12px;
+}
+.market-arriving-icon{font-size:24px}
+.market-arriving-text{font-size:13px;font-weight:500;color:var(--green-text);line-height:1.4}
+
+/* Utility */
+.px-20{padding-left:20px;padding-right:20px}
+.mb-12{margin-bottom:12px}
+.mb-16{margin-bottom:16px}
+.text-center{text-align:center}
+.flex-1{flex:1}
+
+/* Produce colors for dots */
+.dot-green{background:#4CAF50}
+.dot-red{background:#F44336}
+.dot-pink{background:#E91E63}
+.dot-orange{background:#FF9800}
+.dot-yellow{background:#FFEB3B}
+.dot-purple{background:#9C27B0}
+.dot-lime{background:#8BC34A}
+</style>
+</head>
+<body>
+<div class="fridge">
+
+<!-- ===== SCREEN 1: DASHBOARD ===== -->
+<div class="screen active" id="screen-dashboard">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="dashboard-greeting">Good Afternoon!</div>
+    <div class="dashboard-top">
+      <div class="weather-card">
+        <div class="weather-icon">&#x26C5;</div>
+        <div class="weather-temp">58&#xB0;F</div>
+        <div class="weather-label">Cloudy</div>
+      </div>
+      <div class="time-card">
+        <div class="time-icon">&#x1F553;</div>
+        <div class="time-display">12:45pm</div>
+        <div class="time-date">Wed, June 24</div>
+      </div>
+    </div>
+    <div class="dashboard-bottom">
+      <div class="market-list-card">
+        <div class="card-title">Your Market List :</div>
+        <div class="list-item"><span class="list-dot dot-green"></span> Avocado</div>
+        <div class="list-item"><span class="list-dot dot-red"></span> Strawberries</div>
+        <div class="list-item"><span class="list-dot dot-lime"></span> Lettuce</div>
+        <div class="list-item"><span class="list-dot dot-purple"></span> Blueberries</div>
+      </div>
+      <div class="reminders-card">
+        <div class="reminder-divider">
+          <div class="card-title">Reminders</div>
+          <span style="color:var(--white-muted);cursor:pointer">&#x22EE;</span>
+        </div>
+        <div class="reminder-item">
+          <div class="reminder-title">&#x2022; Weekly meeting</div>
+          <div class="reminder-time">16:15 pm</div>
+        </div>
+        <div class="reminder-item">
+          <div class="reminder-title">&#x2022; Laundry</div>
+          <div class="reminder-time">21:05 pm</div>
+        </div>
+        <div style="text-align:right;margin-top:8px">
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="alert-bar">
+      <span>&#x26A0;&#xFE0F;</span>
+      <span>Blueberries need to be used within the day!</span>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-home')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button class="active">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-home')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 2: HOME PAGE ===== -->
+<div class="screen" id="screen-home">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="home-header">
+      <div class="home-greeting">Welcome Back, Sam!</div>
+      <div class="live-badge" onclick="navigateTo('screen-preorder')">&#x1F7E2; Live Internal Camera</div>
+    </div>
+    <div class="banner banner-green">
+      <span>&#x1F7E2;</span> Market voting ends in 24 hours
+    </div>
+    <div class="home-section">
+      <div class="voting-card">
+        <div class="voting-header">
+          <div class="voting-icon">&#x1F4CA;</div>
+          <div class="voting-title">Market status for your neighborhood</div>
+          <span class="badge badge-green">24 Hours Left &#x1F552;</span>
+        </div>
+        <div class="vote-bar-row">
+          <span>Tues</span>
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:75%;background:var(--gray)"></div></div>
+          <span class="vote-count">21 votes</span>
+        </div>
+        <div class="vote-bar-row">
+          <span>Wed</span>
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:20%;background:var(--gray)"></div></div>
+          <span class="vote-count">5 votes</span>
+        </div>
+        <div class="vote-bar-row">
+          <span>Sat</span>
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:25%;background:var(--gray)"></div></div>
+          <span class="vote-count">7 votes</span>
+        </div>
+        <button class="btn btn-green" style="margin-top:12px" onclick="navigateTo('screen-vote')">Vote Now</button>
+      </div>
+    </div>
+    <div class="home-section">
+      <div class="low-items">
+        <div class="low-items-title">You seem to be running low on:</div>
+        <div class="low-items-grid">
+          <div class="low-item"><span>&#x1F955;</span> Carrots</div>
+          <div class="low-item"><span>&#x1F345;</span> Tomatoes</div>
+          <div class="low-item"><span>&#x1F951;</span> Avocado</div>
+          <div class="low-item"><span>&#x1F96C;</span> Lettuce</div>
+          <div class="low-item"><span>&#x1FAD0;</span> Blueberries</div>
+          <div class="low-item"><span>&#x1F353;</span> Strawberries</div>
+          <div class="low-item"><span>&#x1F34E;</span> Apples</div>
+          <div class="low-item"><span>&#x1F34B;</span> Lemons</div>
+        </div>
+        <button class="btn btn-outline" onclick="navigateTo('screen-market-list')">View Your Market List</button>
+      </div>
+    </div>
+    <div class="home-section">
+      <div class="preorder-card" onclick="navigateTo('screen-preorder')">
+        <div class="preorder-lock">&#x1F512;</div>
+        <div>
+          <div style="font-size:14px;font-weight:600;color:var(--white)">Pre-ordering</div>
+          <div class="preorder-text">Unlocks after your neighborhood votes on a date.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 3: VOTING (Basic) ===== -->
+<div class="screen" id="screen-vote">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="vote-screen-title">Vote</div>
+    <div class="banner banner-green" style="margin-bottom:0">
+      <span>&#x1F4CA;</span> Market status for your neighborhood
+      <span class="badge badge-green" style="margin-left:auto">24 Hours Left</span>
+    </div>
+    <div class="vote-day" onclick="selectDay(this,'monday')">
+      <div class="vote-day-left"><div class="radio" id="radio-monday"></div><span class="vote-day-name">Monday</span></div>
+      <div class="vote-day-right">
+        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:20%"></div></div>
+        <span class="vote-count-text">5 votes</span>
+      </div>
+    </div>
+    <div id="slots-monday" class="time-slots"></div>
+    <div class="vote-day" onclick="selectDay(this,'tuesday')">
+      <div class="vote-day-left"><div class="radio" id="radio-tuesday"></div><span class="vote-day-name">Tuesday</span></div>
+      <div class="vote-day-right">
+        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:75%"></div></div>
+        <span class="vote-count-text">21 votes</span>
+      </div>
+    </div>
+    <div id="slots-tuesday" class="time-slots">
+      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">10 AM</span><span class="time-slot-votes">11 votes</span></div>
+      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">3 PM</span><span class="time-slot-votes">2 votes</span></div>
+      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">6 PM</span><span class="time-slot-votes">4 votes</span></div>
+    </div>
+    <div class="vote-day" onclick="selectDay(this,'wednesday')">
+      <div class="vote-day-left"><div class="radio" id="radio-wednesday"></div><span class="vote-day-name">Wednesday</span></div>
+      <div class="vote-day-right">
+        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:18%"></div></div>
+        <span class="vote-count-text">5 votes</span>
+      </div>
+    </div>
+    <div id="slots-wednesday" class="time-slots"></div>
+    <div class="vote-day" onclick="selectDay(this,'thursday')">
+      <div class="vote-day-left"><div class="radio" id="radio-thursday"></div><span class="vote-day-name">Thursday</span></div>
+      <div class="vote-day-right">
+        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:8%"></div></div>
+        <span class="vote-count-text">2 votes</span>
+      </div>
+    </div>
+    <div id="slots-thursday" class="time-slots"></div>
+    <div class="vote-day" onclick="selectDay(this,'friday')">
+      <div class="vote-day-left"><div class="radio" id="radio-friday"></div><span class="vote-day-name">Friday</span></div>
+      <div class="vote-day-right">
+        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:12%"></div></div>
+        <span class="vote-count-text">3 votes</span>
+      </div>
+    </div>
+    <div id="slots-friday" class="time-slots"></div>
+    <div class="vote-day" onclick="selectDay(this,'saturday')">
+      <div class="vote-day-left"><div class="radio" id="radio-saturday"></div><span class="vote-day-name">Saturday</span></div>
+      <div class="vote-day-right">
+        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:25%"></div></div>
+        <span class="vote-count-text">7 votes</span>
+      </div>
+    </div>
+    <div id="slots-saturday" class="time-slots">
+      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">10 AM</span><span class="time-slot-votes">6 votes</span></div>
+      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">3 PM</span><span class="time-slot-votes">0 votes</span></div>
+      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">6 PM</span><span class="time-slot-votes">2 votes</span></div>
+    </div>
+  </div>
+  <div style="padding:16px 20px;flex-shrink:0">
+    <button class="btn btn-green" onclick="navigateTo('screen-vote-confirm')">Confirm Vote</button>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-home')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 4: VOTE CONFIRMED ===== -->
+<div class="screen" id="screen-vote-confirm">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area" style="display:flex;flex-direction:column">
+    <div class="vote-screen-title">Vote</div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center">
+      <div class="vote-confirmed-card">
+        <div class="vote-check">&#x2713;</div>
+        <div class="vote-confirmed-title">Vote Confirmed</div>
+        <div class="vote-confirmed-sub">You will be notified once the confirmed market date is finalized.</div>
+        <button class="btn btn-green" onclick="navigateTo('screen-date-confirm')">Done</button>
+      </div>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-vote')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 5: DATE CONFIRMATION ===== -->
+<div class="screen" id="screen-date-confirm">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="date-confirm-title">Health Mart Visit Confirmation</div>
+    <div class="banner banner-green">
+      <span>&#x1F69A;</span> Market arrives in approximately 14 mins - 0.4 miles away
+    </div>
+    <div class="date-card">
+      <div class="date-icon">&#x1F4CA;</div>
+      <div class="date-main">Tuesday, July 2nd</div>
+      <div class="date-time">15:00 pm</div>
+      <div class="date-progress"><div class="date-progress-fill"></div></div>
+      <div class="date-votes">22 votes</div>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 6: HOME PAGE WITH CONFIRMATION ===== -->
+<div class="screen" id="screen-home-confirm">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="home-header">
+      <div class="home-greeting">Welcome Back, Sam!</div>
+      <div class="live-badge" onclick="navigateTo('screen-preorder')">&#x1F7E2; Live Internal Camera</div>
+    </div>
+    <div class="banner banner-green">
+      <span>&#x1F69A;</span> Market arrives in approximately 14 mins - 0.4 miles away
+    </div>
+    <div class="home-section">
+      <div class="market-visit-card">
+        <div class="market-visit-title">Market Visit Confirmation</div>
+        <div class="date-icon" style="font-size:30px">&#x1F4CA;</div>
+        <div style="font-size:22px;font-weight:700;color:var(--white);margin:8px 0 4px">Tuesday, July 2nd</div>
+        <div style="font-size:14px;color:var(--white-dim)">15:00 pm</div>
+      </div>
+    </div>
+    <div class="home-section">
+      <div class="low-items">
+        <div class="low-items-title">You seem to be running low on:</div>
+        <div class="low-items-grid">
+          <div class="low-item"><span>&#x1F955;</span> Carrots</div>
+          <div class="low-item"><span>&#x1F345;</span> Tomatoes</div>
+          <div class="low-item"><span>&#x1F951;</span> Avocado</div>
+          <div class="low-item"><span>&#x1F96C;</span> Lettuce</div>
+          <div class="low-item"><span>&#x1FAD0;</span> Blueberries</div>
+          <div class="low-item"><span>&#x1F353;</span> Strawberries</div>
+          <div class="low-item"><span>&#x1F34E;</span> Apples</div>
+          <div class="low-item"><span>&#x1F34B;</span> Lemons</div>
+        </div>
+        <button class="btn btn-outline" onclick="navigateTo('screen-market-list')">View Your Market List</button>
+      </div>
+    </div>
+    <div class="home-section">
+      <button class="btn btn-green" onclick="navigateTo('screen-preorder')">Start Pre-order</button>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-date-confirm')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 7: PRE-ORDERING ===== -->
+<div class="screen" id="screen-preorder">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="preorder-alert">
+      &#x26A0; Blueberries and carrots are running critically low.<br>
+      Add them now and they'll be ready in your cart once a date is confirmed.
+    </div>
+    <div class="camera-section">
+      <div class="camera-header">
+        <div class="camera-title">INTERNAL CAMERA</div>
+        <div class="live-dot">LIVE &#x25CF;</div>
+      </div>
+      <div class="shelf-label">SHELF 1</div>
+      <div class="shelf-grid">
+        <div class="shelf-item"><div style="background:#8B4513;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F34E;</div><div class="shelf-item-label">Apples</div></div>
+        <div class="shelf-item"><div style="background:#4A148C;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1FAD0;</div><div class="shelf-item-label">Blueberries</div></div>
+        <div class="shelf-item"><div style="background:#E65100;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F955;</div><div class="shelf-item-label">Carrots</div></div>
+      </div>
+      <div class="shelf-grid">
+        <div class="shelf-item"><div style="background:#F9A825;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F34B;</div><div class="shelf-item-label">Lemons</div></div>
+        <div class="shelf-item"><div style="background:#2E7D32;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F96C;</div><div class="shelf-item-label">Lettuce</div></div>
+        <div class="shelf-item" style="opacity:0.3"></div>
+      </div>
+      <button class="camera-expand" id="expand-btn" onclick="toggleShelves()">Tap to expand</button>
+      <div id="extra-shelves" style="display:none">
+        <div class="shelf-label">SHELF 2</div>
+        <div class="shelf-grid">
+          <div class="shelf-item"><div style="background:#C62828;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F353;</div><div class="shelf-item-label">Strawberries</div></div>
+          <div class="shelf-item"><div style="background:#F5F5DC;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F95A;</div><div class="shelf-item-label">Eggs</div></div>
+          <div class="shelf-item" style="opacity:0.3"></div>
+        </div>
+        <div class="shelf-label">SHELF 3</div>
+        <div class="shelf-grid">
+          <div class="shelf-item"><div style="background:#388E3C;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F951;</div><div class="shelf-item-label">Avocados</div></div>
+          <div class="shelf-item" style="opacity:0.3"></div>
+          <div class="shelf-item" style="opacity:0.3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="freshness-section">
+      <div class="freshness-header">
+        <div class="freshness-title">Freshness Breakdown</div>
+        <div class="freshness-sort">Sorted by urgency</div>
+      </div>
+      <div class="freshness-item">
+        <div class="freshness-left">
+          <span class="freshness-emoji">&#x1FAD0;</span>
+          <div>
+            <div class="freshness-name">Blueberries</div>
+            <span class="toss-badge">Toss within one day</span>
+          </div>
+        </div>
+        <button class="freshness-add" id="add-blueberries" onclick="addToList(this)">+ Add to market list</button>
+      </div>
+      <div class="freshness-item">
+        <div class="freshness-left">
+          <span class="freshness-emoji">&#x1F955;</span>
+          <div>
+            <div class="freshness-name">Carrots</div>
+            <span class="remaining-badge">2-3 days remaining</span>
+          </div>
+        </div>
+        <button class="freshness-add" id="add-carrots" onclick="addToList(this)">+ Add to market list</button>
+      </div>
+    </div>
+    <div style="padding:0 20px 16px">
+      <button class="btn btn-outline" onclick="navigateTo('screen-market-list')">View Your Market List</button>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 8: MARKET LIST ===== -->
+<div class="screen" id="screen-market-list">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="market-list-header">Your Market List</div>
+    <div class="market-list-note">
+      These items will be ready in your cart once a date is confirmed.
+    </div>
+    <div class="add-item-section">
+      <input type="text" id="new-item-input" placeholder="Add new item..." class="add-item-input">
+      <button onclick="addMarketItem()" class="add-item-btn">+</button>
+    </div>
+    <div class="market-item">
+      <div class="market-item-left"><span>&#x1FAD0;</span><span class="market-item-name">Blueberries</span></div>
+      <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
+    </div>
+    <div class="market-item">
+      <div class="market-item-left"><span>&#x1F951;</span><span class="market-item-name">Avocado</span></div>
+      <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
+    </div>
+    <div class="market-item">
+      <div class="market-item-left"><span>&#x1F353;</span><span class="market-item-name">Strawberries</span></div>
+      <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
+    </div>
+    <div class="market-item">
+      <div class="market-item-left"><span>&#x1F96C;</span><span class="market-item-name">Lettuce</span></div>
+      <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-preorder')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 9: MARKET LIST (Date Confirmed) ===== -->
+<div class="screen" id="screen-market-list-confirmed">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="banner banner-green" style="margin-top:4px">
+      <span>&#x2713;</span> Market date has been confirmed!
+    </div>
+    <div class="market-list-header">Your Market List</div>
+    <div class="market-list-note">
+      These items will be ready in your cart once a date is confirmed.
+    </div>
+    <div class="add-item-section">
+      <input type="text" id="new-item-input-confirmed" placeholder="Add new item..." class="add-item-input">
+      <button onclick="addMarketItemConfirmed()" class="add-item-btn">+</button>
+    </div>
+    <div class="market-item">
+      <div class="market-item-left"><span>&#x1FAD0;</span><span class="market-item-name">Blueberries</span></div>
+      <button class="delete-btn">&#x1F5D1;</button>
+    </div>
+    <div class="market-item">
+      <div class="market-item-left"><span>&#x1F951;</span><span class="market-item-name">Avocado</span></div>
+      <button class="delete-btn">&#x1F5D1;</button>
+    </div>
+    <div class="market-item">
+      <div class="market-item-left"><span>&#x1F353;</span><span class="market-item-name">Strawberries</span></div>
+      <button class="delete-btn">&#x1F5D1;</button>
+    </div>
+    <div class="market-item">
+      <div class="market-item-left"><span>&#x1F96C;</span><span class="market-item-name">Lettuce</span></div>
+      <button class="delete-btn">&#x1F5D1;</button>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 10: HEALTH MART ===== -->
+<div class="screen" id="screen-health-mart">
+  <div class="status-bar">
+    <span>12:45 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="mart-header">
+    <div class="mart-title">Health Mart</div>
+    <div class="mart-actions">
+      <button class="mart-btn" onclick="navigateTo('screen-market-list-confirmed')">&#x1F4CB; Your market list</button>
+      <button class="mart-btn">&#x2699; Filter</button>
+    </div>
+  </div>
+  <div class="mart-layout">
+    <div class="mart-categories">
+      <div class="mart-cat active">
+        <div class="mart-cat-icon">&#x1F966;</div>
+        <div class="mart-cat-name">Vegetables</div>
+      </div>
+      <div class="mart-cat">
+        <div class="mart-cat-icon">&#x1F9C0;</div>
+        <div class="mart-cat-name">Dairy</div>
+      </div>
+      <div class="mart-cat">
+        <div class="mart-cat-icon">&#x1F34E;</div>
+        <div class="mart-cat-name">Fruits</div>
+      </div>
+      <div class="mart-cat">
+        <div class="mart-cat-icon">&#x1F969;</div>
+        <div class="mart-cat-name">Meat</div>
+      </div>
+    </div>
+    <div class="mart-products" id="mart-products">
+      <div class="product-card">
+        <div class="product-img">&#x1F345;</div>
+        <div class="product-info">
+          <div class="product-name">Tomatoes</div>
+          <div class="product-meta">
+            <span class="product-stock">18 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1F336;</div>
+        <div class="product-info">
+          <div class="product-name">Jalapeno</div>
+          <div class="product-meta">
+            <span class="product-stock">10 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1F34B;</div>
+        <div class="product-info">
+          <div class="product-name">Lemons</div>
+          <div class="product-meta">
+            <span class="product-stock">10 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1F9C5;</div>
+        <div class="product-info">
+          <div class="product-name">Onions</div>
+          <div class="product-meta">
+            <span class="product-stock">10 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1F966;</div>
+        <div class="product-info">
+          <div class="product-name">Broccoli</div>
+          <div class="product-meta">
+            <span class="product-stock">10 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1F955;</div>
+        <div class="product-info">
+          <div class="product-name">Carrots</div>
+          <div class="product-meta">
+            <span class="product-stock">10 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-dots" style="padding:6px 0">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 11: HEALTH MART (Market List Items tab) ===== -->
+<div class="screen" id="screen-health-mart-list">
+  <div class="status-bar">
+    <span>12:45 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="mart-header">
+    <div class="mart-title">Health Mart</div>
+    <div class="mart-actions">
+      <button class="mart-btn" onclick="navigateTo('screen-market-list-confirmed')">&#x1F4CB; Your market list</button>
+      <button class="mart-btn">&#x2699; Filter</button>
+    </div>
+  </div>
+  <div class="mart-tabs">
+    <button class="mart-tab active">Market List Items</button>
+    <button class="mart-tab" onclick="navigateTo('screen-health-mart')">Previously Ordered Items</button>
+  </div>
+  <div class="mart-layout">
+    <div class="mart-categories">
+      <div class="mart-cat active">
+        <div class="mart-cat-icon">&#x1F966;</div>
+        <div class="mart-cat-name">Vegetables</div>
+      </div>
+      <div class="mart-cat">
+        <div class="mart-cat-icon">&#x1F9C0;</div>
+        <div class="mart-cat-name">Dairy</div>
+      </div>
+      <div class="mart-cat">
+        <div class="mart-cat-icon">&#x1F34E;</div>
+        <div class="mart-cat-name">Fruits</div>
+      </div>
+      <div class="mart-cat">
+        <div class="mart-cat-icon">&#x1F969;</div>
+        <div class="mart-cat-name">Meat</div>
+      </div>
+    </div>
+    <div class="mart-products">
+      <div class="product-card">
+        <div class="product-img">&#x1F345;</div>
+        <div class="product-info">
+          <div class="product-name">Tomatoes</div>
+          <div class="product-meta">
+            <span class="product-stock">18 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">6</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add added">Added</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1F955;</div>
+        <div class="product-info">
+          <div class="product-name">Carrots</div>
+          <div class="product-meta">
+            <span class="product-stock">18 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1F34B;</div>
+        <div class="product-info">
+          <div class="product-name">Lemons</div>
+          <div class="product-meta">
+            <span class="product-stock">18 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1F951;</div>
+        <div class="product-info">
+          <div class="product-name">Avocados</div>
+          <div class="product-meta">
+            <span class="product-stock">18 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1F96C;</div>
+        <div class="product-info">
+          <div class="product-name">Lettuce</div>
+          <div class="product-meta">
+            <span class="product-stock">10 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">&#x1FAD0;</div>
+        <div class="product-info">
+          <div class="product-name">Blueberries</div>
+          <div class="product-meta">
+            <span class="product-stock">10 left</span>
+            <span class="product-price">$0.98/lb</span>
+          </div>
+          <div class="product-qty">
+            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <button class="product-add" onclick="addProduct(this)">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:12px 20px;flex-shrink:0">
+    <button class="btn btn-green" onclick="navigateTo('screen-cart')">View Cart</button>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-health-mart')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 12: YOUR CART ===== -->
+<div class="screen" id="screen-cart">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="cart-title">Your Cart</div>
+    <div class="cart-item">
+      <div class="cart-item-img">&#x1F345;</div>
+      <div class="cart-item-details">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div class="cart-item-name">Tomatoes</div>
+          <div class="cart-item-price-unit">$2.98/lb</div>
+        </div>
+        <div class="product-qty" style="margin:6px 0">
+          <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+          <span class="qty-val">6</span>
+          <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+        </div>
+        <div class="cart-item-total">$4.96</div>
+      </div>
+      <button class="cart-delete">&#x1F5D1;</button>
+    </div>
+    <div class="cart-item">
+      <div class="cart-item-img">&#x1F34B;</div>
+      <div class="cart-item-details">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div class="cart-item-name">Lemons</div>
+          <div class="cart-item-price-unit">$0.98/lb</div>
+        </div>
+        <div class="product-qty" style="margin:6px 0">
+          <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+          <span class="qty-val">8</span>
+          <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+        </div>
+        <div class="cart-item-total">$4.52</div>
+      </div>
+      <button class="cart-delete">&#x1F5D1;</button>
+    </div>
+    <div class="cart-item">
+      <div class="cart-item-img">&#x1FAD0;</div>
+      <div class="cart-item-details">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div class="cart-item-name">Blueberries</div>
+          <div class="cart-item-price-unit">$5.80/lb</div>
+        </div>
+        <div class="product-qty" style="margin:6px 0">
+          <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+          <span class="qty-val">1</span>
+          <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+        </div>
+        <div class="cart-item-total">$3.12</div>
+      </div>
+      <button class="cart-delete">&#x1F5D1;</button>
+    </div>
+    <div class="cart-summary">
+      <div class="cart-row"><span>Subtotal</span><span>$12.60</span></div>
+      <div class="cart-row"><span>Taxes</span><span>$0.31</span></div>
+      <div class="cart-total"><span>Total</span><span>$12.91</span></div>
+      <button class="btn btn-green" onclick="navigateTo('screen-order-confirmed')">Confirm Pre-order</button>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-health-mart-list')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 13: ORDER CONFIRMED ===== -->
+<div class="screen" id="screen-order-confirmed">
+  <div class="status-bar">
+    <span>12:43 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area" style="display:flex;flex-direction:column">
+    <div class="order-title">Order Confirmed</div>
+    <div class="order-card">
+      <div class="order-desc">Your QR code will be sent to your email, or you can use the QR code in the mobile app when picking up your order.</div>
+      <div class="qr-placeholder">
+        <svg viewBox="0 0 200 200" width="160" height="160">
+          <rect width="200" height="200" fill="white"/>
+          <!-- QR Code Pattern -->
+          <rect x="10" y="10" width="50" height="50" fill="black"/>
+          <rect x="15" y="15" width="40" height="40" fill="white"/>
+          <rect x="20" y="20" width="30" height="30" fill="black"/>
+          <rect x="140" y="10" width="50" height="50" fill="black"/>
+          <rect x="145" y="15" width="40" height="40" fill="white"/>
+          <rect x="150" y="20" width="30" height="30" fill="black"/>
+          <rect x="10" y="140" width="50" height="50" fill="black"/>
+          <rect x="15" y="145" width="40" height="40" fill="white"/>
+          <rect x="20" y="150" width="30" height="30" fill="black"/>
+          <!-- Random data blocks -->
+          <rect x="70" y="10" width="8" height="8" fill="black"/>
+          <rect x="85" y="10" width="8" height="8" fill="black"/>
+          <rect x="100" y="10" width="8" height="8" fill="black"/>
+          <rect x="115" y="15" width="8" height="8" fill="black"/>
+          <rect x="70" y="25" width="8" height="8" fill="black"/>
+          <rect x="90" y="30" width="8" height="8" fill="black"/>
+          <rect x="110" y="25" width="8" height="8" fill="black"/>
+          <rect x="130" y="30" width="8" height="8" fill="black"/>
+          <rect x="70" y="45" width="8" height="8" fill="black"/>
+          <rect x="85" y="50" width="8" height="8" fill="black"/>
+          <rect x="100" y="45" width="8" height="8" fill="black"/>
+          <rect x="120" y="50" width="8" height="8" fill="black"/>
+          <rect x="10" y="70" width="8" height="8" fill="black"/>
+          <rect x="25" y="75" width="8" height="8" fill="black"/>
+          <rect x="40" y="70" width="8" height="8" fill="black"/>
+          <rect x="55" y="80" width="8" height="8" fill="black"/>
+          <rect x="70" y="70" width="8" height="8" fill="black"/>
+          <rect x="85" y="75" width="8" height="8" fill="black"/>
+          <rect x="100" y="70" width="8" height="8" fill="black"/>
+          <rect x="115" y="80" width="8" height="8" fill="black"/>
+          <rect x="130" y="70" width="8" height="8" fill="black"/>
+          <rect x="150" y="75" width="8" height="8" fill="black"/>
+          <rect x="170" y="70" width="8" height="8" fill="black"/>
+          <rect x="10" y="90" width="8" height="8" fill="black"/>
+          <rect x="30" y="95" width="8" height="8" fill="black"/>
+          <rect x="50" y="90" width="8" height="8" fill="black"/>
+          <rect x="70" y="95" width="8" height="8" fill="black"/>
+          <rect x="90" y="90" width="8" height="8" fill="black"/>
+          <rect x="110" y="95" width="8" height="8" fill="black"/>
+          <rect x="130" y="90" width="8" height="8" fill="black"/>
+          <rect x="150" y="95" width="8" height="8" fill="black"/>
+          <rect x="170" y="90" width="8" height="8" fill="black"/>
+          <rect x="15" y="110" width="8" height="8" fill="black"/>
+          <rect x="35" y="115" width="8" height="8" fill="black"/>
+          <rect x="55" y="110" width="8" height="8" fill="black"/>
+          <rect x="75" y="115" width="8" height="8" fill="black"/>
+          <rect x="95" y="110" width="8" height="8" fill="black"/>
+          <rect x="115" y="115" width="8" height="8" fill="black"/>
+          <rect x="135" y="110" width="8" height="8" fill="black"/>
+          <rect x="155" y="115" width="8" height="8" fill="black"/>
+          <rect x="175" y="110" width="8" height="8" fill="black"/>
+          <rect x="70" y="130" width="8" height="8" fill="black"/>
+          <rect x="85" y="135" width="8" height="8" fill="black"/>
+          <rect x="100" y="130" width="8" height="8" fill="black"/>
+          <rect x="115" y="140" width="8" height="8" fill="black"/>
+          <rect x="130" y="135" width="8" height="8" fill="black"/>
+          <rect x="150" y="130" width="8" height="8" fill="black"/>
+          <rect x="165" y="140" width="8" height="8" fill="black"/>
+          <rect x="180" y="135" width="8" height="8" fill="black"/>
+          <rect x="70" y="150" width="8" height="8" fill="black"/>
+          <rect x="90" y="155" width="8" height="8" fill="black"/>
+          <rect x="110" y="150" width="8" height="8" fill="black"/>
+          <rect x="130" y="160" width="8" height="8" fill="black"/>
+          <rect x="150" y="155" width="8" height="8" fill="black"/>
+          <rect x="170" y="150" width="8" height="8" fill="black"/>
+          <rect x="80" y="170" width="8" height="8" fill="black"/>
+          <rect x="100" y="175" width="8" height="8" fill="black"/>
+          <rect x="120" y="170" width="8" height="8" fill="black"/>
+          <rect x="140" y="180" width="12" height="12" fill="black"/>
+          <rect x="160" y="175" width="8" height="8" fill="black"/>
+          <rect x="180" y="170" width="8" height="8" fill="black"/>
+        </svg>
+      </div>
+      <div class="order-scan">Scan your QR code at pickup.</div>
+    </div>
+    <div class="order-charge">$12.91 will be charged to your account at the market pickup.</div>
+  </div>
+  <div class="page-dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard-arriving')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button onclick="navigateTo('screen-dashboard-arriving')">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-cart')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 14: DASHBOARD (Market Arriving) ===== -->
+<div class="screen" id="screen-dashboard-arriving">
+  <div class="status-bar">
+    <span>1:05 PM</span>
+    <span>Wednesday, June 24</span>
+    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+  </div>
+  <div class="scroll-area">
+    <div class="dashboard-greeting">Good Afternoon!</div>
+    <div class="dashboard-top">
+      <div class="weather-card">
+        <div class="weather-icon">&#x26C5;</div>
+        <div class="weather-temp">56&#xB0;F</div>
+        <div class="weather-label">Cloudy</div>
+      </div>
+      <div class="time-card">
+        <div class="time-icon">&#x1F553;</div>
+        <div class="time-display">1:25pm</div>
+        <div class="time-date">Wed, June 24</div>
+      </div>
+    </div>
+    <div class="market-arriving-banner">
+      <div class="market-arriving-icon">&#x1F69A;</div>
+      <div class="market-arriving-text">Market arrives in approximately 14 mins - 0.4 miles away</div>
+    </div>
+    <div class="dashboard-bottom">
+      <div class="market-list-card">
+        <div class="card-title">Your Market List :</div>
+        <div class="list-item"><span class="list-dot dot-green"></span> Avocado</div>
+        <div class="list-item"><span class="list-dot dot-red"></span> Strawberries</div>
+        <div class="list-item"><span class="list-dot dot-lime"></span> Lettuce</div>
+        <div class="list-item"><span class="list-dot dot-purple"></span> Blueberries</div>
+      </div>
+      <div class="reminders-card">
+        <div class="reminder-divider">
+          <div class="card-title">Reminders</div>
+          <span style="color:var(--white-muted);cursor:pointer">&#x22EE;</span>
+        </div>
+        <div class="reminder-item">
+          <div class="reminder-title">&#x2022; Weekly meeting</div>
+          <div class="reminder-time">16:15 pm</div>
+        </div>
+        <div class="reminder-item">
+          <div class="reminder-title">&#x2022; Laundry</div>
+          <div class="reminder-time">21:05 pm</div>
+        </div>
+        <div style="text-align:right;margin-top:8px">
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="alert-bar">
+      <span>&#x26A0;&#xFE0F;</span>
+      <span>Blueberries need to be used within the day!</span>
+    </div>
+  </div>
+  <div class="page-dots">
+    <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-home-confirm')">&#x2B1A;</div>
+    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
+    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
+    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
+    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
+    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+  </div>
+  <div class="bottom-nav">
+    <button>&#x1F3A4;</button>
+    <button>&#x2630;</button>
+    <button class="active">&#x1F3E0;</button>
+    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
+    <button>&#x1F514;</button>
+  </div>
+</div>
+
+</div><!-- end fridge -->
+
+<!-- ===== NAVIGATION MENU (floating) ===== -->
+<div id="nav-menu" style="position:fixed;top:12px;right:12px;z-index:999;display:flex;flex-direction:column;gap:4px;max-height:90vh;overflow-y:auto;background:rgba(0,0,0,0.85);padding:10px;border-radius:12px;font-size:11px;width:180px">
+  <div style="color:#999;font-weight:700;margin-bottom:4px;font-size:10px;text-transform:uppercase">Screen Navigator</div>
+  <button class="nav-link" onclick="navigateTo('screen-dashboard')">1. Dashboard</button>
+  <button class="nav-link" onclick="navigateTo('screen-home')">2. Home Page</button>
+  <button class="nav-link" onclick="navigateTo('screen-vote')">3. Voting</button>
+  <button class="nav-link" onclick="navigateTo('screen-vote-confirm')">4. Vote Confirmed</button>
+  <button class="nav-link" onclick="navigateTo('screen-date-confirm')">5. Date Confirmation</button>
+  <button class="nav-link" onclick="navigateTo('screen-home-confirm')">6. Home (Confirmed)</button>
+  <button class="nav-link" onclick="navigateTo('screen-preorder')">7. Pre-ordering</button>
+  <button class="nav-link" onclick="navigateTo('screen-market-list')">8. Market List</button>
+  <button class="nav-link" onclick="navigateTo('screen-market-list-confirmed')">9. Market List (Confirmed)</button>
+  <button class="nav-link" onclick="navigateTo('screen-health-mart')">10. Health Mart</button>
+  <button class="nav-link" onclick="navigateTo('screen-health-mart-list')">11. Health Mart (List)</button>
+  <button class="nav-link" onclick="navigateTo('screen-cart')">12. Your Cart</button>
+  <button class="nav-link" onclick="navigateTo('screen-order-confirmed')">13. Order Confirmed</button>
+  <button class="nav-link" onclick="navigateTo('screen-dashboard-arriving')">14. Dashboard (Arriving)</button>
+  <style>
+    .nav-link{background:none;border:none;color:#ccc;text-align:left;padding:6px 8px;cursor:pointer;border-radius:6px;font-family:var(--font);font-size:11px;width:100%}
+    .nav-link:hover{background:rgba(255,255,255,0.1)}
+    .nav-link.current{background:var(--green);color:#fff}
+  </style>
+</div>
+
+<script>
+// Navigation
+function navigateTo(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(screenId);
+  if (target) {
+    target.classList.add('active');
+    // Scroll to top
+    const scroll = target.querySelector('.scroll-area');
+    if (scroll) scroll.scrollTop = 0;
+  }
+  // Update nav menu
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('current'));
+  document.querySelectorAll('.nav-link').forEach(l => {
+    if (l.getAttribute('onclick') && l.getAttribute('onclick').includes(screenId)) {
+      l.classList.add('current');
+    }
+  });
+}
+
+// Voting interactions
+let selectedDays = {};
+function selectDay(el, day) {
+  const radio = document.getElementById('radio-' + day);
+  const slots = document.getElementById('slots-' + day);
+
+  if (selectedDays[day]) {
+    // Deselect
+    delete selectedDays[day];
+    radio.classList.remove('selected');
+    if (slots) slots.classList.remove('show');
+    // Reset progress bar
+    const fill = el.querySelector('.vote-progress-fill');
+    if (fill) { fill.classList.remove('green'); fill.classList.add('gray'); }
+  } else {
+    // Select
+    selectedDays[day] = true;
+    radio.classList.add('selected');
+    if (slots && slots.children.length > 0) slots.classList.add('show');
+    // Update progress bar
+    const fill = el.querySelector('.vote-progress-fill');
+    if (fill) { fill.classList.remove('gray'); fill.classList.add('green'); }
+    // Update vote count
+    const countEl = el.querySelector('.vote-count-text');
+    if (countEl) {
+      const current = parseInt(countEl.textContent);
+      countEl.textContent = (current + 1) + ' votes';
+    }
+  }
+}
+
+function selectSlot(el) {
+  el.classList.toggle('selected');
+}
+
+// Shelf toggle
+function toggleShelves() {
+  const extra = document.getElementById('extra-shelves');
+  const btn = document.getElementById('expand-btn');
+  if (extra.style.display === 'none') {
+    extra.style.display = 'block';
+    btn.textContent = 'Tap to collapse';
+  } else {
+    extra.style.display = 'none';
+    btn.textContent = 'Tap to expand';
+  }
+}
+
+// Add market item
+function addMarketItem() {
+  const input = document.getElementById('new-item-input');
+  const itemName = input.value.trim();
+  if (itemName === '') return;
+  
+  const scrollArea = document.querySelector('#screen-market-list .scroll-area');
+  const addSection = scrollArea.querySelector('.add-item-section');
+  
+  const newItem = document.createElement('div');
+  newItem.className = 'market-item';
+  newItem.innerHTML = `
+    <div class="market-item-left">
+      <span>&#x1F6D2;</span>
+      <span class="market-item-name">${itemName}</span>
+    </div>
+    <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
+  `;
+  
+  scrollArea.insertBefore(newItem, addSection.nextSibling);
+  input.value = '';
+}
+
+function addMarketItemConfirmed() {
+  const input = document.getElementById('new-item-input-confirmed');
+  const itemName = input.value.trim();
+  if (itemName === '') return;
+  
+  const scrollArea = document.querySelector('#screen-market-list-confirmed .scroll-area');
+  const addSection = scrollArea.querySelector('.add-item-section');
+  
+  const newItem = document.createElement('div');
+  newItem.className = 'market-item';
+  newItem.innerHTML = `
+    <div class="market-item-left">
+      <span>&#x1F6D2;</span>
+      <span class="market-item-name">${itemName}</span>
+    </div>
+    <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
+  `;
+  
+  scrollArea.insertBefore(newItem, addSection.nextSibling);
+  input.value = '';
+}
+
+// Add to list
+function addToList(btn) {
+  btn.outerHTML = '<span class="freshness-added">&#x2713; Added to the list</span>';
+}
+
+// Product quantity
+function changeQty(btn, delta) {
+  const container = btn.parentElement;
+  const valEl = container.querySelector('.qty-val');
+  let val = parseInt(valEl.textContent);
+  val = Math.max(1, val + delta);
+  valEl.textContent = val;
+}
+
+// Add product
+function addProduct(btn) {
+  btn.textContent = 'Added';
+  btn.classList.add('added');
+  btn.onclick = null;
+}
+
+// Toast for dead ends
+document.querySelectorAll('[data-coming-soon]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    showToast("This part isn't clickable in the prototype");
+  });
+});
+
+// Initialize first screen nav link
+document.querySelector('.nav-link').classList.add('current');
+</script>
+</body>
+</html>
