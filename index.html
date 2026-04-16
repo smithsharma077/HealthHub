@@ -1,112 +1,164 @@
-Malele  background:#D4C5A9;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>HealthHub Smart Fridge</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1C1C1E;
+  --bg-light:#2C2C2E;
+  --bg-card:#333338;
+  --bg-card2:#3A3A3C;
+  --green:#34C759;
+  --green-dark:#2DA44E;
+  --green-btn:#2E8B57;
+  --green-light:rgba(52,199,89,0.15);
+  --green-text:#34C759;
+  --red:#FF3B30;
+  --red-badge:#E53935;
+  --orange:#FF9500;
+  --orange-badge:#E8A317;
+  --white:#FFFFFF;
+  --white-dim:rgba(255,255,255,0.7);
+  --white-muted:rgba(255,255,255,0.5);
+  --gray:#8E8E93;
+  --gray-light:#636366;
+  --border:rgba(255,255,255,0.1);
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --radius:32px;
+  --radius-sm:22px;
+  --radius-xs:18px;
 }
 
-/* FRIDGE FRAME */
-.fridge{
-  width:480px;height:1024px;
-  background:var(--bg);
-  border-radius:24px;
-  box-shadow:0 40px 100px rgba(0,0,0,.4),0 0 0 3px #111;
-  position:relative;overflow:hidden;
+html,body{
+  background:#D4C5A9;
+  font-family:var(--font);
+  overflow:auto;
+  min-height:100vh;
 }
-@media(max-width:520px){
-  .fridge{width:100vw;height:100vh;border-radius:0;box-shadow:none}
+body{
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+}
+
+/* FRIDGE WRAPPER */
+.fridge-wrapper{
+  margin-left:260px;
+  padding:40px 40px 40px 40px;
+  flex-shrink:0;
+}
+
+/* FRIDGE FRAME — 1080×1920 */
+.fridge{
+  width:1080px;
+  height:1920px;
+  background:var(--bg);
+  border-radius:40px;
+  box-shadow:0 60px 120px rgba(0,0,0,.5),0 0 0 4px #111;
+  position:relative;
+  overflow:hidden;
 }
 
 /* SCREENS */
 .screen{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;
+  position:absolute;
+  top:0;right:0;bottom:0;left:0;
+  display:none;
+  flex-direction:column;
   background:var(--bg);
-  opacity:0;pointer-events:none;
-  transition:opacity .3s ease;
   overflow:hidden;
 }
-.screen.active{opacity:1;pointer-events:all}
+.screen.active{display:flex;}
 
 /* STATUS BAR */
 .status-bar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:12px 20px 8px;flex-shrink:0;
-  color:var(--white);font-size:13px;font-weight:600;
+  padding:28px 48px 18px;
+  flex-shrink:0;
+  color:var(--white);font-size:28px;font-weight:600;
+  background:var(--bg);
 }
-.status-icons{display:flex;align-items:center;gap:6px;font-size:12px}
+.status-icons{display:flex;align-items:center;gap:14px;font-size:26px}
 
 /* SCROLLABLE CONTENT */
 .scroll-area{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
 .scroll-area::-webkit-scrollbar{display:none}
 
-/* BOTTOM NAV */
+/* BOTTOM NAV — fixed within screen */
 .bottom-nav{
   display:flex;align-items:center;justify-content:space-around;
-  padding:10px 0 16px;flex-shrink:0;
-  border-top:1px solid var(--border);
-  background:var(--bg);
+  padding:18px 0 38px;
+  flex-shrink:0;
+  border-top:2px solid var(--border);
+  background:rgba(28,28,30,0.95);
+  backdrop-filter:blur(20px);
 }
 .bottom-nav button{
   background:none;border:none;color:var(--gray);
-  font-size:22px;cursor:pointer;padding:8px;
-  display:flex;flex-direction:column;align-items:center;gap:2px;
+  font-size:48px;cursor:pointer;padding:14px 20px;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  border-radius:16px;transition:color 0.2s,background 0.2s;
 }
-.bottom-nav button.active{color:var(--white)}
+.bottom-nav button.active{
+  color:var(--white);
+}
+.bottom-nav button:active{background:var(--bg-card)}
 
 /* APP ICONS ROW */
 .app-icons{
-  display:flex;justify-content:center;gap:12px;
-  padding:12px 20px;flex-shrink:0;
+  display:flex;justify-content:center;gap:24px;
+  padding:22px 48px;flex-shrink:0;
 }
 .app-icon{
-  width:40px;height:40px;border-radius:10px;
+  width:88px;height:88px;border-radius:22px;
   display:flex;align-items:center;justify-content:center;
-  font-size:18px;cursor:pointer;
+  font-size:40px;cursor:pointer;transition:opacity 0.2s;
 }
+.app-icon:active{opacity:0.7}
 
 /* PAGE DOTS */
 .page-dots{
-  display:flex;justify-content:center;gap:6px;
-  padding:8px 0;flex-shrink:0;
+  display:flex;justify-content:center;gap:14px;
+  padding:16px 0;flex-shrink:0;
 }
 .page-dots .dot{
-  width:8px;height:8px;border-radius:50%;
+  width:16px;height:16px;border-radius:50%;
   background:var(--gray-light);
 }
 .page-dots .dot.active{background:var(--white)}
 
 /* COMMON BUTTON */
 .btn{
-  width:100%;padding:14px;border:none;border-radius:var(--radius-sm);
-  font-family:var(--font);font-size:15px;font-weight:600;
-  cursor:pointer;text-align:center;
+  width:100%;padding:28px;border:none;border-radius:var(--radius-sm);
+  font-family:var(--font);font-size:30px;font-weight:600;
+  cursor:pointer;text-align:center;transition:background 0.2s;
 }
 .btn-green{background:var(--green-btn);color:var(--white)}
 .btn-green:hover{background:#257a4a}
+.btn-green:disabled{background:var(--gray);cursor:not-allowed;opacity:0.5}
 .btn-outline{
   background:transparent;color:var(--green-text);
-  border:1.5px solid var(--green-text);
+  border:3px solid var(--green-text);
 }
 
 /* BANNER */
 .banner{
-  display:flex;align-items:center;gap:8px;
-  padding:10px 16px;border-radius:var(--radius-xs);
-  font-size:13px;font-weight:500;margin:0 20px 12px;
+  display:flex;align-items:center;gap:16px;
+  padding:22px 36px;border-radius:var(--radius-xs);
+  font-size:28px;font-weight:500;margin:0 48px 26px;
 }
 .banner-green{background:var(--green-light);color:var(--green-text)}
 .banner-red{background:rgba(255,59,48,0.15);color:#FF6B6B}
 
-/* CARDS */
-.card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:16px;
-}
-
 /* BADGE */
 .badge{
-  display:inline-flex;align-items:center;gap:4px;
-  padding:4px 10px;border-radius:20px;
-  font-size:11px;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 20px;border-radius:44px;
+  font-size:22px;font-weight:600;
 }
 .badge-green{background:var(--green-light);color:var(--green-text)}
 .badge-red{background:rgba(255,59,48,0.2);color:#FF6B6B}
@@ -114,539 +166,514 @@ Malele  background:#D4C5A9;
 
 /* ===== SCREEN 1: DASHBOARD ===== */
 .dashboard-greeting{
-  font-size:22px;font-weight:700;color:var(--white);
-  padding:4px 20px 12px;
+  font-size:52px;font-weight:700;color:var(--white);
+  padding:8px 48px 28px;
 }
 .dashboard-top{
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
-  padding:0 20px 12px;
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  padding:0 48px 26px;
 }
 .weather-card{
   background:var(--bg-card);border-radius:var(--radius);
-  padding:20px;display:flex;flex-direction:column;
+  padding:44px;display:flex;flex-direction:column;
 }
-.weather-temp{font-size:42px;font-weight:700;color:var(--white);line-height:1}
-.weather-label{font-size:13px;color:var(--white-dim);margin-top:4px}
-.weather-icon{font-size:40px;text-align:right}
+.weather-temp{font-size:96px;font-weight:700;color:var(--white);line-height:1}
+.weather-label{font-size:28px;color:var(--white-dim);margin-top:8px}
+.weather-icon{font-size:84px;text-align:right}
 .time-card{
   background:var(--bg-card);border-radius:var(--radius);
-  padding:20px;display:flex;flex-direction:column;align-items:center;
+  padding:44px;display:flex;flex-direction:column;align-items:center;
   justify-content:center;
 }
-.time-display{font-size:36px;font-weight:700;color:var(--white);line-height:1}
-.time-date{font-size:12px;color:var(--white-dim);margin-top:6px}
-.time-icon{font-size:36px;margin-bottom:6px}
-
+.time-display{font-size:80px;font-weight:700;color:var(--white);line-height:1}
+.time-date{font-size:26px;color:var(--white-dim);margin-top:12px}
+.time-icon{font-size:76px;margin-bottom:12px}
 .dashboard-bottom{
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
-  padding:0 20px 12px;
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  padding:0 48px 26px;
 }
 .market-list-card,.reminders-card{
   background:var(--bg-card);border-radius:var(--radius);
-  padding:14px;
+  padding:30px;
 }
-.card-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:10px}
+.card-title{font-size:30px;font-weight:700;color:var(--white);margin-bottom:20px}
 .list-item{
-  display:flex;align-items:center;gap:8px;
-  padding:4px 0;font-size:13px;color:var(--white);
+  display:flex;align-items:center;gap:16px;
+  padding:8px 0;font-size:28px;color:var(--white);
 }
-.list-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.reminder-item{padding:6px 0}
-.reminder-title{font-size:13px;color:var(--white);font-weight:500}
-.reminder-time{font-size:11px;color:var(--white-muted)}
+.list-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0}
+.reminder-item{padding:12px 0}
+.reminder-title{font-size:28px;color:var(--white);font-weight:500}
+.reminder-time{font-size:24px;color:var(--white-muted)}
 .reminder-divider{display:flex;align-items:center;justify-content:space-between}
 .add-btn{
-  width:32px;height:32px;border-radius:50%;
+  width:68px;height:68px;border-radius:50%;
   background:rgba(255,255,255,0.15);border:none;
-  color:var(--white);font-size:18px;cursor:pointer;
+  color:var(--white);font-size:38px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
 }
 .alert-bar{
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:16px;
   background:var(--bg-card);border-radius:var(--radius-sm);
-  padding:12px 16px;margin:0 20px 12px;
-  font-size:12px;color:var(--white-dim);
+  padding:26px 36px;margin:0 48px 26px;
+  font-size:26px;color:var(--white-dim);
 }
 
 /* ===== SCREEN 2: HOME PAGE ===== */
 .home-header{
   display:flex;align-items:center;justify-content:space-between;
-  padding:4px 20px 12px;
+  padding:8px 48px 26px;
+  flex-wrap:wrap;gap:16px;
 }
-.home-greeting{font-size:20px;font-weight:700;color:var(--white)}
+.home-greeting{font-size:48px;font-weight:700;color:var(--white)}
 .live-badge{
-  display:flex;align-items:center;gap:6px;
-  background:var(--green);padding:6px 12px;border-radius:20px;
-  font-size:11px;font-weight:600;color:var(--white);
+  display:flex;align-items:center;gap:12px;
+  background:var(--green);padding:14px 28px;border-radius:44px;
+  font-size:24px;font-weight:600;color:var(--white);cursor:pointer;
 }
-.home-section{padding:0 20px;margin-bottom:16px}
+.home-section{padding:0 48px;margin-bottom:30px}
 .voting-card{
   background:var(--bg-card);border-radius:var(--radius);
-  padding:16px;
+  padding:32px;
 }
 .voting-header{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:12px;
+  display:flex;align-items:center;gap:18px;
+  margin-bottom:24px;flex-wrap:wrap;
 }
 .voting-icon{
-  width:36px;height:36px;border-radius:8px;
+  width:72px;height:72px;border-radius:16px;
   background:var(--bg-card2);
   display:flex;align-items:center;justify-content:center;
-  font-size:18px;
+  font-size:36px;
 }
-.voting-title{font-size:14px;font-weight:600;color:var(--white);flex:1}
+.voting-title{font-size:28px;font-weight:600;color:var(--white);flex:1}
 .vote-bar-row{
-  display:flex;align-items:center;gap:8px;
-  margin-bottom:6px;font-size:12px;color:var(--white-dim);
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:12px;font-size:26px;color:var(--white-dim);
 }
-.vote-bar{flex:1;height:6px;background:var(--bg-card2);border-radius:3px;overflow:hidden}
-.vote-bar-fill{height:100%;background:var(--gray);border-radius:3px}
-.vote-count{min-width:50px;text-align:right;font-size:11px}
+.vote-bar{flex:1;height:12px;background:var(--bg-card2);border-radius:6px;overflow:hidden}
+.vote-bar-fill{height:100%;background:var(--gray);border-radius:6px}
+.vote-count{min-width:110px;text-align:right;font-size:24px}
 .low-items{
   background:var(--bg-card);border-radius:var(--radius);
-  padding:16px;
+  padding:32px;
 }
-.low-items-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:10px}
+.low-items-title{font-size:28px;font-weight:600;color:var(--white);margin-bottom:20px}
 .low-items-grid{
-  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;
+  display:flex;flex-wrap:wrap;gap:16px;margin-bottom:24px;
 }
 .low-item{
-  display:flex;align-items:center;gap:4px;
-  font-size:12px;color:var(--white-dim);
+  display:flex;align-items:center;gap:8px;
+  font-size:26px;color:var(--white-dim);
 }
-.preorder-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:14px;display:flex;align-items:center;gap:10px;
-}
-.preorder-lock{font-size:16px;color:var(--white-muted)}
-.preorder-text{font-size:12px;color:var(--white-muted)}
 
 /* ===== SCREEN 3: VOTING ===== */
 .vote-screen-title{
-  font-size:22px;font-weight:700;color:var(--white);
-  padding:4px 20px 12px;
+  font-size:52px;font-weight:700;color:var(--white);
+  padding:8px 48px 26px;
 }
 .vote-day{
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px;border-bottom:1px solid var(--border);
+  padding:34px 48px;border-bottom:1px solid var(--border);
   cursor:pointer;
 }
-.vote-day-left{display:flex;align-items:center;gap:12px}
+.vote-day-left{display:flex;align-items:center;gap:22px}
 .radio{
-  width:20px;height:20px;border-radius:50%;
-  border:2px solid var(--gray);display:flex;
+  width:44px;height:44px;border-radius:50%;
+  border:3px solid var(--gray);display:flex;
   align-items:center;justify-content:center;flex-shrink:0;
 }
 .radio.selected{border-color:var(--green);background:var(--green)}
-.radio.selected::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--white)}
-.vote-day-name{font-size:15px;color:var(--white);font-weight:500}
-.vote-day-right{display:flex;align-items:center;gap:8px}
-.vote-progress{width:100px;height:5px;background:var(--bg-card2);border-radius:3px;overflow:hidden}
-.vote-progress-fill{height:100%;border-radius:3px}
+.radio.selected::after{content:'';width:18px;height:18px;border-radius:50%;background:var(--white)}
+.vote-day-name{font-size:32px;color:var(--white);font-weight:500}
+.vote-day-right{display:flex;align-items:center;gap:18px}
+.vote-progress{width:220px;height:11px;background:var(--bg-card2);border-radius:6px;overflow:hidden}
+.vote-progress-fill{height:100%;border-radius:6px}
 .vote-progress-fill.gray{background:var(--gray)}
 .vote-progress-fill.green{background:var(--green)}
-.vote-count-text{font-size:12px;color:var(--white-dim);min-width:50px;text-align:right}
+.vote-count-text{font-size:26px;color:var(--white-dim);min-width:110px;text-align:right}
 
 /* TIME SLOTS */
 .time-slots{
-  padding:8px 20px 8px 52px;
-  display:none;flex-direction:column;gap:8px;
+  padding:18px 48px 18px 114px;
+  display:none;flex-direction:column;gap:16px;
 }
 .time-slots.show{display:flex}
 .time-slot{
   display:flex;align-items:center;justify-content:space-between;
   background:var(--bg-card);border-radius:var(--radius-xs);
-  padding:12px 16px;cursor:pointer;
-  border:1.5px solid transparent;
+  padding:26px 36px;cursor:pointer;
+  border:3px solid transparent;
 }
 .time-slot.selected{background:rgba(52,199,89,0.15);border-color:var(--green)}
-.time-slot-name{font-size:14px;color:var(--white)}
-.time-slot-votes{font-size:12px;color:var(--white-dim)}
+.time-slot-name{font-size:30px;color:var(--white)}
+.time-slot-votes{font-size:26px;color:var(--white-dim)}
 
 /* VOTE CONFIRMED */
 .vote-confirmed-card{
   background:var(--bg-card);border-radius:var(--radius);
-  padding:40px 30px;text-align:center;margin:20px;
+  padding:80px 60px;text-align:center;margin:40px;
 }
 .vote-check{
-  width:60px;height:60px;border-radius:50%;
-  background:var(--green);margin:0 auto 16px;
+  width:120px;height:120px;border-radius:50%;
+  background:var(--green);margin:0 auto 32px;
   display:flex;align-items:center;justify-content:center;
-  font-size:30px;color:var(--white);
+  font-size:60px;color:var(--white);
 }
-.vote-confirmed-title{font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px}
-.vote-confirmed-sub{font-size:13px;color:var(--white-dim);margin-bottom:20px;line-height:1.4}
+.vote-confirmed-title{font-size:44px;font-weight:700;color:var(--white);margin-bottom:16px}
+.vote-confirmed-sub{font-size:28px;color:var(--white-dim);margin-bottom:40px;line-height:1.5}
 
-/* ===== YOUR SELECTED DAYS ===== */
-.selected-days-title{
-  font-size:14px;font-weight:600;color:var(--white);
-  padding:12px 20px;background:var(--bg-card);
-  margin:0 20px 8px;border-radius:var(--radius-sm);
-}
-.selected-day-block{
-  background:var(--bg-card);border-radius:var(--radius-sm);
-  padding:12px 16px;margin:0 20px 8px;
-}
-.selected-day-header{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:8px;
-}
-.selected-day-name{
-  display:flex;align-items:center;gap:8px;
-  font-size:14px;font-weight:600;color:var(--white);
-}
-
-/* ===== PRE-ORDERING ===== */
+/* PRE-ORDERING */
 .preorder-alert{
   background:rgba(229,57,53,0.12);border-radius:var(--radius-sm);
-  padding:12px 16px;margin:0 20px 12px;
-  font-size:12px;color:#FF6B6B;line-height:1.4;
+  padding:24px 36px;margin:0 48px 26px;
+  font-size:26px;color:#FF6B6B;line-height:1.5;
 }
 .camera-section{
   background:var(--bg-card);border-radius:var(--radius);
-  margin:0 20px 12px;overflow:hidden;
+  margin:0 48px 26px;overflow:hidden;
 }
 .camera-header{
   display:flex;align-items:center;justify-content:space-between;
-  padding:12px 16px;
+  padding:26px 36px;
 }
-.camera-title{font-size:14px;font-weight:700;color:var(--white)}
+.camera-title{font-size:28px;font-weight:700;color:var(--white)}
 .live-dot{
-  display:flex;align-items:center;gap:4px;
-  font-size:11px;font-weight:600;color:var(--red);
+  display:flex;align-items:center;gap:8px;
+  font-size:24px;font-weight:600;color:var(--red);
 }
-.live-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red)}
+.live-dot::before{content:'';width:12px;height:12px;border-radius:50%;background:var(--red)}
 .shelf-label{
-  font-size:11px;font-weight:600;color:var(--white-dim);
-  padding:4px 16px 8px;text-transform:uppercase;
+  font-size:22px;font-weight:600;color:var(--white-dim);
+  padding:8px 36px 16px;text-transform:uppercase;letter-spacing:2px;
 }
 .shelf-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
-  padding:0 16px 12px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  padding:0 36px 24px;
 }
 .shelf-item{
-  border-radius:8px;overflow:hidden;position:relative;
+  border-radius:18px;overflow:hidden;position:relative;
   aspect-ratio:1;
 }
-.shelf-item img{width:100%;height:100%;object-fit:cover}
 .shelf-item-label{
   position:absolute;bottom:0;left:0;right:0;
-  background:rgba(0,0,0,0.6);padding:4px 6px;
-  font-size:10px;color:var(--white);text-align:center;
+  background:rgba(0,0,0,0.65);padding:8px 12px;
+  font-size:22px;color:var(--white);text-align:center;
 }
 .camera-expand{
-  width:100%;padding:10px;border:none;
+  width:100%;padding:22px;border:none;
   background:var(--bg-card2);color:var(--white-dim);
-  font-size:13px;font-family:var(--font);cursor:pointer;
+  font-size:26px;font-family:var(--font);cursor:pointer;
 }
 .freshness-section{
   background:var(--bg-card);border-radius:var(--radius);
-  padding:16px;margin:0 20px 12px;
+  padding:32px;margin:0 48px 26px;
 }
 .freshness-header{
   display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:12px;
+  margin-bottom:24px;
 }
-.freshness-title{font-size:14px;font-weight:700;color:var(--white)}
-.freshness-sort{font-size:11px;color:var(--white-muted)}
+.freshness-title{font-size:30px;font-weight:700;color:var(--white)}
+.freshness-sort{font-size:24px;color:var(--white-muted)}
 .freshness-item{
   display:flex;align-items:center;justify-content:space-between;
-  padding:8px 0;
+  padding:18px 0;
 }
-.freshness-left{display:flex;align-items:center;gap:10px}
-.freshness-emoji{font-size:18px}
-.freshness-name{font-size:14px;font-weight:500;color:var(--white)}
+.freshness-left{display:flex;align-items:center;gap:20px}
+.freshness-emoji{font-size:38px}
+.freshness-name{font-size:30px;font-weight:500;color:var(--white)}
 .freshness-add{
-  display:flex;align-items:center;gap:4px;
+  display:flex;align-items:center;gap:8px;
   background:var(--green-light);border:none;
-  color:var(--green-text);font-size:12px;font-weight:600;
-  padding:6px 12px;border-radius:6px;cursor:pointer;
+  color:var(--green-text);font-size:24px;font-weight:600;
+  padding:14px 26px;border-radius:14px;cursor:pointer;
   font-family:var(--font);
 }
 .freshness-added{
-  display:flex;align-items:center;gap:4px;
-  font-size:12px;color:var(--white-muted);
+  display:flex;align-items:center;gap:8px;
+  font-size:24px;color:var(--white-muted);
 }
 .toss-badge{
   display:inline-block;
   background:var(--red-badge);color:var(--white);
-  font-size:10px;font-weight:600;
-  padding:3px 8px;border-radius:4px;margin-top:2px;
+  font-size:22px;font-weight:600;
+  padding:6px 18px;border-radius:8px;margin-top:6px;
 }
 .remaining-badge{
   display:inline-block;
   background:var(--orange-badge);color:var(--white);
-  font-size:10px;font-weight:600;
-  padding:3px 8px;border-radius:4px;margin-top:2px;
+  font-size:22px;font-weight:600;
+  padding:6px 18px;border-radius:8px;margin-top:6px;
 }
 
-/* ===== MARKET LIST ===== */
+/* MARKET LIST */
 .market-list-header{
-  font-size:22px;font-weight:700;color:var(--white);
-  padding:4px 20px 8px;
+  font-size:52px;font-weight:700;color:var(--white);
+  padding:8px 48px 18px;
 }
 .market-list-note{
   background:var(--green-light);border-radius:var(--radius-xs);
-  padding:10px 16px;margin:0 20px 16px;
-  font-size:12px;color:var(--green-text);
+  padding:22px 36px;margin:0 48px 30px;
+  font-size:26px;color:var(--green-text);
 }
 .market-item{
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;border-bottom:1px solid var(--border);
+  padding:30px 48px;border-bottom:1px solid var(--border);
 }
-.market-item-left{display:flex;align-items:center;gap:10px}
-.market-item-name{font-size:15px;color:var(--white);font-weight:500}
+.market-item-left{display:flex;align-items:center;gap:20px}
+.market-item-emoji{font-size:36px}
+.market-item-name{font-size:30px;color:var(--white);font-weight:500}
 .delete-btn{
   background:none;border:none;color:var(--white-muted);
-  font-size:18px;cursor:pointer;padding:4px;
+  font-size:36px;cursor:pointer;padding:8px;
 }
 .add-item-section{
-  display:flex;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);
+  display:flex;gap:20px;padding:28px 48px;border-bottom:1px solid var(--border);
 }
 .add-item-input{
-  flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);
-  background:var(--bg-card);color:var(--white);font-size:15px;
+  flex:1;padding:22px;border-radius:16px;border:2px solid var(--border);
+  background:var(--bg-card);color:var(--white);font-size:30px;
   font-family:var(--font);
 }
 .add-item-input::placeholder{color:var(--white-muted)}
 .add-item-btn{
-  width:40px;height:40px;border-radius:50%;background:var(--green-btn);
-  border:none;color:var(--white);font-size:20px;cursor:pointer;
+  width:82px;height:82px;border-radius:50%;background:var(--green-btn);
+  border:none;color:var(--white);font-size:48px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .search-section{
-  display:flex;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);
+  display:flex;gap:20px;padding:28px 48px;border-bottom:1px solid var(--border);
 }
 .search-input{
-  flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);
-  background:var(--bg-card);color:var(--white);font-size:15px;
+  flex:1;padding:22px;border-radius:16px;border:2px solid var(--border);
+  background:var(--bg-card);color:var(--white);font-size:30px;
   font-family:var(--font);
 }
 .search-input::placeholder{color:var(--white-muted)}
 
-/* ===== DATE CONFIRMATION ===== */
+/* DATE CONFIRMATION */
 .date-confirm-title{
-  font-size:20px;font-weight:700;color:var(--white);
-  padding:4px 20px 16px;
+  font-size:44px;font-weight:700;color:var(--white);
+  padding:8px 48px 32px;
 }
 .date-card{
   background:var(--bg-card);border-radius:var(--radius);
-  padding:30px;margin:0 20px;text-align:center;
+  padding:60px;margin:0 48px;text-align:center;
 }
-.date-icon{font-size:40px;margin-bottom:12px}
-.date-main{font-size:26px;font-weight:700;color:var(--white);margin-bottom:4px}
-.date-time{font-size:15px;color:var(--white-dim);margin-bottom:16px}
+.date-icon{font-size:80px;margin-bottom:24px}
+.date-main{font-size:52px;font-weight:700;color:var(--white);margin-bottom:8px}
+.date-time{font-size:32px;color:var(--white-dim);margin-bottom:32px}
 .date-progress{
-  width:80%;height:6px;background:var(--bg-card2);
-  border-radius:3px;margin:0 auto 8px;overflow:hidden;
+  width:80%;height:12px;background:var(--bg-card2);
+  border-radius:6px;margin:0 auto 18px;overflow:hidden;
 }
-.date-progress-fill{height:100%;background:var(--white);border-radius:3px;width:70%}
-.date-votes{font-size:12px;color:var(--white-dim)}
+.date-progress-fill{height:100%;background:var(--white);border-radius:6px;width:70%}
+.date-votes{font-size:28px;color:var(--white-dim)}
 
-/* ===== HOME PAGE WITH CONFIRMATION ===== */
+/* HOME WITH CONFIRMATION */
 .market-visit-card{
   background:var(--bg-card);border-radius:var(--radius);
-  padding:20px;text-align:center;margin-bottom:16px;
+  padding:44px;text-align:center;margin-bottom:30px;
 }
-.market-visit-title{font-size:14px;font-weight:600;color:var(--white-dim);margin-bottom:8px}
+.market-visit-title{font-size:28px;font-weight:600;color:var(--white-dim);margin-bottom:16px}
 
-/* ===== HEALTH MART ===== */
+/* HEALTH MART */
 .mart-header{
   display:flex;align-items:center;justify-content:space-between;
-  padding:4px 20px 8px;
+  padding:8px 48px 18px;flex-wrap:wrap;gap:12px;
 }
-.mart-title{font-size:22px;font-weight:700;color:var(--white)}
-.mart-actions{display:flex;align-items:center;gap:8px}
+.mart-title{font-size:52px;font-weight:700;color:var(--white)}
+.mart-actions{display:flex;align-items:center;gap:16px}
 .mart-btn{
-  display:flex;align-items:center;gap:4px;
+  display:flex;align-items:center;gap:10px;
   background:var(--bg-card);border:none;
-  color:var(--white);font-size:12px;font-weight:500;
-  padding:6px 12px;border-radius:20px;cursor:pointer;
+  color:var(--white);font-size:24px;font-weight:500;
+  padding:14px 28px;border-radius:44px;cursor:pointer;
   font-family:var(--font);
 }
 .mart-tabs{
-  display:flex;gap:8px;padding:0 20px 12px;
+  display:flex;gap:16px;padding:0 48px 24px;
 }
 .mart-tab{
-  padding:6px 14px;border-radius:20px;
-  font-size:12px;font-weight:600;cursor:pointer;
-  border:1.5px solid var(--border);color:var(--white-dim);
-  background:transparent;font-family:var(--font);
+  padding:14px 32px;border-radius:44px;
+  font-size:26px;font-weight:600;cursor:pointer;
+  border:2px solid var(--border);color:var(--white-dim);
+  background:transparent;font-family:var(--font);transition:all 0.2s;
 }
 .mart-tab.active{background:var(--white);color:var(--bg);border-color:var(--white)}
 .mart-layout{
   display:flex;flex:1;overflow:hidden;
 }
 .mart-categories{
-  width:70px;flex-shrink:0;display:flex;flex-direction:column;
-  align-items:center;gap:12px;padding:8px 0;
+  width:160px;flex-shrink:0;display:flex;flex-direction:column;
+  align-items:center;gap:8px;padding:16px 0;
   border-right:1px solid var(--border);
   overflow-y:auto;
 }
 .mart-cat{
-  text-align:center;cursor:pointer;padding:4px;
+  text-align:center;cursor:pointer;padding:16px 12px;
+  border-radius:18px;width:88%;transition:background 0.2s;
 }
-.mart-cat-icon{font-size:24px;margin-bottom:2px}
-.mart-cat-name{font-size:9px;color:var(--white-dim);font-weight:500}
+.mart-cat:hover{background:var(--bg-card)}
+.mart-cat.active{background:var(--bg-card2)}
+.mart-cat-icon{font-size:52px;margin-bottom:6px}
+.mart-cat-name{font-size:20px;color:var(--white-dim);font-weight:500}
 .mart-cat.active .mart-cat-name{color:var(--white)}
 .mart-products{
-  flex:1;overflow-y:auto;padding:8px 12px;
-  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  flex:1;overflow-y:auto;padding:20px 24px;
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
   align-content:start;
+}
+.mart-empty{
+  grid-column:1/-1;text-align:center;padding:60px 24px;
+  font-size:28px;color:var(--white-muted);
 }
 .product-card{
   background:var(--bg-card);border-radius:var(--radius-sm);
   overflow:hidden;
 }
 .product-img{
-  width:100%;aspect-ratio:1.2;object-fit:cover;
+  width:100%;aspect-ratio:1.2;
   background:var(--bg-card2);display:flex;align-items:center;
-  justify-content:center;font-size:40px;
+  justify-content:center;font-size:88px;
 }
-.product-info{padding:8px 10px}
-.product-name{font-size:13px;font-weight:600;color:var(--white)}
+.product-info{padding:18px 20px 20px}
+.product-name{font-size:28px;font-weight:600;color:var(--white)}
 .product-meta{
   display:flex;align-items:center;justify-content:space-between;
-  margin-top:2px;
+  margin-top:6px;
 }
-.product-stock{font-size:10px;color:var(--white-muted)}
-.product-price{font-size:12px;font-weight:600;color:var(--white)}
+.product-stock{font-size:22px;color:var(--white-muted)}
+.product-price{font-size:26px;font-weight:600;color:var(--white)}
 .product-qty{
-  display:flex;align-items:center;gap:0;margin-top:6px;
+  display:flex;align-items:center;margin-top:14px;
 }
- qty-btn{
-  width:28px;height:28px;border-radius:6px;
+.qty-btn{
+  width:64px;height:64px;border-radius:14px;
   background:var(--green);border:none;
-  color:var(--white);font-size:16px;font-weight:700;
+  color:var(--white);font-size:36px;font-weight:700;
   cursor:pointer;display:flex;align-items:center;
   justify-content:center;
 }
- qty-val{
-  width:32px;text-align:center;
-  font-size:14px;font-weight:600;color:var(--white);
+.qty-val{
+  width:70px;text-align:center;
+  font-size:32px;font-weight:600;color:var(--white);
 }
 .product-add{
-  width:100%;padding:6px;border:none;
+  width:100%;padding:14px;border:none;
   background:transparent;color:var(--white);
-  font-size:12px;font-weight:600;cursor:pointer;
-  font-family:var(--font);margin-top:4px;
+  font-size:26px;font-weight:600;cursor:pointer;
+  font-family:var(--font);margin-top:10px;border-radius:12px;
+  transition:background 0.2s;
 }
-.product-add.added{background:var(--green);border-radius:6px;color:var(--white)}
+.product-add:not(.added):hover{background:var(--bg-card2)}
+.product-add.added{background:var(--green);color:var(--white)}
 
-/* ===== CART ===== */
+/* CART */
 .cart-title{
-  font-size:22px;font-weight:700;color:var(--white);
-  padding:4px 20px 12px;
+  font-size:52px;font-weight:700;color:var(--white);
+  padding:8px 48px 26px;
+}
+.cart-empty{
+  text-align:center;padding:100px 48px;
+  font-size:32px;color:var(--white-muted);line-height:1.6;
 }
 .cart-item{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:flex-start;gap:28px;
+  padding:30px 48px;border-bottom:1px solid var(--border);
 }
 .cart-item-img{
-  width:70px;height:70px;border-radius:10px;
-  background:var(--bg-card2);object-fit:cover;
+  width:156px;height:156px;border-radius:22px;
+  background:var(--bg-card2);
   display:flex;align-items:center;justify-content:center;
-  font-size:30px;overflow:hidden;
+  font-size:66px;overflow:hidden;flex-shrink:0;
 }
 .cart-item-details{flex:1}
-.cart-item-name{font-size:14px;font-weight:600;color:var(--white)}
-.cart-item-price-unit{font-size:11px;color:var(--white-muted)}
-.cart-item-total{font-size:15px;font-weight:600;color:var(--white);margin-top:4px}
-.cart-item-actions{display:flex;align-items:center;gap:2px}
+.cart-item-name{font-size:32px;font-weight:600;color:var(--white)}
+.cart-item-price-unit{font-size:24px;color:var(--white-muted)}
+.cart-item-total{font-size:34px;font-weight:600;color:var(--white);margin-top:8px}
 .cart-delete{
   background:none;border:none;color:var(--white-muted);
-  font-size:18px;cursor:pointer;padding:4px;margin-left:8px;
+  font-size:38px;cursor:pointer;padding:8px;flex-shrink:0;
 }
-.cart-summary{padding:20px;border-top:1px solid var(--border)}
+.cart-summary{padding:44px 48px;border-top:2px solid var(--border)}
 .cart-row{
   display:flex;justify-content:space-between;
-  padding:4px 0;font-size:13px;color:var(--white-dim);
-}
-.cart-total{
-  display:flex;justify-content:space-between;
-  padding:10px 0 16px;font-size:18px;font-weight:700;color:var(--white);
-}
-
-/* ===== ORDER CONFIRMATION ===== */
-.order-title{
-  font-size:22px;font-weight:700;color:var(--white);
-  padding:4px 20px 12px;text-align:center;
-}
-.order-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:20px;margin:0 20px;text-align:center;
-}
-.order-desc{font-size:13px;color:var(--white-dim);line-height:1.5;margin-bottom:16px}
-.qr-placeholder{
-  width:180px;height:180px;margin:0 auto 12px;
-  background:var(--white);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  padding:12px;
-}
-.qr-grid{
-  width:100%;height:100%;
-  display:grid;grid-template-columns:repeat(10,1fr);
-  grid-template-rows:repeat(10,1fr);gap:1px;
-}
-.qr-cell{background:#000}
-.qr-cell.w{background:#fff}
-.order-scan{font-size:12px;color:var(--white-dim);margin-top:8px}
-.order-charge{
-  font-size:13px;color:var(--white-dim);
-  padding:16px 20px;text-align:center;
-}
-
-/* ===== DASHBOARD VARIANT ===== */
-.market-arriving-banner{
-  display:flex;align-items:center;gap:10px;
-  background:var(--green-light);border-radius:var(--radius-sm);
-  padding:12px 16px;margin:0 20px 12px;
-}
-.market-arriving-icon{font-size:24px}
-.market-arriving-text{font-size:13px;font-weight:500;color:var(--green-text);line-height:1.4}
-
-/* ===== NEW FEATURES ===== */
-.recipe-suggestions{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:16px;margin:0 20px 12px;
-}
-.recipe-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:10px}
-.recipe-item{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:8px 0;border-bottom:1px solid var(--border);
-}
-.recipe-item:last-child{border-bottom:none}
-.recipe-name{font-size:13px;color:var(--white);font-weight:500}
-.recipe-add-btn{
-  background:var(--green-light);border:none;
-  color:var(--green-text);font-size:12px;font-weight:600;
-  padding:4px 8px;border-radius:4px;cursor:pointer;
-  font-family:var(--font);
-}
-.deals-banner{
-  display:flex;align-items:center;gap:8px;
-  background:var(--orange);border-radius:var(--radius-xs);
-  padding:10px 16px;margin:0 20px 12px;
-  font-size:13px;font-weight:500;color:var(--white);
-}
-.auto-add-btn{
-  background:var(--green-btn);color:var(--white);
-  border:none;padding:10px;border-radius:8px;
-  font-size:14px;font-weight:600;cursor:pointer;
-  margin:0 20px 12px;font-family:var(--font);
+  padding:10px 0;font-size:28px;color:var(--white-dim);
 }
 .savings-row{
   display:flex;justify-content:space-between;
-  padding:4px 0;font-size:13px;color:var(--green-text);
+  padding:10px 0;font-size:28px;color:var(--green-text);
+}
+.cart-total{
+  display:flex;justify-content:space-between;
+  padding:22px 0 32px;font-size:42px;font-weight:700;color:var(--white);
+  border-top:2px solid var(--border);margin-top:10px;
 }
 
-/* Utility */
-.px-20{padding-left:20px;padding-right:20px}
-.mb-12{margin-bottom:12px}
-.mb-16{margin-bottom:16px}
-.text-center{text-align:center}
-.flex-1{flex:1}
+/* ORDER CONFIRMATION */
+.order-title{
+  font-size:52px;font-weight:700;color:var(--white);
+  padding:8px 48px 26px;text-align:center;
+}
+.order-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:44px;margin:0 48px;text-align:center;
+}
+.order-desc{font-size:28px;color:var(--white-dim);line-height:1.5;margin-bottom:32px}
+.qr-placeholder{
+  width:360px;height:360px;margin:0 auto 24px;
+  background:var(--white);border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+.order-scan{font-size:26px;color:var(--white-dim);margin-top:16px}
+.order-charge{
+  font-size:28px;color:var(--white-dim);
+  padding:32px 48px;text-align:center;
+}
 
-/* Produce colors for dots */
+/* DASHBOARD ARRIVING VARIANT */
+.market-arriving-banner{
+  display:flex;align-items:center;gap:20px;
+  background:var(--green-light);border-radius:var(--radius-sm);
+  padding:26px 36px;margin:0 48px 26px;
+}
+.market-arriving-icon{font-size:48px}
+.market-arriving-text{font-size:28px;font-weight:500;color:var(--green-text);line-height:1.4}
+
+/* RECIPE SUGGESTIONS */
+.recipe-suggestions{
+  background:var(--bg-card);border-radius:var(--radius);
+  padding:32px;margin:0 48px 26px;
+}
+.recipe-title{font-size:30px;font-weight:700;color:var(--white);margin-bottom:20px}
+.recipe-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0;border-bottom:1px solid var(--border);
+}
+.recipe-item:last-child{border-bottom:none}
+.recipe-name{font-size:28px;color:var(--white);font-weight:500}
+.recipe-add-btn{
+  background:var(--green-light);border:none;
+  color:var(--green-text);font-size:24px;font-weight:600;
+  padding:12px 22px;border-radius:12px;cursor:pointer;
+  font-family:var(--font);
+}
+.deals-banner{
+  display:flex;align-items:center;gap:16px;
+  background:var(--orange);
+  padding:22px 48px;
+  font-size:26px;font-weight:500;color:var(--white);flex-shrink:0;
+}
+.auto-add-btn{
+  background:var(--green-btn);color:var(--white);
+  border:none;padding:22px;border-radius:16px;
+  font-size:28px;font-weight:600;cursor:pointer;
+  margin:0 0 26px;font-family:var(--font);width:100%;
+}
+
+/* Produce dot colors */
 .dot-green{background:#4CAF50}
 .dot-red{background:#F44336}
 .dot-pink{background:#E91E63}
@@ -654,9 +681,48 @@ Malele  background:#D4C5A9;
 .dot-yellow{background:#FFEB3B}
 .dot-purple{background:#9C27B0}
 .dot-lime{background:#8BC34A}
+
+/* NAV MENU SIDEBAR (outside fridge) */
+#nav-menu{
+  position:fixed;left:0;top:0;z-index:999;
+  width:260px;height:100vh;
+  background:var(--bg);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;padding:20px 0;overflow-y:auto;
+}
+.nav-link{
+  background:none;border:none;color:var(--white-dim);
+  text-align:left;padding:12px 20px;cursor:pointer;
+  font-family:var(--font);font-size:13px;
+  width:100%;border-bottom:1px solid var(--border);
+  transition:background 0.2s;
+}
+.nav-link:hover{background:var(--bg-light)}
+.nav-link.current{background:var(--green);color:var(--white);font-weight:600}
 </style>
 </head>
 <body>
+
+<!-- ===== SCREEN NAVIGATOR SIDEBAR (outside fridge) ===== -->
+<div id="nav-menu">
+  <div style="color:var(--white);font-weight:700;margin-bottom:20px;text-align:center;font-size:14px">Screen Navigator</div>
+  <button class="nav-link" onclick="navigateTo('screen-dashboard')">1. Dashboard</button>
+  <button class="nav-link" onclick="navigateTo('screen-home')">2. Home Page</button>
+  <button class="nav-link" onclick="navigateTo('screen-vote')">3. Voting</button>
+  <button class="nav-link" onclick="navigateTo('screen-vote-confirm')">4. Vote Confirmed</button>
+  <button class="nav-link" onclick="navigateTo('screen-date-confirm')">5. Date Confirmation</button>
+  <button class="nav-link" onclick="navigateTo('screen-home-confirm')">6. Home (Confirmed)</button>
+  <button class="nav-link" onclick="navigateTo('screen-preorder')">7. Pre-ordering</button>
+  <button class="nav-link" onclick="navigateTo('screen-market-list')">8. Market List</button>
+  <button class="nav-link" onclick="navigateTo('screen-market-list-confirmed')">9. Market List (Confirmed)</button>
+  <button class="nav-link" onclick="navigateTo('screen-health-mart')">10. Health Mart</button>
+  <button class="nav-link" onclick="navigateTo('screen-health-mart-list')">11. Health Mart (List)</button>
+  <button class="nav-link" onclick="navigateTo('screen-cart')">12. Your Cart</button>
+  <button class="nav-link" onclick="navigateTo('screen-order-confirmed')">13. Order Confirmed</button>
+  <button class="nav-link" onclick="navigateTo('screen-dashboard-arriving')">14. Dashboard (Arriving)</button>
+</div>
+
+<!-- ===== FRIDGE WRAPPER ===== -->
+<div class="fridge-wrapper">
 <div class="fridge">
 
 <!-- ===== SCREEN 1: DASHBOARD ===== -->
@@ -664,7 +730,7 @@ Malele  background:#D4C5A9;
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
     <div class="dashboard-greeting">Good Afternoon!</div>
@@ -684,11 +750,11 @@ Malele  background:#D4C5A9;
       <div class="recipe-title">Recipe Suggestions</div>
       <div class="recipe-item">
         <span class="recipe-name">Avocado Toast</span>
-        <button class="recipe-add-btn" onclick="addRecipeIngredients(['Bread', 'Avocado'])">Add Missing</button>
+        <button class="recipe-add-btn" onclick="addRecipeIngredients(['Bread','Avocado'])">Add Missing</button>
       </div>
       <div class="recipe-item">
         <span class="recipe-name">Berry Smoothie</span>
-        <button class="recipe-add-btn" onclick="addRecipeIngredients(['Milk', 'Yogurt'])">Add Missing</button>
+        <button class="recipe-add-btn" onclick="addRecipeIngredients(['Milk','Yogurt'])">Add Missing</button>
       </div>
     </div>
     <div class="dashboard-bottom">
@@ -702,7 +768,7 @@ Malele  background:#D4C5A9;
       <div class="reminders-card">
         <div class="reminder-divider">
           <div class="card-title">Reminders</div>
-          <span style="color:var(--white-muted);cursor:pointer">&#x22EE;</span>
+          <span style="color:var(--white-muted);cursor:pointer;font-size:32px">&#x22EE;</span>
         </div>
         <div class="reminder-item">
           <div class="reminder-title">&#x2022; Weekly meeting</div>
@@ -712,7 +778,7 @@ Malele  background:#D4C5A9;
           <div class="reminder-title">&#x2022; Laundry</div>
           <div class="reminder-time">21:05 pm</div>
         </div>
-        <div style="text-align:right;margin-top:8px">
+        <div style="text-align:right;margin-top:12px">
           <button class="add-btn">+</button>
         </div>
       </div>
@@ -747,7 +813,7 @@ Malele  background:#D4C5A9;
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
     <div class="home-header">
@@ -779,7 +845,7 @@ Malele  background:#D4C5A9;
           <div class="vote-bar"><div class="vote-bar-fill" style="width:25%;background:var(--gray)"></div></div>
           <span class="vote-count">7 votes</span>
         </div>
-        <button class="btn btn-green" style="margin-top:12px" onclick="navigateTo('screen-vote')">Vote Now</button>
+        <button class="btn btn-green" style="margin-top:24px" onclick="navigateTo('screen-vote')">Vote Now</button>
       </div>
     </div>
     <div class="home-section">
@@ -795,7 +861,7 @@ Malele  background:#D4C5A9;
           <div class="low-item"><span>&#x1F34E;</span> Apples</div>
           <div class="low-item"><span>&#x1F34B;</span> Lemons</div>
         </div>
-        <button class="btn btn-outline" onclick="navigateTo('screen-market-list')">View Your Market List</button>
+        <button class="btn btn-outline" style="margin-bottom:16px" onclick="navigateTo('screen-market-list')">View Your Market List</button>
         <button class="auto-add-btn" onclick="autoAddLowItems()">Auto-Add All to Market List</button>
       </div>
     </div>
@@ -804,7 +870,7 @@ Malele  background:#D4C5A9;
     </div>
   </div>
   <div class="page-dots">
-    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
   <div class="app-icons">
     <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
@@ -823,12 +889,12 @@ Malele  background:#D4C5A9;
   </div>
 </div>
 
-<!-- ===== SCREEN 3: VOTING (Basic) ===== -->
+<!-- ===== SCREEN 3: VOTING ===== -->
 <div class="screen" id="screen-vote">
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
     <div class="vote-screen-title">Vote</div>
@@ -893,11 +959,11 @@ Malele  background:#D4C5A9;
       <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">6 PM</span><span class="time-slot-votes">2 votes</span></div>
     </div>
   </div>
-  <div style="padding:16px 20px;flex-shrink:0">
+  <div style="padding:24px 48px;flex-shrink:0">
     <button class="btn btn-green" onclick="navigateTo('screen-vote-confirm')">Confirm Vote</button>
   </div>
   <div class="page-dots">
-    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
   <div class="app-icons">
     <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
@@ -921,7 +987,7 @@ Malele  background:#D4C5A9;
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area" style="display:flex;flex-direction:column">
     <div class="vote-screen-title">Vote</div>
@@ -935,7 +1001,7 @@ Malele  background:#D4C5A9;
     </div>
   </div>
   <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
   </div>
   <div class="app-icons">
     <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
@@ -959,7 +1025,7 @@ Malele  background:#D4C5A9;
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
     <div class="date-confirm-title">Health Mart Visit Confirmation</div>
@@ -975,7 +1041,7 @@ Malele  background:#D4C5A9;
     </div>
   </div>
   <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
   </div>
   <div class="app-icons">
     <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
@@ -994,12 +1060,12 @@ Malele  background:#D4C5A9;
   </div>
 </div>
 
-<!-- ===== SCREEN 6: HOME PAGE WITH CONFIRMATION ===== -->
+<!-- ===== SCREEN 6: HOME PAGE (Confirmed) ===== -->
 <div class="screen" id="screen-home-confirm">
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
     <div class="home-header">
@@ -1012,9 +1078,9 @@ Malele  background:#D4C5A9;
     <div class="home-section">
       <div class="market-visit-card">
         <div class="market-visit-title">Market Visit Confirmation</div>
-        <div class="date-icon" style="font-size:30px">&#x1F4CA;</div>
-        <div style="font-size:22px;font-weight:700;color:var(--white);margin:8px 0 4px">Tuesday, July 2nd</div>
-        <div style="font-size:14px;color:var(--white-dim)">15:00 pm</div>
+        <div style="font-size:72px;margin:12px 0">&#x1F4CA;</div>
+        <div style="font-size:48px;font-weight:700;color:var(--white);margin-bottom:8px">Tuesday, July 2nd</div>
+        <div style="font-size:30px;color:var(--white-dim)">15:00 pm</div>
       </div>
     </div>
     <div class="home-section">
@@ -1030,7 +1096,7 @@ Malele  background:#D4C5A9;
           <div class="low-item"><span>&#x1F34E;</span> Apples</div>
           <div class="low-item"><span>&#x1F34B;</span> Lemons</div>
         </div>
-        <button class="btn btn-outline" onclick="navigateTo('screen-market-list')">View Your Market List</button>
+        <button class="btn btn-outline" style="margin-bottom:16px" onclick="navigateTo('screen-market-list')">View Your Market List</button>
         <button class="auto-add-btn" onclick="autoAddLowItems()">Auto-Add All to Market List</button>
       </div>
     </div>
@@ -1063,7 +1129,7 @@ Malele  background:#D4C5A9;
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
     <div class="preorder-alert">
@@ -1077,28 +1143,28 @@ Malele  background:#D4C5A9;
       </div>
       <div class="shelf-label">SHELF 1</div>
       <div class="shelf-grid">
-        <div class="shelf-item"><div style="background:#8B4513;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F34E;</div><div class="shelf-item-label">Apples</div></div>
-        <div class="shelf-item"><div style="background:#4A148C;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1FAD0;</div><div class="shelf-item-label">Blueberries</div></div>
-        <div class="shelf-item"><div style="background:#E65100;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F955;</div><div class="shelf-item-label">Carrots</div></div>
+        <div class="shelf-item"><div style="background:#8B4513;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F34E;</div><div class="shelf-item-label">Apples</div></div>
+        <div class="shelf-item"><div style="background:#4A148C;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1FAD0;</div><div class="shelf-item-label">Blueberries</div></div>
+        <div class="shelf-item"><div style="background:#E65100;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F955;</div><div class="shelf-item-label">Carrots</div></div>
       </div>
       <div class="shelf-grid">
-        <div class="shelf-item"><div style="background:#F9A825;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F34B;</div><div class="shelf-item-label">Lemons</div></div>
-        <div class="shelf-item"><div style="background:#2E7D32;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F96C;</div><div class="shelf-item-label">Lettuce</div></div>
-        <div class="shelf-item" style="opacity:0.3"></div>
+        <div class="shelf-item"><div style="background:#F9A825;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F34B;</div><div class="shelf-item-label">Lemons</div></div>
+        <div class="shelf-item"><div style="background:#2E7D32;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F96C;</div><div class="shelf-item-label">Lettuce</div></div>
+        <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:18px"></div>
       </div>
       <button class="camera-expand" id="expand-btn" onclick="toggleShelves()">Tap to expand</button>
       <div id="extra-shelves" style="display:none">
         <div class="shelf-label">SHELF 2</div>
         <div class="shelf-grid">
-          <div class="shelf-item"><div style="background:#C62828;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F353;</div><div class="shelf-item-label">Strawberries</div></div>
-          <div class="shelf-item"><div style="background:#F5F5DC;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F95A;</div><div class="shelf-item-label">Eggs</div></div>
-          <div class="shelf-item" style="opacity:0.3"></div>
+          <div class="shelf-item"><div style="background:#C62828;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F353;</div><div class="shelf-item-label">Strawberries</div></div>
+          <div class="shelf-item"><div style="background:#F5F5DC;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F95A;</div><div class="shelf-item-label">Eggs</div></div>
+          <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:18px"></div>
         </div>
         <div class="shelf-label">SHELF 3</div>
         <div class="shelf-grid">
-          <div class="shelf-item"><div style="background:#388E3C;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">&#x1F951;</div><div class="shelf-item-label">Avocados</div></div>
-          <div class="shelf-item" style="opacity:0.3"></div>
-          <div class="shelf-item" style="opacity:0.3"></div>
+          <div class="shelf-item"><div style="background:#388E3C;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F951;</div><div class="shelf-item-label">Avocados</div></div>
+          <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:18px"></div>
+          <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:18px"></div>
         </div>
       </div>
     </div>
@@ -1115,7 +1181,7 @@ Malele  background:#D4C5A9;
             <span class="toss-badge">Toss within one day</span>
           </div>
         </div>
-        <button class="freshness-add" id="add-blueberries" onclick="addToListEnhanced(this, 'Blueberries')">+ Add to market list (3 added)</button>
+        <button class="freshness-add" id="add-blueberries-btn" onclick="addToListEnhanced(this,'Blueberries')">+ Add to market list (3 added)</button>
       </div>
       <div class="freshness-item">
         <div class="freshness-left">
@@ -1125,10 +1191,10 @@ Malele  background:#D4C5A9;
             <span class="remaining-badge">2-3 days remaining</span>
           </div>
         </div>
-        <button class="freshness-add" id="add-carrots" onclick="addToListEnhanced(this, 'Carrots')">+ Add to market list (1 added)</button>
+        <button class="freshness-add" id="add-carrots-btn" onclick="addToListEnhanced(this,'Carrots')">+ Add to market list (1 added)</button>
       </div>
     </div>
-    <div style="padding:0 20px 16px">
+    <div style="padding:0 48px 26px">
       <button class="btn btn-outline" onclick="navigateTo('screen-market-list')">View Your Market List</button>
     </div>
   </div>
@@ -1157,36 +1223,19 @@ Malele  background:#D4C5A9;
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
     <div class="market-list-header">Your Market List</div>
-    <div class="market-list-note">
-      These items will be ready in your cart once a date is confirmed.
-    </div>
+    <div class="market-list-note">These items will be ready in your cart once a date is confirmed.</div>
     <div class="search-section">
-      <input type="text" id="search-input" placeholder="Search items..." class="search-input" oninput="searchMarketList()">
+      <input type="text" id="search-input-8" placeholder="Search items..." class="search-input" oninput="searchMarketList('8')">
     </div>
     <div class="add-item-section">
-      <input type="text" id="new-item-input" placeholder="Add new item..." class="add-item-input">
-      <button onclick="addMarketItem()" class="add-item-btn">+</button>
+      <input type="text" id="new-item-input-8" placeholder="Add new item..." class="add-item-input">
+      <button onclick="addMarketItemFromInput('8')" class="add-item-btn">+</button>
     </div>
-    <div class="market-item" data-name="Blueberries">
-      <div class="market-item-left"><span>&#x1FAD0;</span><span class="market-item-name">Blueberries</span></div>
-      <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
-    </div>
-    <div class="market-item" data-name="Avocado">
-      <div class="market-item-left"><span>&#x1F951;</span><span class="market-item-name">Avocado</span></div>
-      <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
-    </div>
-    <div class="market-item" data-name="Strawberries">
-      <div class="market-item-left"><span>&#x1F353;</span><span class="market-item-name">Strawberries</span></div>
-      <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
-    </div>
-    <div class="market-item" data-name="Lettuce">
-      <div class="market-item-left"><span>&#x1F96C;</span><span class="market-item-name">Lettuce</span></div>
-      <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
-    </div>
+    <div id="market-list-items-8"></div>
   </div>
   <div class="page-dots">
     <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
@@ -1208,44 +1257,27 @@ Malele  background:#D4C5A9;
   </div>
 </div>
 
-<!-- ===== SCREEN 9: MARKET LIST (Date Confirmed) ===== -->
+<!-- ===== SCREEN 9: MARKET LIST (Confirmed) ===== -->
 <div class="screen" id="screen-market-list-confirmed">
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
-    <div class="banner banner-green" style="margin-top:4px">
+    <div class="banner banner-green" style="margin-top:8px">
       <span>&#x2713;</span> Market date has been confirmed!
     </div>
     <div class="market-list-header">Your Market List</div>
-    <div class="market-list-note">
-      These items will be ready in your cart once a date is confirmed.
-    </div>
+    <div class="market-list-note">These items will be ready in your cart once a date is confirmed.</div>
     <div class="search-section">
-      <input type="text" id="search-input-confirmed" placeholder="Search items..." class="search-input" oninput="searchMarketListConfirmed()">
+      <input type="text" id="search-input-9" placeholder="Search items..." class="search-input" oninput="searchMarketList('9')">
     </div>
     <div class="add-item-section">
-      <input type="text" id="new-item-input-confirmed" placeholder="Add new item..." class="add-item-input">
-      <button onclick="addMarketItemConfirmed()" class="add-item-btn">+</button>
+      <input type="text" id="new-item-input-9" placeholder="Add new item..." class="add-item-input">
+      <button onclick="addMarketItemFromInput('9')" class="add-item-btn">+</button>
     </div>
-    <div class="market-item" data-name="Blueberries">
-      <div class="market-item-left"><span>&#x1FAD0;</span><span class="market-item-name">Blueberries</span></div>
-      <button class="delete-btn">&#x1F5D1;</button>
-    </div>
-    <div class="market-item" data-name="Avocado">
-      <div class="market-item-left"><span>&#x1F951;</span><span class="market-item-name">Avocado</span></div>
-      <button class="delete-btn">&#x1F5D1;</button>
-    </div>
-    <div class="market-item" data-name="Strawberries">
-      <div class="market-item-left"><span>&#x1F353;</span><span class="market-item-name">Strawberries</span></div>
-      <button class="delete-btn">&#x1F5D1;</button>
-    </div>
-    <div class="market-item" data-name="Lettuce">
-      <div class="market-item-left"><span>&#x1F96C;</span><span class="market-item-name">Lettuce</span></div>
-      <button class="delete-btn">&#x1F5D1;</button>
-    </div>
+    <div id="market-list-items-9"></div>
   </div>
   <div class="page-dots">
     <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
@@ -1267,12 +1299,12 @@ Malele  background:#D4C5A9;
   </div>
 </div>
 
-<!-- ===== SCREEN 10: HEALTH MART ===== -->
+<!-- ===== SCREEN 10: HEALTH MART (Browse All) ===== -->
 <div class="screen" id="screen-health-mart">
   <div class="status-bar">
     <span>12:45 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="deals-banner">
     <span>&#x1F389;</span> 20% off bulk fruits! Expires in 2 hours
@@ -1284,126 +1316,33 @@ Malele  background:#D4C5A9;
       <button class="mart-btn">&#x2699; Filter</button>
     </div>
   </div>
+  <div class="mart-tabs">
+    <button class="mart-tab" onclick="navigateTo('screen-health-mart-list')">&#x1F4CB; Market List Items</button>
+    <button class="mart-tab active">&#x1F6D2; All Items</button>
+  </div>
   <div class="mart-layout">
-    <div class="mart-categories">
-      <div class="mart-cat active">
+    <div class="mart-categories" id="mart-cats-10">
+      <div class="mart-cat active" data-category="vegetables" onclick="setCategory('vegetables')">
         <div class="mart-cat-icon">&#x1F966;</div>
         <div class="mart-cat-name">Vegetables</div>
       </div>
-      <div class="mart-cat">
-        <div class="mart-cat-icon">&#x1F9C0;</div>
-        <div class="mart-cat-name">Dairy</div>
-      </div>
-      <div class="mart-cat">
+      <div class="mart-cat" data-category="fruits" onclick="setCategory('fruits')">
         <div class="mart-cat-icon">&#x1F34E;</div>
         <div class="mart-cat-name">Fruits</div>
       </div>
-      <div class="mart-cat">
+      <div class="mart-cat" data-category="dairy" onclick="setCategory('dairy')">
+        <div class="mart-cat-icon">&#x1F9C0;</div>
+        <div class="mart-cat-name">Dairy</div>
+      </div>
+      <div class="mart-cat" data-category="meat" onclick="setCategory('meat')">
         <div class="mart-cat-icon">&#x1F969;</div>
         <div class="mart-cat-name">Meat</div>
       </div>
     </div>
-    <div class="mart-products" id="mart-products">
-      <div class="product-card">
-        <div class="product-img">&#x1F345;</div>
-        <div class="product-info">
-          <div class="product-name">Tomatoes</div>
-          <div class="product-meta">
-            <span class="product-stock">18 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1F336;</div>
-        <div class="product-info">
-          <div class="product-name">Jalapeno</div>
-          <div class="product-meta">
-            <span class="product-stock">10 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1F34B;</div>
-        <div class="product-info">
-          <div class="product-name">Lemons</div>
-          <div class="product-meta">
-            <span class="product-stock">10 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1F9C5;</div>
-        <div class="product-info">
-          <div class="product-name">Onions</div>
-          <div class="product-meta">
-            <span class="product-stock">10 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1F966;</div>
-        <div class="product-info">
-          <div class="product-name">Broccoli</div>
-          <div class="product-meta">
-            <span class="product-stock">10 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1F955;</div>
-        <div class="product-info">
-          <div class="product-name">Carrots</div>
-          <div class="product-meta">
-            <span class="product-stock">10 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-    </div>
+    <div class="mart-products" id="mart-products-10"></div>
   </div>
-  <div class="page-dots" style="padding:6px 0">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
+  <div style="padding:20px 48px;flex-shrink:0">
+    <button class="btn btn-green" onclick="navigateTo('screen-cart')">View Cart</button>
   </div>
   <div class="app-icons">
     <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
@@ -1422,12 +1361,12 @@ Malele  background:#D4C5A9;
   </div>
 </div>
 
-<!-- ===== SCREEN 11: HEALTH MART (Market List Items tab) ===== -->
+<!-- ===== SCREEN 11: HEALTH MART (Market List Tab) ===== -->
 <div class="screen" id="screen-health-mart-list">
   <div class="status-bar">
     <span>12:45 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="deals-banner">
     <span>&#x1F389;</span> 20% off bulk fruits! Expires in 2 hours
@@ -1440,128 +1379,31 @@ Malele  background:#D4C5A9;
     </div>
   </div>
   <div class="mart-tabs">
-    <button class="mart-tab active">Market List Items</button>
-    <button class="mart-tab" onclick="navigateTo('screen-health-mart')">Previously Ordered Items</button>
+    <button class="mart-tab active">&#x1F4CB; Market List Items</button>
+    <button class="mart-tab" onclick="navigateTo('screen-health-mart')">&#x1F6D2; All Items</button>
   </div>
   <div class="mart-layout">
-    <div class="mart-categories">
-      <div class="mart-cat active">
+    <div class="mart-categories" id="mart-cats-11">
+      <div class="mart-cat active" data-category="vegetables" onclick="setCategory('vegetables')">
         <div class="mart-cat-icon">&#x1F966;</div>
         <div class="mart-cat-name">Vegetables</div>
       </div>
-      <div class="mart-cat">
-        <div class="mart-cat-icon">&#x1F9C0;</div>
-        <div class="mart-cat-name">Dairy</div>
-      </div>
-      <div class="mart-cat">
+      <div class="mart-cat" data-category="fruits" onclick="setCategory('fruits')">
         <div class="mart-cat-icon">&#x1F34E;</div>
         <div class="mart-cat-name">Fruits</div>
       </div>
-      <div class="mart-cat">
+      <div class="mart-cat" data-category="dairy" onclick="setCategory('dairy')">
+        <div class="mart-cat-icon">&#x1F9C0;</div>
+        <div class="mart-cat-name">Dairy</div>
+      </div>
+      <div class="mart-cat" data-category="meat" onclick="setCategory('meat')">
         <div class="mart-cat-icon">&#x1F969;</div>
         <div class="mart-cat-name">Meat</div>
       </div>
     </div>
-    <div class="mart-products">
-      <div class="product-card">
-        <div class="product-img">&#x1F345;</div>
-        <div class="product-info">
-          <div class="product-name">Tomatoes</div>
-          <div class="product-meta">
-            <span class="product-stock">18 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">6</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add added">Added</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1F955;</div>
-        <div class="product-info">
-          <div class="product-name">Carrots</div>
-          <div class="product-meta">
-            <span class="product-stock">18 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1F34B;</div>
-        <div class="product-info">
-          <div class="product-name">Lemons</div>
-          <div class="product-meta">
-            <span class="product-stock">18 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1F951;</div>
-        <div class="product-info">
-          <div class="product-name">Avocados</div>
-          <div class="product-meta">
-            <span class="product-stock">18 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1F96C;</div>
-        <div class="product-info">
-          <div class="product-name">Lettuce</div>
-          <div class="product-meta">
-            <span class="product-stock">10 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">&#x1FAD0;</div>
-        <div class="product-info">
-          <div class="product-name">Blueberries</div>
-          <div class="product-meta">
-            <span class="product-stock">10 left</span>
-            <span class="product-price">$0.98/lb</span>
-          </div>
-          <div class="product-qty">
-            <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-            <span class="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-          </div>
-          <button class="product-add" onclick="addProduct(this)">Add</button>
-        </div>
-      </div>
-    </div>
+    <div class="mart-products" id="mart-products-11"></div>
   </div>
-  <div style="padding:12px 20px;flex-shrink:0">
+  <div style="padding:20px 48px;flex-shrink:0">
     <button class="btn btn-green" onclick="navigateTo('screen-cart')">View Cart</button>
   </div>
   <div class="app-icons">
@@ -1586,68 +1428,23 @@ Malele  background:#D4C5A9;
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
     <div class="cart-title">Your Cart</div>
-    <div class="cart-item">
-      <div class="cart-item-img">&#x1F345;</div>
-      <div class="cart-item-details">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cart-item-name">Tomatoes</div>
-          <div class="cart-item-price-unit">$2.98/lb</div>
-        </div>
-        <div class="product-qty" style="margin:6px 0">
-          <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-          <span class="qty-val">6</span>
-          <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-        </div>
-        <div class="cart-item-total">$4.96</div>
-      </div>
-      <button class="cart-delete">&#x1F5D1;</button>
-    </div>
-    <div class="cart-item">
-      <div class="cart-item-img">&#x1F34B;</div>
-      <div class="cart-item-details">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cart-item-name">Lemons</div>
-          <div class="cart-item-price-unit">$0.98/lb</div>
-        </div>
-        <div class="product-qty" style="margin:6px 0">
-          <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-          <span class="qty-val">8</span>
-          <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-        </div>
-        <div class="cart-item-total">$4.52</div>
-      </div>
-      <button class="cart-delete">&#x1F5D1;</button>
-    </div>
-    <div class="cart-item">
-      <div class="cart-item-img">&#x1FAD0;</div>
-      <div class="cart-item-details">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div class="cart-item-name">Blueberries</div>
-          <div class="cart-item-price-unit">$5.80/lb</div>
-        </div>
-        <div class="product-qty" style="margin:6px 0">
-          <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-          <span class="qty-val">1</span>
-          <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-        </div>
-        <div class="cart-item-total">$3.12</div>
-      </div>
-      <button class="cart-delete">&#x1F5D1;</button>
-    </div>
+    <div id="cart-items"></div>
     <div class="cart-summary">
-      <div class="cart-row"><span>Subtotal</span><span>$12.60</span></div>
-      <div class="cart-row"><span>Taxes</span><span>$0.31</span></div>
-      <div class="savings-row"><span>Bulk Savings</span><span>-$1.20</span></div>
-      <div class="cart-total"><span>Total</span><span>$11.71</span></div>
-      <button class="btn btn-green" onclick="navigateTo('screen-order-confirmed')">Confirm Pre-order</button>
+      <div class="cart-row"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+      <div class="cart-row"><span>Taxes (2.5%)</span><span id="cart-tax">$0.00</span></div>
+      <div class="savings-row" id="cart-savings-row" style="display:none">
+        <span>&#x1F4B0; Bulk Savings (qty ≥ 5)</span><span id="cart-savings">-$1.20</span>
+      </div>
+      <div class="cart-total"><span>Total</span><span id="cart-total-amount">$0.00</span></div>
+      <button class="btn btn-green" id="confirm-order-btn" onclick="navigateTo('screen-order-confirmed')">Confirm Pre-order</button>
     </div>
   </div>
   <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
   </div>
   <div class="app-icons">
     <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
@@ -1671,16 +1468,15 @@ Malele  background:#D4C5A9;
   <div class="status-bar">
     <span>12:43 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area" style="display:flex;flex-direction:column">
     <div class="order-title">Order Confirmed</div>
     <div class="order-card">
       <div class="order-desc">Your QR code will be sent to your email, or you can use the QR code in the mobile app when picking up your order.</div>
       <div class="qr-placeholder">
-        <svg viewBox="0 0 200 200" width="160" height="160">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
           <rect width="200" height="200" fill="white"/>
-          <!-- QR Code Pattern -->
           <rect x="10" y="10" width="50" height="50" fill="black"/>
           <rect x="15" y="15" width="40" height="40" fill="white"/>
           <rect x="20" y="20" width="30" height="30" fill="black"/>
@@ -1690,7 +1486,6 @@ Malele  background:#D4C5A9;
           <rect x="10" y="140" width="50" height="50" fill="black"/>
           <rect x="15" y="145" width="40" height="40" fill="white"/>
           <rect x="20" y="150" width="30" height="30" fill="black"/>
-          <!-- Random data blocks -->
           <rect x="70" y="10" width="8" height="8" fill="black"/>
           <rect x="85" y="10" width="8" height="8" fill="black"/>
           <rect x="100" y="10" width="8" height="8" fill="black"/>
@@ -1698,15 +1493,6 @@ Malele  background:#D4C5A9;
           <rect x="70" y="25" width="8" height="8" fill="black"/>
           <rect x="90" y="30" width="8" height="8" fill="black"/>
           <rect x="110" y="25" width="8" height="8" fill="black"/>
-          <rect x="130" y="30" width="8" height="8" fill="black"/>
-          <rect x="70" y="45" width="8" height="8" fill="black"/>
-          <rect x="85" y="50" width="8" height="8" fill="black"/>
-          <rect x="100" y="45" width="8" height="8" fill="black"/>
-          <rect x="120" y="50" width="8" height="8" fill="black"/>
-          <rect x="10" y="70" width="8" height="8" fill="black"/>
-          <rect x="25" y="75" width="8" height="8" fill="black"/>
-          <rect x="40" y="70" width="8" height="8" fill="black"/>
-          <rect x="55" y="80" width="8" height="8" fill="black"/>
           <rect x="70" y="70" width="8" height="8" fill="black"/>
           <rect x="85" y="75" width="8" height="8" fill="black"/>
           <rect x="100" y="70" width="8" height="8" fill="black"/>
@@ -1723,32 +1509,15 @@ Malele  background:#D4C5A9;
           <rect x="130" y="90" width="8" height="8" fill="black"/>
           <rect x="150" y="95" width="8" height="8" fill="black"/>
           <rect x="170" y="90" width="8" height="8" fill="black"/>
-          <rect x="15" y="110" width="8" height="8" fill="black"/>
-          <rect x="35" y="115" width="8" height="8" fill="black"/>
-          <rect x="55" y="110" width="8" height="8" fill="black"/>
-          <rect x="75" y="115" width="8" height="8" fill="black"/>
-          <rect x="95" y="110" width="8" height="8" fill="black"/>
-          <rect x="115" y="115" width="8" height="8" fill="black"/>
-          <rect x="135" y="110" width="8" height="8" fill="black"/>
-          <rect x="155" y="115" width="8" height="8" fill="black"/>
-          <rect x="175" y="110" width="8" height="8" fill="black"/>
           <rect x="70" y="130" width="8" height="8" fill="black"/>
           <rect x="85" y="135" width="8" height="8" fill="black"/>
           <rect x="100" y="130" width="8" height="8" fill="black"/>
           <rect x="115" y="140" width="8" height="8" fill="black"/>
           <rect x="130" y="135" width="8" height="8" fill="black"/>
           <rect x="150" y="130" width="8" height="8" fill="black"/>
-          <rect x="165" y="140" width="8" height="8" fill="black"/>
-          <rect x="180" y="135" width="8" height="8" fill="black"/>
           <rect x="70" y="150" width="8" height="8" fill="black"/>
           <rect x="90" y="155" width="8" height="8" fill="black"/>
           <rect x="110" y="150" width="8" height="8" fill="black"/>
-          <rect x="130" y="160" width="8" height="8" fill="black"/>
-          <rect x="150" y="155" width="8" height="8" fill="black"/>
-          <rect x="170" y="150" width="8" height="8" fill="black"/>
-          <rect x="80" y="170" width="8" height="8" fill="black"/>
-          <rect x="100" y="175" width="8" height="8" fill="black"/>
-          <rect x="120" y="170" width="8" height="8" fill="black"/>
           <rect x="140" y="180" width="12" height="12" fill="black"/>
           <rect x="160" y="175" width="8" height="8" fill="black"/>
           <rect x="180" y="170" width="8" height="8" fill="black"/>
@@ -1756,10 +1525,10 @@ Malele  background:#D4C5A9;
       </div>
       <div class="order-scan">Scan your QR code at pickup.</div>
     </div>
-    <div class="order-charge">$11.71 will be charged to your account at the market pickup.</div>
+    <div class="order-charge" id="order-charge-text">$0.00 will be charged to your account at the market pickup.</div>
   </div>
   <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
   </div>
   <div class="app-icons">
     <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard-arriving')">&#x2B1A;</div>
@@ -1783,7 +1552,7 @@ Malele  background:#D4C5A9;
   <div class="status-bar">
     <span>1:05 PM</span>
     <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span> <span>&#x1F50B;</span></div>
+    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
   </div>
   <div class="scroll-area">
     <div class="dashboard-greeting">Good Afternoon!</div>
@@ -1814,7 +1583,7 @@ Malele  background:#D4C5A9;
       <div class="reminders-card">
         <div class="reminder-divider">
           <div class="card-title">Reminders</div>
-          <span style="color:var(--white-muted);cursor:pointer">&#x22EE;</span>
+          <span style="color:var(--white-muted);cursor:pointer;font-size:32px">&#x22EE;</span>
         </div>
         <div class="reminder-item">
           <div class="reminder-title">&#x2022; Weekly meeting</div>
@@ -1824,7 +1593,7 @@ Malele  background:#D4C5A9;
           <div class="reminder-title">&#x2022; Laundry</div>
           <div class="reminder-time">21:05 pm</div>
         </div>
-        <div style="text-align:right;margin-top:8px">
+        <div style="text-align:right;margin-top:12px">
           <button class="add-btn">+</button>
         </div>
       </div>
@@ -1855,86 +1624,470 @@ Malele  background:#D4C5A9;
 </div>
 
 </div><!-- end fridge -->
-
-<!-- ===== NAVIGATION MENU (sidebar) ===== -->
-<div id="nav-menu" style="position:fixed;left:0;top:0;z-index:999;width:200px;height:100vh;background:var(--bg);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:20px 0;overflow-y:auto">
-  <div style="color:var(--white);font-weight:700;margin-bottom:20px;text-align:center;font-size:14px">Screen Navigator</div>
-  <button class="nav-link" onclick="navigateTo('screen-dashboard')">1. Dashboard</button>
-  <button class="nav-link" onclick="navigateTo('screen-home')">2. Home Page</button>
-  <button class="nav-link" onclick="navigateTo('screen-vote')">3. Voting</button>
-  <button class="nav-link" onclick="navigateTo('screen-vote-confirm')">4. Vote Confirmed</button>
-  <button class="nav-link" onclick="navigateTo('screen-date-confirm')">5. Date Confirmation</button>
-  <button class="nav-link" onclick="navigateTo('screen-home-confirm')">6. Home (Confirmed)</button>
-  <button class="nav-link" onclick="navigateTo('screen-preorder')">7. Pre-ordering</button>
-  <button class="nav-link" onclick="navigateTo('screen-market-list')">8. Market List</button>
-  <button class="nav-link" onclick="navigateTo('screen-market-list-confirmed')">9. Market List (Confirmed)</button>
-  <button class="nav-link" onclick="navigateTo('screen-health-mart')">10. Health Mart</button>
-  <button class="nav-link" onclick="navigateTo('screen-health-mart-list')">11. Health Mart (List)</button>
-  <button class="nav-link" onclick="navigateTo('screen-cart')">12. Your Cart</button>
-  <button class="nav-link" onclick="navigateTo('screen-order-confirmed')">13. Order Confirmed</button>
-  <button class="nav-link" onclick="navigateTo('screen-dashboard-arriving')">14. Dashboard (Arriving)</button>
-  <style>
-    .nav-link{
-      background:none;border:none;color:var(--white-dim);text-align:left;padding:10px 20px;cursor:pointer;border-radius:0;font-family:var(--font);font-size:12px;width:100%;border-bottom:1px solid var(--border);
-      transition:background 0.2s;
-    }
-    .nav-link:hover{background:var(--bg-light)}
-    .nav-link.current{background:var(--green);color:var(--white);font-weight:600}
-  </style>
-</div>
-
-<!-- Adjust fridge position to account for sidebar -->
-<style>
-  .fridge{margin-left:200px;width:calc(100vw - 200px)}
-  @media(max-width:520px){
-    .fridge{margin-left:0;width:100vw}
-    #nav-menu{display:none} /* Hide sidebar on mobile */
-  }
-</style>
+</div><!-- end fridge-wrapper -->
 
 <script>
-// Navigation
+// =====================================================================
+// SHARED STATE
+// =====================================================================
+let nextItemId = 10;
+
+const state = {
+  marketList: [
+    { id: 1, name: 'Blueberries', emoji: '&#x1FAD0;' },
+    { id: 2, name: 'Avocado',     emoji: '&#x1F951;' },
+    { id: 3, name: 'Strawberries',emoji: '&#x1F353;' },
+    { id: 4, name: 'Lettuce',     emoji: '&#x1F96C;' },
+  ],
+  // cart: { 'ProductName': { name, emoji, qty, price, category } }
+  cart: {},
+  activeCategory: 'vegetables',
+};
+
+// =====================================================================
+// PRODUCT CATALOG
+// =====================================================================
+const PRODUCTS = {
+  vegetables: [
+    { name: 'Tomatoes',  emoji: '&#x1F345;', stock: 18, price: 0.98 },
+    { name: 'Jalape\u00f1o', emoji: '&#x1F336;&#xFE0F;', stock: 10, price: 0.98 },
+    { name: 'Onions',    emoji: '&#x1F9C5;', stock: 10, price: 0.98 },
+    { name: 'Broccoli',  emoji: '&#x1F966;', stock: 10, price: 1.49 },
+    { name: 'Carrots',   emoji: '&#x1F955;', stock: 10, price: 0.98 },
+    { name: 'Lettuce',   emoji: '&#x1F96C;', stock: 10, price: 1.29 },
+  ],
+  fruits: [
+    { name: 'Lemons',      emoji: '&#x1F34B;', stock: 10, price: 0.98 },
+    { name: 'Blueberries', emoji: '&#x1FAD0;', stock: 10, price: 3.99 },
+    { name: 'Strawberries',emoji: '&#x1F353;', stock: 10, price: 2.49 },
+    { name: 'Avocados',    emoji: '&#x1F951;', stock: 18, price: 1.49 },
+    { name: 'Apples',      emoji: '&#x1F34E;', stock: 10, price: 0.98 },
+  ],
+  dairy: [
+    { name: 'Eggs',   emoji: '&#x1F95A;', stock: 20, price: 3.99 },
+    { name: 'Cheese', emoji: '&#x1F9C0;', stock: 15, price: 4.99 },
+    { name: 'Butter', emoji: '&#x1F9C8;', stock: 8,  price: 3.49 },
+    { name: 'Yogurt', emoji: '&#x1F95B;', stock: 12, price: 2.49 },
+  ],
+  meat: [
+    { name: 'Chicken',     emoji: '&#x1F357;', stock: 10, price: 6.99 },
+    { name: 'Salmon',      emoji: '&#x1F41F;', stock: 8,  price: 9.99 },
+    { name: 'Ground Beef', emoji: '&#x1F969;', stock: 12, price: 5.99 },
+  ],
+};
+
+function getAllProducts() {
+  return Object.entries(PRODUCTS).flatMap(([cat, items]) =>
+    items.map(p => ({ ...p, category: cat }))
+  );
+}
+
+function findProduct(name) {
+  return getAllProducts().find(p => p.name === name);
+}
+
+// =====================================================================
+// CART OPERATIONS
+// =====================================================================
+function addToCart(productName) {
+  const product = findProduct(productName);
+  if (!product) return;
+  if (state.cart[productName]) {
+    state.cart[productName].qty++;
+  } else {
+    state.cart[productName] = {
+      name: productName,
+      emoji: product.emoji,
+      qty: 1,
+      price: product.price,
+      category: product.category,
+    };
+  }
+  renderCart();
+  renderHealthMart();
+}
+
+function removeFromCart(productName) {
+  delete state.cart[productName];
+  renderCart();
+  renderHealthMart();
+}
+
+function changeCartQty(productName, delta) {
+  if (!state.cart[productName]) return;
+  const newQty = state.cart[productName].qty + delta;
+  if (newQty < 1) return;
+  state.cart[productName].qty = newQty;
+  renderCart();
+  renderHealthMart();
+}
+
+// =====================================================================
+// RENDER: CART
+// =====================================================================
+function renderCart() {
+  const container = document.getElementById('cart-items');
+  if (!container) return;
+
+  const items = Object.values(state.cart);
+  container.innerHTML = '';
+
+  if (items.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'cart-empty';
+    empty.textContent = 'Your cart is empty.\nAdd items from Health Mart.';
+    empty.style.whiteSpace = 'pre-line';
+    container.appendChild(empty);
+    updateCartTotals(0, 0, false);
+    const btn = document.getElementById('confirm-order-btn');
+    if (btn) btn.disabled = true;
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'cart-item';
+
+    const img = document.createElement('div');
+    img.className = 'cart-item-img';
+    img.innerHTML = item.emoji;
+
+    const details = document.createElement('div');
+    details.className = 'cart-item-details';
+
+    const header = document.createElement('div');
+    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between';
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'cart-item-name';
+    nameEl.textContent = item.name;
+
+    const priceEl = document.createElement('div');
+    priceEl.className = 'cart-item-price-unit';
+    priceEl.textContent = '$' + item.price.toFixed(2) + '/lb';
+
+    header.appendChild(nameEl);
+    header.appendChild(priceEl);
+
+    const qtyDiv = document.createElement('div');
+    qtyDiv.className = 'product-qty';
+    qtyDiv.style.margin = '14px 0';
+
+    const minusBtn = document.createElement('button');
+    minusBtn.className = 'qty-btn';
+    minusBtn.textContent = '-';
+    minusBtn.onclick = () => changeCartQty(item.name, -1);
+
+    const qtySpan = document.createElement('span');
+    qtySpan.className = 'qty-val';
+    qtySpan.textContent = item.qty;
+
+    const plusBtn = document.createElement('button');
+    plusBtn.className = 'qty-btn';
+    plusBtn.textContent = '+';
+    plusBtn.onclick = () => changeCartQty(item.name, 1);
+
+    qtyDiv.appendChild(minusBtn);
+    qtyDiv.appendChild(qtySpan);
+    qtyDiv.appendChild(plusBtn);
+
+    const totalEl = document.createElement('div');
+    totalEl.className = 'cart-item-total';
+    totalEl.textContent = '$' + (item.qty * item.price).toFixed(2);
+
+    details.appendChild(header);
+    details.appendChild(qtyDiv);
+    details.appendChild(totalEl);
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'cart-delete';
+    deleteBtn.innerHTML = '&#x1F5D1;';
+    deleteBtn.onclick = () => removeFromCart(item.name);
+
+    row.appendChild(img);
+    row.appendChild(details);
+    row.appendChild(deleteBtn);
+    container.appendChild(row);
+  });
+
+  // Compute totals
+  const subtotal = items.reduce((s, i) => s + i.qty * i.price, 0);
+  const hasBulk = items.some(i => i.qty >= 5);
+  const tax = subtotal * 0.025;
+  const savings = hasBulk ? 1.20 : 0;
+  updateCartTotals(subtotal, tax, hasBulk, savings);
+
+  const btn = document.getElementById('confirm-order-btn');
+  if (btn) btn.disabled = false;
+}
+
+function updateCartTotals(subtotal, tax, hasBulk, savings) {
+  const stEl = document.getElementById('cart-subtotal');
+  const txEl = document.getElementById('cart-tax');
+  const svRow = document.getElementById('cart-savings-row');
+  const svEl = document.getElementById('cart-savings');
+  const ttEl = document.getElementById('cart-total-amount');
+  const ocEl = document.getElementById('order-charge-text');
+
+  if (!stEl) return;
+
+  subtotal = subtotal || 0;
+  tax = tax || 0;
+  savings = savings || 0;
+
+  const total = subtotal + tax - savings;
+
+  stEl.textContent = '$' + subtotal.toFixed(2);
+  txEl.textContent = '$' + tax.toFixed(2);
+  if (svRow) svRow.style.display = hasBulk ? 'flex' : 'none';
+  if (svEl) svEl.textContent = '-$' + savings.toFixed(2);
+  ttEl.textContent = '$' + Math.max(0, total).toFixed(2);
+  if (ocEl) ocEl.textContent = '$' + Math.max(0, total).toFixed(2) + ' will be charged to your account at the market pickup.';
+}
+
+// =====================================================================
+// RENDER: HEALTH MART
+// =====================================================================
+function setCategory(category) {
+  state.activeCategory = category;
+  renderHealthMart();
+  updateCategoryUI();
+}
+
+function updateCategoryUI() {
+  document.querySelectorAll('.mart-cat').forEach(el => {
+    el.classList.toggle('active', el.dataset.category === state.activeCategory);
+  });
+}
+
+function renderHealthMart() {
+  renderHealthMartScreen('10', false);
+  renderHealthMartScreen('11', true);
+  updateCategoryUI();
+}
+
+function renderHealthMartScreen(suffix, listModeOnly) {
+  const container = document.getElementById('mart-products-' + suffix);
+  if (!container) return;
+
+  const marketListNames = state.marketList.map(i => i.name.toLowerCase());
+
+  let productsToShow;
+  if (listModeOnly) {
+    // Screen 11: show ALL market list items that exist in the catalog, across all categories
+    productsToShow = getAllProducts().filter(p =>
+      marketListNames.includes(p.name.toLowerCase())
+    );
+  } else {
+    // Screen 10: show products from the active category
+    productsToShow = (PRODUCTS[state.activeCategory] || []).map(p => ({
+      ...p, category: state.activeCategory
+    }));
+  }
+
+  container.innerHTML = '';
+
+  if (productsToShow.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'mart-empty';
+    empty.textContent = listModeOnly
+      ? 'No market list items found in the catalog.'
+      : 'No products in this category.';
+    container.appendChild(empty);
+    return;
+  }
+
+  productsToShow.forEach(product => {
+    const inCart = state.cart[product.name];
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    const imgDiv = document.createElement('div');
+    imgDiv.className = 'product-img';
+    imgDiv.innerHTML = product.emoji;
+
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'product-info';
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'product-name';
+    nameEl.textContent = product.name;
+
+    const metaDiv = document.createElement('div');
+    metaDiv.className = 'product-meta';
+
+    const stockEl = document.createElement('span');
+    stockEl.className = 'product-stock';
+    stockEl.textContent = product.stock + ' left';
+
+    const priceEl = document.createElement('span');
+    priceEl.className = 'product-price';
+    priceEl.textContent = '$' + product.price.toFixed(2) + '/lb';
+
+    metaDiv.appendChild(stockEl);
+    metaDiv.appendChild(priceEl);
+
+    const qtyDiv = document.createElement('div');
+    qtyDiv.className = 'product-qty';
+
+    const minusBtn = document.createElement('button');
+    minusBtn.className = 'qty-btn';
+    minusBtn.textContent = '-';
+    minusBtn.onclick = () => {
+      if (inCart && inCart.qty > 1) {
+        state.cart[product.name].qty--;
+        renderCart();
+        renderHealthMart();
+      }
+    };
+
+    const qtySpan = document.createElement('span');
+    qtySpan.className = 'qty-val';
+    qtySpan.textContent = inCart ? inCart.qty : 1;
+
+    const plusBtn = document.createElement('button');
+    plusBtn.className = 'qty-btn';
+    plusBtn.textContent = '+';
+    plusBtn.onclick = () => {
+      addToCart(product.name);
+    };
+
+    qtyDiv.appendChild(minusBtn);
+    qtyDiv.appendChild(qtySpan);
+    qtyDiv.appendChild(plusBtn);
+
+    const addBtn = document.createElement('button');
+    addBtn.className = inCart ? 'product-add added' : 'product-add';
+    addBtn.textContent = inCart ? 'Added ✓' : 'Add';
+    addBtn.onclick = () => {
+      if (!inCart) addToCart(product.name);
+    };
+
+    infoDiv.appendChild(nameEl);
+    infoDiv.appendChild(metaDiv);
+    infoDiv.appendChild(qtyDiv);
+    infoDiv.appendChild(addBtn);
+
+    card.appendChild(imgDiv);
+    card.appendChild(infoDiv);
+    container.appendChild(card);
+  });
+}
+
+// =====================================================================
+// RENDER: MARKET LIST
+// =====================================================================
+function renderMarketList() {
+  ['8', '9'].forEach(suffix => {
+    const container = document.getElementById('market-list-items-' + suffix);
+    if (!container) return;
+    container.innerHTML = '';
+    const query = (document.getElementById('search-input-' + suffix) || {}).value || '';
+    const q = query.toLowerCase();
+
+    state.marketList.forEach(item => {
+      if (q && !item.name.toLowerCase().includes(q)) return;
+
+      const row = document.createElement('div');
+      row.className = 'market-item';
+      row.dataset.name = item.name;
+
+      const left = document.createElement('div');
+      left.className = 'market-item-left';
+
+      const emojiSpan = document.createElement('span');
+      emojiSpan.className = 'market-item-emoji';
+      emojiSpan.innerHTML = item.emoji;
+
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'market-item-name';
+      nameSpan.textContent = item.name;
+
+      left.appendChild(emojiSpan);
+      left.appendChild(nameSpan);
+
+      const delBtn = document.createElement('button');
+      delBtn.className = 'delete-btn';
+      delBtn.innerHTML = '&#x1F5D1;';
+      delBtn.onclick = () => removeFromMarketList(item.id);
+
+      row.appendChild(left);
+      row.appendChild(delBtn);
+      container.appendChild(row);
+    });
+  });
+  // Refresh health mart list tab
+  renderHealthMartScreen('11', true);
+}
+
+function addToMarketList(name, emoji) {
+  if (!name) return;
+  const exists = state.marketList.some(i => i.name.toLowerCase() === name.toLowerCase());
+  if (exists) return;
+  state.marketList.push({ id: nextItemId++, name, emoji: emoji || '&#x1F6D2;' });
+  renderMarketList();
+}
+
+function removeFromMarketList(id) {
+  state.marketList = state.marketList.filter(i => i.id !== id);
+  renderMarketList();
+}
+
+function addMarketItemFromInput(suffix) {
+  const input = document.getElementById('new-item-input-' + suffix);
+  if (!input) return;
+  const name = input.value.trim();
+  if (!name) return;
+  addToMarketList(name, '&#x1F6D2;');
+  input.value = '';
+}
+
+function searchMarketList(suffix) {
+  renderMarketList(); // re-render with current search query applied
+}
+
+// =====================================================================
+// NAVIGATION
+// =====================================================================
 function navigateTo(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const target = document.getElementById(screenId);
   if (target) {
     target.classList.add('active');
-    // Scroll to top
     const scroll = target.querySelector('.scroll-area');
     if (scroll) scroll.scrollTop = 0;
   }
-  // Update nav menu
-  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('current'));
   document.querySelectorAll('.nav-link').forEach(l => {
-    if (l.getAttribute('onclick') && l.getAttribute('onclick').includes(screenId)) {
-      l.classList.add('current');
-    }
+    l.classList.toggle('current',
+      l.getAttribute('onclick') && l.getAttribute('onclick').includes(screenId));
   });
+  // Re-render dynamic screens when navigated to
+  if (screenId === 'screen-cart') renderCart();
+  if (screenId === 'screen-health-mart') renderHealthMartScreen('10', false);
+  if (screenId === 'screen-health-mart-list') renderHealthMartScreen('11', true);
+  if (screenId === 'screen-market-list') renderMarketList();
+  if (screenId === 'screen-market-list-confirmed') renderMarketList();
 }
 
-// Voting interactions
-let selectedDays = {};
+// =====================================================================
+// VOTING INTERACTIONS
+// =====================================================================
+const selectedDays = {};
 function selectDay(el, day) {
   const radio = document.getElementById('radio-' + day);
   const slots = document.getElementById('slots-' + day);
-
   if (selectedDays[day]) {
-    // Deselect
     delete selectedDays[day];
     radio.classList.remove('selected');
     if (slots) slots.classList.remove('show');
-    // Reset progress bar
     const fill = el.querySelector('.vote-progress-fill');
     if (fill) { fill.classList.remove('green'); fill.classList.add('gray'); }
   } else {
-    // Select
     selectedDays[day] = true;
     radio.classList.add('selected');
     if (slots && slots.children.length > 0) slots.classList.add('show');
-    // Update progress bar
     const fill = el.querySelector('.vote-progress-fill');
     if (fill) { fill.classList.remove('gray'); fill.classList.add('green'); }
-    // Update vote count
     const countEl = el.querySelector('.vote-count-text');
     if (countEl) {
       const current = parseInt(countEl.textContent);
@@ -1947,10 +2100,13 @@ function selectSlot(el) {
   el.classList.toggle('selected');
 }
 
-// Shelf toggle
+// =====================================================================
+// PRE-ORDER / CAMERA
+// =====================================================================
 function toggleShelves() {
   const extra = document.getElementById('extra-shelves');
   const btn = document.getElementById('expand-btn');
+  if (!extra || !btn) return;
   if (extra.style.display === 'none') {
     extra.style.display = 'block';
     btn.textContent = 'Tap to collapse';
@@ -1960,224 +2116,53 @@ function toggleShelves() {
   }
 }
 
-// Add market item
-function addMarketItem() {
-  const input = document.getElementById('new-item-input');
-  const itemName = input.value.trim();
-  if (itemName === '') return;
-  
-  const scrollArea = document.querySelector('#screen-market-list .scroll-area');
-  const addSection = scrollArea.querySelector('.add-item-section');
-  
-  const newItem = document.createElement('div');
-  newItem.className = 'market-item';
-  newItem.setAttribute('data-name', itemName);
-  newItem.innerHTML = `
-    <div class="market-item-left">
-      <span>&#x1F6D2;</span>
-      <span class="market-item-name">${itemName}</span>
-    </div>
-    <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
-  `;
-  
-  scrollArea.insertBefore(newItem, addSection.nextSibling);
-  input.value = '';
-  
-  // Also add to Health Mart list
-  addToHealthMart(itemName);
+function addToListEnhanced(btn, itemName) {
+  btn.outerHTML = '<span class="freshness-added">&#x2713; Added to the list</span>';
+  addToMarketList(itemName, '&#x1F6D2;');
 }
 
-function addMarketItemConfirmed() {
-  const input = document.getElementById('new-item-input-confirmed');
-  const itemName = input.value.trim();
-  if (itemName === '') return;
-  
-  const scrollArea = document.querySelector('#screen-market-list-confirmed .scroll-area');
-  const addSection = scrollArea.querySelector('.add-item-section');
-  
-  const newItem = document.createElement('div');
-  newItem.className = 'market-item';
-  newItem.setAttribute('data-name', itemName);
-  newItem.innerHTML = `
-    <div class="market-item-left">
-      <span>&#x1F6D2;</span>
-      <span class="market-item-name">${itemName}</span>
-    </div>
-    <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
-  `;
-  
-  scrollArea.insertBefore(newItem, addSection.nextSibling);
-  input.value = '';
-  
-  // Also add to Health Mart list
-  addToHealthMart(itemName);
-}
-
-// Search market list
-function searchMarketList() {
-  const query = document.getElementById('search-input').value.toLowerCase();
-  const items = document.querySelectorAll('#screen-market-list .market-item');
-  items.forEach(item => {
-    const name = item.getAttribute('data-name').toLowerCase();
-    item.style.display = name.includes(query) ? 'flex' : 'none';
-  });
-}
-
-function searchMarketListConfirmed() {
-  const query = document.getElementById('search-input-confirmed').value.toLowerCase();
-  const items = document.querySelectorAll('#screen-market-list-confirmed .market-item');
-  items.forEach(item => {
-    const name = item.getAttribute('data-name').toLowerCase();
-    item.style.display = name.includes(query) ? 'flex' : 'none';
-  });
-}
-
-// Auto add low items
+// =====================================================================
+// BULK ADD HELPERS
+// =====================================================================
 function autoAddLowItems() {
-  const lowItems = ['Carrots', 'Tomatoes', 'Avocado', 'Lettuce', 'Blueberries', 'Strawberries', 'Apples', 'Lemons'];
-  lowItems.forEach(item => {
-    addMarketItemConfirmedFromLow(item);
-  });
+  const lowItems = [
+    { name: 'Carrots',     emoji: '&#x1F955;' },
+    { name: 'Tomatoes',    emoji: '&#x1F345;' },
+    { name: 'Avocado',     emoji: '&#x1F951;' },
+    { name: 'Lettuce',     emoji: '&#x1F96C;' },
+    { name: 'Blueberries', emoji: '&#x1FAD0;' },
+    { name: 'Strawberries',emoji: '&#x1F353;' },
+    { name: 'Apples',      emoji: '&#x1F34E;' },
+    { name: 'Lemons',      emoji: '&#x1F34B;' },
+  ];
+  lowItems.forEach(i => addToMarketList(i.name, i.emoji));
   alert('All low-stock items added to your market list!');
 }
 
-function addMarketItemConfirmedFromLow(itemName) {
-  const scrollArea = document.querySelector('#screen-market-list-confirmed .scroll-area');
-  const addSection = scrollArea.querySelector('.add-item-section');
-  
-  const newItem = document.createElement('div');
-  newItem.className = 'market-item';
-  newItem.setAttribute('data-name', itemName);
-  newItem.innerHTML = `
-    <div class="market-item-left">
-      <span>&#x1F6D2;</span>
-      <span class="market-item-name">${itemName}</span>
-    </div>
-    <button class="delete-btn" onclick="this.parentElement.style.display='none'">&#x1F5D1;</button>
-  `;
-  
-  scrollArea.insertBefore(newItem, addSection.nextSibling);
-  
-  // Also add to Health Mart list
-  addToHealthMart(itemName);
-}
-
-// Add recipe ingredients
 function addRecipeIngredients(ingredients) {
-  ingredients.forEach(ing => {
-    addMarketItemConfirmedFromLow(ing);
-  });
+  ingredients.forEach(name => addToMarketList(name, '&#x1F6D2;'));
   alert('Missing ingredients added to your market list!');
 }
 
-// Function to add item to Health Mart list
-function addToHealthMart(itemName) {
-  const martProducts = document.querySelector('#screen-health-mart-list .mart-products');
-  if (!martProducts) return;
-  
-  const newProduct = document.createElement('div');
-  newProduct.className = 'product-card';
-  newProduct.innerHTML = `
-    <div class="product-img">&#x1F6D2;</div>
-    <div class="product-info">
-      <div class="product-name">${itemName}</div>
-      <div class="product-meta">
-        <span class="product-stock">Added from list</span>
-        <span class="product-price">$0.00</span>
-      </div>
-      <div class="product-qty">
-        <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
-        <span class="qty-val">1</span>
-        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-      </div>
-      <button class="product-add added">Added</button>
-    </div>
-  `;
-  
-  martProducts.appendChild(newProduct);
-}
-
-// Enhanced add to list
-function addToListEnhanced(btn, itemName) {
-  btn.outerHTML = '<span class="freshness-added">&#x2713; Added to the list (4 added)</span>';
-  // Simulate adding to market list
-  addMarketItemConfirmedFromLow(itemName);
-}
-
-// Add to list
-function addToList(btn) {
-  btn.outerHTML = '<span class="freshness-added">&#x2713; Added to the list</span>';
-}
-
-// Product quantity
-function changeQty(btn, delta) {
-  const container = btn.parentElement;
-  const valEl = container.querySelector('.qty-val');
-  let val = parseInt(valEl.textContent);
-  val = Math.max(1, val + delta);
-  valEl.textContent = val;
-  
-  // Update item total
-  updateItemTotal(container);
-  
-  // Update cart totals
-  updateCartTotals();
-}
-
-// Update individual item total
-function updateItemTotal(container) {
-  const qty = parseInt(container.querySelector('.qty-val').textContent);
-  const priceUnitText = container.closest('.cart-item-details').querySelector('.cart-item-price-unit').textContent;
-  const unitPrice = parseFloat(priceUnitText.replace(/[^0-9.]/g, ''));
-  const total = (qty * unitPrice).toFixed(2);
-  container.closest('.cart-item-details').querySelector('.cart-item-total').textContent = '$' + total;
-}
-
-// Update overall cart totals
-function updateCartTotals() {
-  const itemTotals = document.querySelectorAll('.cart-item-total');
-  let subtotal = 0;
-  itemTotals.forEach(totalEl => {
-    subtotal += parseFloat(totalEl.textContent.replace('$', ''));
-  });
-  subtotal = subtotal.toFixed(2);
-  
-  const taxRate = 0.025; // 2.5%
-  const taxes = (subtotal * taxRate).toFixed(2);
-  const total = (parseFloat(subtotal) + parseFloat(taxes)).toFixed(2);
-  
-  // Update the summary
-  const summary = document.querySelector('.cart-summary');
-  summary.querySelectorAll('.cart-row span:last-child')[0].textContent = '$' + subtotal;
-  summary.querySelectorAll('.cart-row span:last-child')[1].textContent = '$' + taxes;
-  summary.querySelector('.cart-total span:last-child').textContent = '$' + total;
-  
-  // Also update the order charge in order confirmed screen if needed, but for now, just cart
-}
-
-// Initialize cart totals on load
+// =====================================================================
+// INITIALIZE
+// =====================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  updateCartTotals();
+  // Seed demo cart
+  state.cart = {
+    'Tomatoes': { name: 'Tomatoes', emoji: '&#x1F345;', qty: 6, price: 0.98, category: 'vegetables' },
+    'Lemons':   { name: 'Lemons',   emoji: '&#x1F34B;', qty: 8, price: 0.98, category: 'fruits' },
+    'Blueberries': { name: 'Blueberries', emoji: '&#x1FAD0;', qty: 1, price: 3.99, category: 'fruits' },
+  };
+
+  renderMarketList();
+  renderCart();
+  renderHealthMart();
+
+  // Mark first nav link as current
+  const firstLink = document.querySelector('.nav-link');
+  if (firstLink) firstLink.classList.add('current');
 });
-
-// Add product
-function addProduct(btn) {
-  btn.textContent = 'Added';
-  btn.classList.add('added');
-  btn.onclick = null;
-}
-
-// Toast for dead ends
-document.querySelectorAll('[data-coming-soon]').forEach(el => {
-  el.addEventListener('click', (e) => {
-    e.preventDefault();
-    showToast("This part isn't clickable in the prototype");
-  });
-});
-
-// Initialize first screen nav link
-document.querySelector('.nav-link').classList.add('current');
 </script>
 </body>
 </html>
-</attachment>
