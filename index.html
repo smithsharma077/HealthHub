@@ -8,703 +8,297 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#1C1C1E;
-  --bg-light:#2C2C2E;
-  --bg-card:#333338;
-  --bg-card2:#3A3A3C;
-  --green:#34C759;
-  --green-dark:#2DA44E;
-  --green-btn:#2E8B57;
-  --green-light:rgba(52,199,89,0.15);
-  --green-text:#34C759;
-  --red:#FF3B30;
-  --red-badge:#E53935;
-  --orange:#FF9500;
-  --orange-badge:#E8A317;
-  --white:#FFFFFF;
-  --white-dim:rgba(255,255,255,0.7);
-  --white-muted:rgba(255,255,255,0.5);
-  --gray:#8E8E93;
-  --gray-light:#636366;
-  --border:rgba(255,255,255,0.1);
+  --bg:#1C1C1E;--bg-light:#2C2C2E;--bg-card:#333338;--bg-card2:#3A3A3C;
+  --green:#34C759;--green-dark:#2DA44E;--green-btn:#2E8B57;
+  --green-light:rgba(52,199,89,0.15);--green-text:#34C759;
+  --red:#FF3B30;--red-badge:#E53935;--orange:#FF9500;--orange-badge:#E8A317;
+  --white:#FFFFFF;--white-dim:rgba(255,255,255,0.7);--white-muted:rgba(255,255,255,0.5);
+  --gray:#8E8E93;--gray-light:#636366;--border:rgba(255,255,255,0.1);
   --font:'Inter',system-ui,-apple-system,sans-serif;
-  --radius:32px;
-  --radius-sm:22px;
-  --radius-xs:18px;
+  --r:14px;--rs:10px;--rx:8px;
 }
-
-html,body{
-  background:#D4C5A9;
-  font-family:var(--font);
-  overflow:auto;
-  min-height:100vh;
-}
-body{
-  display:flex;
-  align-items:flex-start;
-  justify-content:flex-start;
-}
-
-/* FRIDGE WRAPPER */
-.fridge-wrapper{
-  margin-left:260px;
-  padding:40px 40px 40px 40px;
-  flex-shrink:0;
-}
-
-/* FRIDGE FRAME — 1080×1920 */
-.fridge{
-  width:1080px;
-  height:1920px;
-  background:var(--bg);
-  border-radius:40px;
-  box-shadow:0 60px 120px rgba(0,0,0,.5),0 0 0 4px #111;
-  position:relative;
-  overflow:hidden;
-}
-
-/* SCREENS */
-.screen{
-  position:absolute;
-  top:0;right:0;bottom:0;left:0;
-  display:none;
-  flex-direction:column;
-  background:var(--bg);
-  overflow:hidden;
-}
+html,body{background:#111;font-family:var(--font);min-height:100vh;display:flex;align-items:flex-start;justify-content:flex-start;}
+.fridge-wrapper{margin-left:220px;padding:24px;flex-shrink:0;}
+.fridge{width:420px;height:780px;background:var(--bg);border-radius:28px;box-shadow:0 24px 64px rgba(0,0,0,.8),0 0 0 3px #333;position:relative;overflow:hidden;}
+.screen{position:absolute;top:0;right:0;bottom:0;left:0;display:none;flex-direction:column;background:var(--bg);overflow:hidden;}
 .screen.active{display:flex;}
-
-/* STATUS BAR */
-.status-bar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:28px 48px 18px;
-  flex-shrink:0;
-  color:var(--white);font-size:28px;font-weight:600;
-  background:var(--bg);
-}
-.status-icons{display:flex;align-items:center;gap:14px;font-size:26px}
-
-/* SCROLLABLE CONTENT */
-.scroll-area{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
+.status-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 18px 6px;flex-shrink:0;color:var(--white);font-size:11px;font-weight:600;background:var(--bg);}
+.status-icons{display:flex;align-items:center;gap:5px;font-size:11px;}
+.scroll-area{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;min-height:0;}
 .scroll-area::-webkit-scrollbar{display:none}
-
-/* BOTTOM NAV — fixed within screen */
-.bottom-nav{
-  display:flex;align-items:center;justify-content:space-around;
-  padding:18px 0 38px;
-  flex-shrink:0;
-  border-top:2px solid var(--border);
-  background:rgba(28,28,30,0.95);
-  backdrop-filter:blur(20px);
-}
-.bottom-nav button{
-  background:none;border:none;color:var(--gray);
-  font-size:48px;cursor:pointer;padding:14px 20px;
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  border-radius:16px;transition:color 0.2s,background 0.2s;
-}
-.bottom-nav button.active{
-  color:var(--white);
-}
+.bottom-nav{display:flex;align-items:center;justify-content:space-around;padding:6px 0 10px;flex-shrink:0;border-top:1px solid var(--border);background:rgba(28,28,30,0.97);backdrop-filter:blur(10px);height:50px;}
+.bottom-nav button{background:none;border:none;color:var(--gray);font-size:20px;cursor:pointer;padding:4px 10px;border-radius:7px;transition:color 0.2s;line-height:1;}
+.bottom-nav button.active{color:var(--white);}
 .bottom-nav button:active{background:var(--bg-card)}
-
-/* APP ICONS ROW */
-.app-icons{
-  display:flex;justify-content:center;gap:24px;
-  padding:22px 48px;flex-shrink:0;
-}
-.app-icon{
-  width:88px;height:88px;border-radius:22px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:40px;cursor:pointer;transition:opacity 0.2s;
-}
+.app-icons{display:flex;justify-content:center;gap:10px;padding:5px 18px;flex-shrink:0;}
+.app-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:opacity 0.2s;}
 .app-icon:active{opacity:0.7}
-
-/* PAGE DOTS */
-.page-dots{
-  display:flex;justify-content:center;gap:14px;
-  padding:16px 0;flex-shrink:0;
-}
-.page-dots .dot{
-  width:16px;height:16px;border-radius:50%;
-  background:var(--gray-light);
-}
+.page-dots{display:flex;justify-content:center;gap:6px;padding:5px 0 3px;flex-shrink:0;}
+.page-dots .dot{width:6px;height:6px;border-radius:50%;background:var(--gray-light);}
 .page-dots .dot.active{background:var(--white)}
-
-/* COMMON BUTTON */
-.btn{
-  width:100%;padding:28px;border:none;border-radius:var(--radius-sm);
-  font-family:var(--font);font-size:30px;font-weight:600;
-  cursor:pointer;text-align:center;transition:background 0.2s;
-}
+.btn{width:100%;padding:11px;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:background 0.2s;}
 .btn-green{background:var(--green-btn);color:var(--white)}
 .btn-green:hover{background:#257a4a}
 .btn-green:disabled{background:var(--gray);cursor:not-allowed;opacity:0.5}
-.btn-outline{
-  background:transparent;color:var(--green-text);
-  border:3px solid var(--green-text);
-}
-
-/* BANNER */
-.banner{
-  display:flex;align-items:center;gap:16px;
-  padding:22px 36px;border-radius:var(--radius-xs);
-  font-size:28px;font-weight:500;margin:0 48px 26px;
-}
+.btn-outline{background:transparent;color:var(--green-text);border:1.5px solid var(--green-text);}
+.banner{display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:var(--rx);font-size:11px;font-weight:500;margin:0 18px 10px;}
 .banner-green{background:var(--green-light);color:var(--green-text)}
 .banner-red{background:rgba(255,59,48,0.15);color:#FF6B6B}
-
-/* BADGE */
-.badge{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:8px 20px;border-radius:44px;
-  font-size:22px;font-weight:600;
-}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600;}
 .badge-green{background:var(--green-light);color:var(--green-text)}
 .badge-red{background:rgba(255,59,48,0.2);color:#FF6B6B}
 .badge-orange{background:rgba(255,149,0,0.2);color:var(--orange)}
 
-/* ===== SCREEN 1: DASHBOARD ===== */
-.dashboard-greeting{
-  font-size:52px;font-weight:700;color:var(--white);
-  padding:8px 48px 28px;
-}
-.dashboard-top{
-  display:grid;grid-template-columns:1fr 1fr;gap:24px;
-  padding:0 48px 26px;
-}
-.weather-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:44px;display:flex;flex-direction:column;
-}
-.weather-temp{font-size:96px;font-weight:700;color:var(--white);line-height:1}
-.weather-label{font-size:28px;color:var(--white-dim);margin-top:8px}
-.weather-icon{font-size:84px;text-align:right}
-.time-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:44px;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;
-}
-.time-display{font-size:80px;font-weight:700;color:var(--white);line-height:1}
-.time-date{font-size:26px;color:var(--white-dim);margin-top:12px}
-.time-icon{font-size:76px;margin-bottom:12px}
-.dashboard-bottom{
-  display:grid;grid-template-columns:1fr 1fr;gap:24px;
-  padding:0 48px 26px;
-}
-.market-list-card,.reminders-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:30px;
-}
-.card-title{font-size:30px;font-weight:700;color:var(--white);margin-bottom:20px}
-.list-item{
-  display:flex;align-items:center;gap:16px;
-  padding:8px 0;font-size:28px;color:var(--white);
-}
-.list-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0}
-.reminder-item{padding:12px 0}
-.reminder-title{font-size:28px;color:var(--white);font-weight:500}
-.reminder-time{font-size:24px;color:var(--white-muted)}
+/* SCREEN 1 — DASHBOARD */
+.dashboard-greeting{font-size:20px;font-weight:700;color:var(--white);padding:2px 18px 9px;}
+.dashboard-top{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 18px 10px;}
+.weather-card{background:var(--bg-card);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;}
+.weather-temp{font-size:34px;font-weight:700;color:var(--white);line-height:1}
+.weather-label{font-size:10px;color:var(--white-dim);margin-top:2px}
+.weather-icon{font-size:30px;text-align:right}
+.time-card{background:var(--bg-card);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.time-display{font-size:26px;font-weight:700;color:var(--white);line-height:1}
+.time-date{font-size:10px;color:var(--white-dim);margin-top:4px}
+.time-icon{font-size:26px;margin-bottom:4px}
+.dashboard-bottom{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 18px 10px;}
+.market-list-card,.reminders-card{background:var(--bg-card);border-radius:var(--r);padding:11px;}
+.card-title{font-size:11px;font-weight:700;color:var(--white);margin-bottom:7px}
+.list-item{display:flex;align-items:center;gap:6px;padding:2px 0;font-size:10px;color:var(--white);}
+.list-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.reminder-item{padding:4px 0}
+.reminder-title{font-size:10px;color:var(--white);font-weight:500}
+.reminder-time{font-size:9px;color:var(--white-muted)}
 .reminder-divider{display:flex;align-items:center;justify-content:space-between}
-.add-btn{
-  width:68px;height:68px;border-radius:50%;
-  background:rgba(255,255,255,0.15);border:none;
-  color:var(--white);font-size:38px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-}
-.alert-bar{
-  display:flex;align-items:center;gap:16px;
-  background:var(--bg-card);border-radius:var(--radius-sm);
-  padding:26px 36px;margin:0 48px 26px;
-  font-size:26px;color:var(--white-dim);
-}
+.add-btn{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;color:var(--white);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.alert-bar{display:flex;align-items:center;gap:7px;background:var(--bg-card);border-radius:var(--rs);padding:9px 14px;margin:0 18px 10px;font-size:10px;color:var(--white-dim);}
 
-/* ===== SCREEN 2: HOME PAGE ===== */
-.home-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:8px 48px 26px;
-  flex-wrap:wrap;gap:16px;
-}
-.home-greeting{font-size:48px;font-weight:700;color:var(--white)}
-.live-badge{
-  display:flex;align-items:center;gap:12px;
-  background:var(--green);padding:14px 28px;border-radius:44px;
-  font-size:24px;font-weight:600;color:var(--white);cursor:pointer;
-}
-.home-section{padding:0 48px;margin-bottom:30px}
-.voting-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:32px;
-}
-.voting-header{
-  display:flex;align-items:center;gap:18px;
-  margin-bottom:24px;flex-wrap:wrap;
-}
-.voting-icon{
-  width:72px;height:72px;border-radius:16px;
-  background:var(--bg-card2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:36px;
-}
-.voting-title{font-size:28px;font-weight:600;color:var(--white);flex:1}
-.vote-bar-row{
-  display:flex;align-items:center;gap:16px;
-  margin-bottom:12px;font-size:26px;color:var(--white-dim);
-}
-.vote-bar{flex:1;height:12px;background:var(--bg-card2);border-radius:6px;overflow:hidden}
-.vote-bar-fill{height:100%;background:var(--gray);border-radius:6px}
-.vote-count{min-width:110px;text-align:right;font-size:24px}
-.low-items{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:32px;
-}
-.low-items-title{font-size:28px;font-weight:600;color:var(--white);margin-bottom:20px}
-.low-items-grid{
-  display:flex;flex-wrap:wrap;gap:16px;margin-bottom:24px;
-}
-.low-item{
-  display:flex;align-items:center;gap:8px;
-  font-size:26px;color:var(--white-dim);
-}
+/* SCREEN 2 — HOME */
+.home-header{display:flex;align-items:center;justify-content:space-between;padding:2px 18px 9px;flex-wrap:wrap;gap:5px;}
+.home-greeting{font-size:17px;font-weight:700;color:var(--white)}
+.live-badge{display:flex;align-items:center;gap:5px;background:var(--green);padding:5px 11px;border-radius:20px;font-size:10px;font-weight:600;color:var(--white);cursor:pointer;}
+.home-section{padding:0 18px;margin-bottom:11px}
+.voting-card{background:var(--bg-card);border-radius:var(--r);padding:12px;}
+.voting-header{display:flex;align-items:center;gap:7px;margin-bottom:9px;flex-wrap:wrap;}
+.voting-icon{width:28px;height:28px;border-radius:7px;background:var(--bg-card2);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.voting-title{font-size:11px;font-weight:600;color:var(--white);flex:1}
+.vote-bar-row{display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:10px;color:var(--white-dim);}
+.vote-bar{flex:1;height:5px;background:var(--bg-card2);border-radius:3px;overflow:hidden}
+.vote-bar-fill{height:100%;background:var(--gray);border-radius:3px}
+.vote-count{min-width:46px;text-align:right;font-size:9px}
+.low-items{background:var(--bg-card);border-radius:var(--r);padding:12px;}
+.low-items-title{font-size:11px;font-weight:600;color:var(--white);margin-bottom:7px}
+.low-items-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px;}
+.low-item{display:flex;align-items:center;gap:3px;font-size:10px;color:var(--white-dim);}
 
-/* ===== SCREEN 3: VOTING ===== */
-.vote-screen-title{
-  font-size:52px;font-weight:700;color:var(--white);
-  padding:8px 48px 26px;
-}
-.vote-day{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:34px 48px;border-bottom:1px solid var(--border);
-  cursor:pointer;
-}
-.vote-day-left{display:flex;align-items:center;gap:22px}
-.radio{
-  width:44px;height:44px;border-radius:50%;
-  border:3px solid var(--gray);display:flex;
-  align-items:center;justify-content:center;flex-shrink:0;
-}
+/* SCREEN 3 — VOTING */
+.vote-screen-title{font-size:20px;font-weight:700;color:var(--white);padding:2px 18px 9px;}
+.vote-day{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-bottom:1px solid var(--border);cursor:pointer;}
+.vote-day-left{display:flex;align-items:center;gap:9px}
+.radio{width:17px;height:17px;border-radius:50%;border:1.5px solid var(--gray);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .radio.selected{border-color:var(--green);background:var(--green)}
-.radio.selected::after{content:'';width:18px;height:18px;border-radius:50%;background:var(--white)}
-.vote-day-name{font-size:32px;color:var(--white);font-weight:500}
-.vote-day-right{display:flex;align-items:center;gap:18px}
-.vote-progress{width:220px;height:11px;background:var(--bg-card2);border-radius:6px;overflow:hidden}
-.vote-progress-fill{height:100%;border-radius:6px}
+.radio.selected::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--white)}
+.vote-day-name{font-size:13px;color:var(--white);font-weight:500}
+.vote-day-right{display:flex;align-items:center;gap:7px}
+.vote-progress{width:90px;height:5px;background:var(--bg-card2);border-radius:3px;overflow:hidden}
+.vote-progress-fill{height:100%;border-radius:3px}
 .vote-progress-fill.gray{background:var(--gray)}
 .vote-progress-fill.green{background:var(--green)}
-.vote-count-text{font-size:26px;color:var(--white-dim);min-width:110px;text-align:right}
-
-/* TIME SLOTS */
-.time-slots{
-  padding:18px 48px 18px 114px;
-  display:none;flex-direction:column;gap:16px;
-}
+.vote-count-text{font-size:10px;color:var(--white-dim);min-width:46px;text-align:right}
+.time-slots{padding:6px 18px 6px 44px;display:none;flex-direction:column;gap:5px;}
 .time-slots.show{display:flex}
-.time-slot{
-  display:flex;align-items:center;justify-content:space-between;
-  background:var(--bg-card);border-radius:var(--radius-xs);
-  padding:26px 36px;cursor:pointer;
-  border:3px solid transparent;
-}
+.time-slot{display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);border-radius:var(--rx);padding:9px 13px;cursor:pointer;border:1.5px solid transparent;}
 .time-slot.selected{background:rgba(52,199,89,0.15);border-color:var(--green)}
-.time-slot-name{font-size:30px;color:var(--white)}
-.time-slot-votes{font-size:26px;color:var(--white-dim)}
+.time-slot-name{font-size:12px;color:var(--white)}
+.time-slot-votes{font-size:10px;color:var(--white-dim)}
 
 /* VOTE CONFIRMED */
-.vote-confirmed-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:80px 60px;text-align:center;margin:40px;
-}
-.vote-check{
-  width:120px;height:120px;border-radius:50%;
-  background:var(--green);margin:0 auto 32px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:60px;color:var(--white);
-}
-.vote-confirmed-title{font-size:44px;font-weight:700;color:var(--white);margin-bottom:16px}
-.vote-confirmed-sub{font-size:28px;color:var(--white-dim);margin-bottom:40px;line-height:1.5}
+.vote-confirmed-card{background:var(--bg-card);border-radius:var(--r);padding:28px 22px;text-align:center;margin:14px;}
+.vote-check{width:46px;height:46px;border-radius:50%;background:var(--green);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--white);}
+.vote-confirmed-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:6px}
+.vote-confirmed-sub{font-size:11px;color:var(--white-dim);margin-bottom:14px;line-height:1.5}
 
 /* PRE-ORDERING */
-.preorder-alert{
-  background:rgba(229,57,53,0.12);border-radius:var(--radius-sm);
-  padding:24px 36px;margin:0 48px 26px;
-  font-size:26px;color:#FF6B6B;line-height:1.5;
-}
-.camera-section{
-  background:var(--bg-card);border-radius:var(--radius);
-  margin:0 48px 26px;overflow:hidden;
-}
-.camera-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:26px 36px;
-}
-.camera-title{font-size:28px;font-weight:700;color:var(--white)}
-.live-dot{
-  display:flex;align-items:center;gap:8px;
-  font-size:24px;font-weight:600;color:var(--red);
-}
-.live-dot::before{content:'';width:12px;height:12px;border-radius:50%;background:var(--red)}
-.shelf-label{
-  font-size:22px;font-weight:600;color:var(--white-dim);
-  padding:8px 36px 16px;text-transform:uppercase;letter-spacing:2px;
-}
-.shelf-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-  padding:0 36px 24px;
-}
-.shelf-item{
-  border-radius:18px;overflow:hidden;position:relative;
-  aspect-ratio:1;
-}
-.shelf-item-label{
-  position:absolute;bottom:0;left:0;right:0;
-  background:rgba(0,0,0,0.65);padding:8px 12px;
-  font-size:22px;color:var(--white);text-align:center;
-}
-.camera-expand{
-  width:100%;padding:22px;border:none;
-  background:var(--bg-card2);color:var(--white-dim);
-  font-size:26px;font-family:var(--font);cursor:pointer;
-}
-.freshness-section{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:32px;margin:0 48px 26px;
-}
-.freshness-header{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:24px;
-}
-.freshness-title{font-size:30px;font-weight:700;color:var(--white)}
-.freshness-sort{font-size:24px;color:var(--white-muted)}
-.freshness-item{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:18px 0;
-}
-.freshness-left{display:flex;align-items:center;gap:20px}
-.freshness-emoji{font-size:38px}
-.freshness-name{font-size:30px;font-weight:500;color:var(--white)}
-.freshness-add{
-  display:flex;align-items:center;gap:8px;
-  background:var(--green-light);border:none;
-  color:var(--green-text);font-size:24px;font-weight:600;
-  padding:14px 26px;border-radius:14px;cursor:pointer;
-  font-family:var(--font);
-}
-.freshness-added{
-  display:flex;align-items:center;gap:8px;
-  font-size:24px;color:var(--white-muted);
-}
-.toss-badge{
-  display:inline-block;
-  background:var(--red-badge);color:var(--white);
-  font-size:22px;font-weight:600;
-  padding:6px 18px;border-radius:8px;margin-top:6px;
-}
-.remaining-badge{
-  display:inline-block;
-  background:var(--orange-badge);color:var(--white);
-  font-size:22px;font-weight:600;
-  padding:6px 18px;border-radius:8px;margin-top:6px;
-}
+.preorder-alert{background:rgba(229,57,53,0.12);border-radius:var(--rs);padding:9px 14px;margin:0 18px 10px;font-size:10px;color:#FF6B6B;line-height:1.5;}
+.camera-section{background:var(--bg-card);border-radius:var(--r);margin:0 18px 10px;overflow:hidden;}
+.camera-header{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;}
+.camera-title{font-size:11px;font-weight:700;color:var(--white)}
+.live-dot{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:600;color:var(--red);}
+.live-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red)}
+.shelf-label{font-size:9px;font-weight:600;color:var(--white-dim);padding:2px 14px 5px;text-transform:uppercase;letter-spacing:1px;}
+.shelf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:0 14px 9px;}
+.shelf-item{border-radius:7px;overflow:hidden;position:relative;aspect-ratio:1;}
+.shelf-item-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.65);padding:2px 4px;font-size:9px;color:var(--white);text-align:center;}
+.camera-expand{width:100%;padding:8px;border:none;background:var(--bg-card2);color:var(--white-dim);font-size:10px;font-family:var(--font);cursor:pointer;}
+.freshness-section{background:var(--bg-card);border-radius:var(--r);padding:12px;margin:0 18px 10px;}
+.freshness-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.freshness-title{font-size:12px;font-weight:700;color:var(--white)}
+.freshness-sort{font-size:9px;color:var(--white-muted)}
+.freshness-item{display:flex;align-items:center;justify-content:space-between;padding:6px 0;}
+.freshness-left{display:flex;align-items:center;gap:8px}
+.freshness-emoji{font-size:15px}
+.freshness-name{font-size:12px;font-weight:500;color:var(--white)}
+.freshness-add{display:flex;align-items:center;gap:3px;background:var(--green-light);border:none;color:var(--green-text);font-size:10px;font-weight:600;padding:5px 9px;border-radius:6px;cursor:pointer;font-family:var(--font);}
+.freshness-added{display:flex;align-items:center;gap:3px;font-size:10px;color:var(--white-muted);}
+.toss-badge{display:inline-block;background:var(--red-badge);color:var(--white);font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;margin-top:2px;}
+.remaining-badge{display:inline-block;background:var(--orange-badge);color:var(--white);font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;margin-top:2px;}
 
 /* MARKET LIST */
-.market-list-header{
-  font-size:52px;font-weight:700;color:var(--white);
-  padding:8px 48px 18px;
-}
-.market-list-note{
-  background:var(--green-light);border-radius:var(--radius-xs);
-  padding:22px 36px;margin:0 48px 30px;
-  font-size:26px;color:var(--green-text);
-}
-.market-item{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:30px 48px;border-bottom:1px solid var(--border);
-}
-.market-item-left{display:flex;align-items:center;gap:20px}
-.market-item-emoji{font-size:36px}
-.market-item-name{font-size:30px;color:var(--white);font-weight:500}
-.delete-btn{
-  background:none;border:none;color:var(--white-muted);
-  font-size:36px;cursor:pointer;padding:8px;
-}
-.add-item-section{
-  display:flex;gap:20px;padding:28px 48px;border-bottom:1px solid var(--border);
-}
-.add-item-input{
-  flex:1;padding:22px;border-radius:16px;border:2px solid var(--border);
-  background:var(--bg-card);color:var(--white);font-size:30px;
-  font-family:var(--font);
-}
-.add-item-input::placeholder{color:var(--white-muted)}
-.add-item-btn{
-  width:82px;height:82px;border-radius:50%;background:var(--green-btn);
-  border:none;color:var(--white);font-size:48px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.search-section{
-  display:flex;gap:20px;padding:28px 48px;border-bottom:1px solid var(--border);
-}
-.search-input{
-  flex:1;padding:22px;border-radius:16px;border:2px solid var(--border);
-  background:var(--bg-card);color:var(--white);font-size:30px;
-  font-family:var(--font);
-}
+.market-list-header{font-size:20px;font-weight:700;color:var(--white);padding:2px 18px 7px;}
+.market-list-note{background:var(--green-light);border-radius:var(--rx);padding:7px 13px;margin:0 18px 10px;font-size:10px;color:var(--green-text);}
+.market-item{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-bottom:1px solid var(--border);}
+.market-item-left{display:flex;align-items:center;gap:8px}
+.market-item-emoji{font-size:16px}
+.market-item-name{font-size:12px;color:var(--white);font-weight:500}
+.delete-btn{background:none;border:none;color:var(--white-muted);font-size:15px;cursor:pointer;padding:3px;}
+.add-item-section{display:flex;gap:8px;padding:10px 18px;border-bottom:1px solid var(--border);align-items:center;}
+.add-item-pick-btn{flex:1;padding:9px 13px;border-radius:var(--rx);border:1.5px solid var(--border);background:var(--bg-card);color:var(--white-muted);font-size:12px;font-family:var(--font);cursor:pointer;text-align:left;}
+.add-item-btn{width:34px;height:34px;border-radius:50%;background:var(--green-btn);border:none;color:var(--white);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.search-section{display:flex;gap:8px;padding:10px 18px;border-bottom:1px solid var(--border);}
+.search-input{flex:1;padding:8px 12px;border-radius:var(--rx);border:1.5px solid var(--border);background:var(--bg-card);color:var(--white);font-size:12px;font-family:var(--font);}
 .search-input::placeholder{color:var(--white-muted)}
 
-/* DATE CONFIRMATION */
-.date-confirm-title{
-  font-size:44px;font-weight:700;color:var(--white);
-  padding:8px 48px 32px;
-}
-.date-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:60px;margin:0 48px;text-align:center;
-}
-.date-icon{font-size:80px;margin-bottom:24px}
-.date-main{font-size:52px;font-weight:700;color:var(--white);margin-bottom:8px}
-.date-time{font-size:32px;color:var(--white-dim);margin-bottom:32px}
-.date-progress{
-  width:80%;height:12px;background:var(--bg-card2);
-  border-radius:6px;margin:0 auto 18px;overflow:hidden;
-}
-.date-progress-fill{height:100%;background:var(--white);border-radius:6px;width:70%}
-.date-votes{font-size:28px;color:var(--white-dim)}
-
-/* HOME WITH CONFIRMATION */
-.market-visit-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:44px;text-align:center;margin-bottom:30px;
-}
-.market-visit-title{font-size:28px;font-weight:600;color:var(--white-dim);margin-bottom:16px}
+/* DATE / HOME-CONFIRM */
+.date-confirm-title{font-size:17px;font-weight:700;color:var(--white);padding:2px 18px 12px;}
+.date-card{background:var(--bg-card);border-radius:var(--r);padding:20px;margin:0 18px;text-align:center;}
+.date-icon{font-size:30px;margin-bottom:9px}
+.date-main{font-size:20px;font-weight:700;color:var(--white);margin-bottom:2px}
+.date-time{font-size:13px;color:var(--white-dim);margin-bottom:12px}
+.date-progress{width:80%;height:5px;background:var(--bg-card2);border-radius:3px;margin:0 auto 7px;overflow:hidden;}
+.date-progress-fill{height:100%;background:var(--white);border-radius:3px;width:70%}
+.date-votes{font-size:11px;color:var(--white-dim)}
+.market-visit-card{background:var(--bg-card);border-radius:var(--r);padding:16px;text-align:center;margin-bottom:11px;}
+.market-visit-title{font-size:11px;font-weight:600;color:var(--white-dim);margin-bottom:6px}
 
 /* HEALTH MART */
-.mart-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:8px 48px 18px;flex-wrap:wrap;gap:12px;
-}
-.mart-title{font-size:52px;font-weight:700;color:var(--white)}
-.mart-actions{display:flex;align-items:center;gap:16px}
-.mart-btn{
-  display:flex;align-items:center;gap:10px;
-  background:var(--bg-card);border:none;
-  color:var(--white);font-size:24px;font-weight:500;
-  padding:14px 28px;border-radius:44px;cursor:pointer;
-  font-family:var(--font);
-}
-.mart-tabs{
-  display:flex;gap:16px;padding:0 48px 24px;
-}
-.mart-tab{
-  padding:14px 32px;border-radius:44px;
-  font-size:26px;font-weight:600;cursor:pointer;
-  border:2px solid var(--border);color:var(--white-dim);
-  background:transparent;font-family:var(--font);transition:all 0.2s;
-}
-.mart-tab.active{background:var(--white);color:var(--bg);border-color:var(--white)}
-.mart-layout{
-  display:flex;flex:1;overflow:hidden;
-}
-.mart-categories{
-  width:160px;flex-shrink:0;display:flex;flex-direction:column;
-  align-items:center;gap:8px;padding:16px 0;
-  border-right:1px solid var(--border);
-  overflow-y:auto;
-}
-.mart-cat{
-  text-align:center;cursor:pointer;padding:16px 12px;
-  border-radius:18px;width:88%;transition:background 0.2s;
-}
-.mart-cat:hover{background:var(--bg-card)}
-.mart-cat.active{background:var(--bg-card2)}
-.mart-cat-icon{font-size:52px;margin-bottom:6px}
-.mart-cat-name{font-size:20px;color:var(--white-dim);font-weight:500}
-.mart-cat.active .mart-cat-name{color:var(--white)}
-.mart-products{
-  flex:1;overflow-y:auto;padding:20px 24px;
-  display:grid;grid-template-columns:1fr 1fr;gap:20px;
-  align-content:start;
-}
-.mart-empty{
-  grid-column:1/-1;text-align:center;padding:60px 24px;
-  font-size:28px;color:var(--white-muted);
-}
-.product-card{
-  background:var(--bg-card);border-radius:var(--radius-sm);
-  overflow:hidden;
-}
-.product-img{
-  width:100%;aspect-ratio:1.2;
-  background:var(--bg-card2);display:flex;align-items:center;
-  justify-content:center;font-size:88px;
-}
-.product-info{padding:18px 20px 20px}
-.product-name{font-size:28px;font-weight:600;color:var(--white)}
-.product-meta{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-top:6px;
-}
-.product-stock{font-size:22px;color:var(--white-muted)}
-.product-price{font-size:26px;font-weight:600;color:var(--white)}
-.product-qty{
-  display:flex;align-items:center;margin-top:14px;
-}
-.qty-btn{
-  width:64px;height:64px;border-radius:14px;
-  background:var(--green);border:none;
-  color:var(--white);font-size:36px;font-weight:700;
-  cursor:pointer;display:flex;align-items:center;
-  justify-content:center;
-}
-.qty-val{
-  width:70px;text-align:center;
-  font-size:32px;font-weight:600;color:var(--white);
-}
-.product-add{
-  width:100%;padding:14px;border:none;
-  background:transparent;color:var(--white);
-  font-size:26px;font-weight:600;cursor:pointer;
-  font-family:var(--font);margin-top:10px;border-radius:12px;
-  transition:background 0.2s;
-}
-.product-add:not(.added):hover{background:var(--bg-card2)}
+.mart-header{display:flex;align-items:center;justify-content:space-between;padding:2px 18px 7px;flex-wrap:wrap;gap:5px;}
+.mart-title{font-size:20px;font-weight:700;color:var(--white)}
+.mart-actions{display:flex;align-items:center;gap:7px}
+.mart-btn{display:flex;align-items:center;gap:4px;background:var(--bg-card);border:none;color:var(--white);font-size:10px;font-weight:500;padding:5px 11px;border-radius:20px;cursor:pointer;font-family:var(--font);position:relative;}
+.cart-count-badge{display:inline-flex;align-items:center;justify-content:center;background:var(--red-badge);color:var(--white);font-size:9px;font-weight:700;min-width:15px;height:15px;border-radius:8px;padding:0 3px;}
+.mart-tabs{display:flex;gap:7px;padding:0 18px 8px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;}
+.mart-tabs::-webkit-scrollbar{display:none}
+.mart-tab{padding:5px 13px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;border:1.5px solid var(--border);color:var(--white-dim);background:transparent;font-family:var(--font);transition:all 0.2s;flex-shrink:0;}
+.mart-tab.active{background:#4caf50;color:var(--white);border-color:#4caf50}
+
+/* Horizontal category pill tabs */
+.mart-cat-tabs{display:flex;gap:6px;padding:0 18px 8px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;}
+.mart-cat-tabs::-webkit-scrollbar{display:none}
+.mart-cat-tab{display:flex;align-items:center;gap:4px;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;border:1.5px solid var(--border);color:var(--white-dim);background:transparent;font-family:var(--font);transition:all 0.2s;flex-shrink:0;}
+.mart-cat-tab.active{background:#4caf50;color:var(--white);border-color:#4caf50}
+.mart-products{flex:1;overflow-y:auto;padding:8px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start;scrollbar-width:none;min-height:0;}
+.mart-products::-webkit-scrollbar{display:none}
+.mart-empty{grid-column:1/-1;text-align:center;padding:24px 10px;font-size:12px;color:var(--white-muted);}
+.product-card{background:var(--bg-card);border-radius:var(--rs);overflow:hidden;}
+.product-img{width:100%;aspect-ratio:1.2;background:var(--bg-card2);display:flex;align-items:center;justify-content:center;font-size:32px;}
+.product-info{padding:7px 8px 8px}
+.product-name{font-size:11px;font-weight:600;color:var(--white)}
+.product-meta{display:flex;align-items:center;justify-content:space-between;margin-top:3px;}
+.product-stock{font-size:9px;color:var(--white-muted)}
+.product-price{font-size:10px;font-weight:600;color:var(--white)}
+.product-qty{display:flex;align-items:center;margin-top:5px;}
+.qty-btn{width:24px;height:24px;border-radius:6px;background:var(--green);border:none;color:var(--white);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.qty-val{width:26px;text-align:center;font-size:13px;font-weight:600;color:var(--white);}
+.product-add{width:100%;padding:5px;border:none;background:var(--bg-card2);color:var(--white);font-size:10px;font-weight:600;cursor:pointer;font-family:var(--font);margin-top:5px;border-radius:5px;transition:background 0.2s;}
 .product-add.added{background:var(--green);color:var(--white)}
 
 /* CART */
-.cart-title{
-  font-size:52px;font-weight:700;color:var(--white);
-  padding:8px 48px 26px;
-}
-.cart-empty{
-  text-align:center;padding:100px 48px;
-  font-size:32px;color:var(--white-muted);line-height:1.6;
-}
-.cart-item{
-  display:flex;align-items:flex-start;gap:28px;
-  padding:30px 48px;border-bottom:1px solid var(--border);
-}
-.cart-item-img{
-  width:156px;height:156px;border-radius:22px;
-  background:var(--bg-card2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:66px;overflow:hidden;flex-shrink:0;
-}
-.cart-item-details{flex:1}
-.cart-item-name{font-size:32px;font-weight:600;color:var(--white)}
-.cart-item-price-unit{font-size:24px;color:var(--white-muted)}
-.cart-item-total{font-size:34px;font-weight:600;color:var(--white);margin-top:8px}
-.cart-delete{
-  background:none;border:none;color:var(--white-muted);
-  font-size:38px;cursor:pointer;padding:8px;flex-shrink:0;
-}
-.cart-summary{padding:44px 48px;border-top:2px solid var(--border)}
-.cart-row{
-  display:flex;justify-content:space-between;
-  padding:10px 0;font-size:28px;color:var(--white-dim);
-}
-.savings-row{
-  display:flex;justify-content:space-between;
-  padding:10px 0;font-size:28px;color:var(--green-text);
-}
-.cart-total{
-  display:flex;justify-content:space-between;
-  padding:22px 0 32px;font-size:42px;font-weight:700;color:var(--white);
-  border-top:2px solid var(--border);margin-top:10px;
-}
+.cart-title{font-size:20px;font-weight:700;color:var(--white);padding:2px 18px 9px;}
+.cart-empty{text-align:center;padding:36px 18px;font-size:13px;color:var(--white-muted);line-height:1.6;}
+.cart-item{display:flex;align-items:flex-start;gap:10px;padding:11px 18px;border-bottom:1px solid var(--border);}
+.cart-item-img{width:52px;height:52px;border-radius:9px;background:var(--bg-card2);display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden;flex-shrink:0;}
+.cart-item-details{flex:1;min-width:0}
+.cart-item-name{font-size:13px;font-weight:600;color:var(--white)}
+.cart-item-price-unit{font-size:10px;color:var(--white-muted)}
+.cart-item-total{font-size:13px;font-weight:600;color:var(--white);margin-top:2px}
+.cart-delete{background:none;border:none;color:var(--white-muted);font-size:15px;cursor:pointer;padding:3px;flex-shrink:0;}
+.cart-summary{padding:13px 18px 16px;border-top:1px solid var(--border);}
+.cart-row{display:flex;justify-content:space-between;padding:3px 0;font-size:11px;color:var(--white-dim);}
+.savings-row{display:flex;justify-content:space-between;padding:3px 0;font-size:11px;color:var(--green-text);}
+.cart-total{display:flex;justify-content:space-between;padding:8px 0 11px;font-size:17px;font-weight:700;color:var(--white);border-top:1px solid var(--border);margin-top:4px;}
 
-/* ORDER CONFIRMATION */
-.order-title{
-  font-size:52px;font-weight:700;color:var(--white);
-  padding:8px 48px 26px;text-align:center;
-}
-.order-card{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:44px;margin:0 48px;text-align:center;
-}
-.order-desc{font-size:28px;color:var(--white-dim);line-height:1.5;margin-bottom:32px}
-.qr-placeholder{
-  width:360px;height:360px;margin:0 auto 24px;
-  background:var(--white);border-radius:16px;
-  display:flex;align-items:center;justify-content:center;
-  padding:24px;
-}
-.order-scan{font-size:26px;color:var(--white-dim);margin-top:16px}
-.order-charge{
-  font-size:28px;color:var(--white-dim);
-  padding:32px 48px;text-align:center;
-}
-
-/* DASHBOARD ARRIVING VARIANT */
-.market-arriving-banner{
-  display:flex;align-items:center;gap:20px;
-  background:var(--green-light);border-radius:var(--radius-sm);
-  padding:26px 36px;margin:0 48px 26px;
-}
-.market-arriving-icon{font-size:48px}
-.market-arriving-text{font-size:28px;font-weight:500;color:var(--green-text);line-height:1.4}
-
-/* RECIPE SUGGESTIONS */
-.recipe-suggestions{
-  background:var(--bg-card);border-radius:var(--radius);
-  padding:32px;margin:0 48px 26px;
-}
-.recipe-title{font-size:30px;font-weight:700;color:var(--white);margin-bottom:20px}
-.recipe-item{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:18px 0;border-bottom:1px solid var(--border);
-}
+/* ORDER CONFIRMED */
+.order-title{font-size:20px;font-weight:700;color:var(--white);padding:2px 18px 9px;text-align:center;}
+.order-card{background:var(--bg-card);border-radius:var(--r);padding:16px;margin:0 18px;text-align:center;}
+.order-desc{font-size:11px;color:var(--white-dim);line-height:1.5;margin-bottom:13px}
+.qr-placeholder{width:140px;height:140px;margin:0 auto 9px;background:var(--white);border-radius:7px;display:flex;align-items:center;justify-content:center;padding:9px;}
+.order-scan{font-size:10px;color:var(--white-dim);margin-top:6px}
+.order-charge{font-size:11px;color:var(--white-dim);padding:11px 18px;text-align:center;}
+.market-arriving-banner{display:flex;align-items:center;gap:8px;background:var(--green-light);border-radius:var(--rs);padding:9px 13px;margin:0 18px 10px;}
+.market-arriving-icon{font-size:19px}
+.market-arriving-text{font-size:10px;font-weight:500;color:var(--green-text);line-height:1.4}
+.recipe-suggestions{background:var(--bg-card);border-radius:var(--r);padding:12px;margin:0 18px 10px;}
+.recipe-title{font-size:12px;font-weight:700;color:var(--white);margin-bottom:7px}
+.recipe-item{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);}
 .recipe-item:last-child{border-bottom:none}
-.recipe-name{font-size:28px;color:var(--white);font-weight:500}
-.recipe-add-btn{
-  background:var(--green-light);border:none;
-  color:var(--green-text);font-size:24px;font-weight:600;
-  padding:12px 22px;border-radius:12px;cursor:pointer;
-  font-family:var(--font);
-}
-.deals-banner{
-  display:flex;align-items:center;gap:16px;
-  background:var(--orange);
-  padding:22px 48px;
-  font-size:26px;font-weight:500;color:var(--white);flex-shrink:0;
-}
-.auto-add-btn{
-  background:var(--green-btn);color:var(--white);
-  border:none;padding:22px;border-radius:16px;
-  font-size:28px;font-weight:600;cursor:pointer;
-  margin:0 0 26px;font-family:var(--font);width:100%;
-}
+.recipe-name{font-size:11px;color:var(--white);font-weight:500}
+.recipe-add-btn{background:var(--green-light);border:none;color:var(--green-text);font-size:10px;font-weight:600;padding:4px 9px;border-radius:5px;cursor:pointer;font-family:var(--font);}
+.deals-banner{display:flex;align-items:center;gap:7px;background:var(--orange);padding:7px 18px;font-size:10px;font-weight:500;color:var(--white);flex-shrink:0;}
+.auto-add-btn{background:var(--green-btn);color:var(--white);border:none;padding:9px;border-radius:var(--rx);font-size:12px;font-weight:600;cursor:pointer;margin:0 0 9px;font-family:var(--font);width:100%;}
+.dot-green{background:#4CAF50}.dot-red{background:#F44336}.dot-pink{background:#E91E63}.dot-orange{background:#FF9800}.dot-yellow{background:#FFEB3B}.dot-purple{background:#9C27B0}.dot-lime{background:#8BC34A}
 
-/* Produce dot colors */
-.dot-green{background:#4CAF50}
-.dot-red{background:#F44336}
-.dot-pink{background:#E91E63}
-.dot-orange{background:#FF9800}
-.dot-yellow{background:#FFEB3B}
-.dot-purple{background:#9C27B0}
-.dot-lime{background:#8BC34A}
-
-/* NAV MENU SIDEBAR (outside fridge) */
-#nav-menu{
-  position:fixed;left:0;top:0;z-index:999;
-  width:260px;height:100vh;
-  background:var(--bg);border-right:1px solid var(--border);
-  display:flex;flex-direction:column;padding:20px 0;overflow-y:auto;
-}
-.nav-link{
-  background:none;border:none;color:var(--white-dim);
-  text-align:left;padding:12px 20px;cursor:pointer;
-  font-family:var(--font);font-size:13px;
-  width:100%;border-bottom:1px solid var(--border);
-  transition:background 0.2s;
-}
-.nav-link:hover{background:var(--bg-light)}
+/* NAV SIDEBAR */
+#nav-menu{position:fixed;left:0;top:0;z-index:999;width:220px;height:100vh;background:#0a0a0a;border-right:1px solid #222;display:flex;flex-direction:column;padding:14px 0;overflow-y:auto;}
+.nav-link{background:none;border:none;color:var(--white-dim);text-align:left;padding:8px 16px;cursor:pointer;font-family:var(--font);font-size:11px;width:100%;border-bottom:1px solid #1a1a1a;transition:background 0.2s;}
+.nav-link:hover{background:#1a1a1a}
 .nav-link.current{background:var(--green);color:var(--white);font-weight:600}
+
+/* VOICE FAB */
+#voice-fab{position:absolute;bottom:58px;right:14px;width:40px;height:40px;border-radius:50%;background:var(--green-btn);border:none;color:var(--white);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.5);z-index:100;transition:transform 0.15s;}
+#voice-fab:active{transform:scale(0.9)}
+
+/* VOICE PANEL */
+#voice-panel{position:absolute;bottom:0;left:0;right:0;height:62%;background:rgba(18,18,20,0.97);backdrop-filter:blur(20px);border-radius:18px 18px 0 0;display:flex;flex-direction:column;z-index:200;transform:translateY(100%);transition:transform 0.32s cubic-bezier(0.32,0.72,0,1);}
+#voice-panel.open{transform:translateY(0)}
+.vp-handle{width:34px;height:4px;border-radius:2px;background:var(--gray-light);margin:9px auto 5px;flex-shrink:0;}
+.vp-title{font-size:13px;font-weight:700;color:var(--white);padding:0 16px 7px;flex-shrink:0;}
+.vp-scroll{flex:1;overflow-y:auto;padding:0 16px 8px;scrollbar-width:none;min-height:0;}
+.vp-scroll::-webkit-scrollbar{display:none}
+.waveform{display:flex;align-items:center;gap:4px;padding:10px 0 6px;}
+.wave-bar{width:4px;border-radius:2px;background:var(--green);animation:wavePulse 0.8s ease-in-out infinite alternate;}
+.wave-bar:nth-child(1){height:8px;animation-delay:0s}
+.wave-bar:nth-child(2){height:16px;animation-delay:0.1s}
+.wave-bar:nth-child(3){height:22px;animation-delay:0.2s}
+.wave-bar:nth-child(4){height:16px;animation-delay:0.3s}
+.wave-bar:nth-child(5){height:8px;animation-delay:0.4s}
+@keyframes wavePulse{from{transform:scaleY(0.35);opacity:0.5}to{transform:scaleY(1);opacity:1}}
+.waveform.idle .wave-bar{animation:none;height:4px;opacity:0.25;}
+.vp-transcript{background:var(--bg-card);border-radius:var(--rx);padding:9px 11px;font-size:11px;color:var(--white-dim);min-height:34px;margin-bottom:8px;line-height:1.5;}
+.vp-response{background:rgba(52,199,89,0.1);border-radius:var(--rx);padding:7px 11px;font-size:11px;color:var(--green-text);margin-bottom:8px;line-height:1.5;display:none;}
+.vp-history{margin-bottom:8px}
+.vp-history-title{font-size:10px;font-weight:600;color:var(--white-muted);margin-bottom:4px}
+.vp-history-item{font-size:10px;color:var(--white-dim);padding:3px 0;border-bottom:1px solid var(--border);}
+.fridgeiq-card{background:rgba(52,199,89,0.08);border:1px solid rgba(52,199,89,0.2);border-radius:var(--rx);padding:9px 11px;margin-bottom:8px;}
+.fridgeiq-title{font-size:11px;font-weight:700;color:var(--green-text);margin-bottom:7px;}
+.fridgeiq-suggestion{display:flex;align-items:flex-start;justify-content:space-between;gap:7px;padding:5px 0;border-bottom:1px solid rgba(52,199,89,0.1);}
+.fridgeiq-suggestion:last-child{border-bottom:none;padding-bottom:0}
+.fridgeiq-text{font-size:10px;color:var(--white-dim);line-height:1.4;flex:1}
+.fridgeiq-add-btn{background:var(--green-btn);border:none;color:var(--white);font-size:10px;font-weight:600;padding:4px 8px;border-radius:5px;cursor:pointer;font-family:var(--font);flex-shrink:0;white-space:nowrap;}
+.vp-controls{padding:7px 16px 14px;flex-shrink:0;display:flex;gap:7px;}
+.vp-listen-btn{flex:1;padding:10px;border:none;border-radius:var(--rx);background:var(--green-btn);color:var(--white);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);}
+.vp-close-btn{flex:1;padding:10px;border:none;border-radius:var(--rx);background:rgba(255,59,48,0.15);color:#FF6B6B;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);}
+
+/* ITEM PICKER MODAL */
+#item-picker-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:300;display:none;align-items:flex-end;}
+#item-picker-overlay.open{display:flex}
+#item-picker-modal{width:100%;background:var(--bg-light);border-radius:18px 18px 0 0;padding-bottom:14px;max-height:70%;display:flex;flex-direction:column;}
+.picker-handle{width:34px;height:4px;border-radius:2px;background:var(--gray-light);margin:9px auto 7px;flex-shrink:0;}
+.picker-title{font-size:13px;font-weight:700;color:var(--white);padding:0 16px 7px;flex-shrink:0;}
+.picker-search{margin:0 16px 7px;padding:8px 12px;border-radius:var(--rx);border:1.5px solid var(--border);background:var(--bg-card);color:var(--white);font-size:12px;font-family:var(--font);flex-shrink:0;width:calc(100% - 32px);}
+.picker-search::placeholder{color:var(--white-muted)}
+.picker-list{flex:1;overflow-y:auto;padding:0 16px 8px;scrollbar-width:none;}
+.picker-list::-webkit-scrollbar{display:none}
+.picker-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity 0.15s;}
+.picker-item:active{opacity:0.7}
+.picker-item-emoji{font-size:20px}
+.picker-item-name{font-size:13px;color:var(--white);font-weight:500;flex:1}
+.picker-item-check{font-size:14px;color:var(--green-text)}
 </style>
 </head>
 <body>
 
-<!-- ===== SCREEN NAVIGATOR SIDEBAR (outside fridge) ===== -->
+<!-- SCREEN NAVIGATOR SIDEBAR -->
 <div id="nav-menu">
-  <div style="color:var(--white);font-weight:700;margin-bottom:20px;text-align:center;font-size:14px">Screen Navigator</div>
+  <div style="color:var(--white);font-weight:700;margin-bottom:14px;text-align:center;font-size:12px;padding:0 12px;">Screen Navigator</div>
   <button class="nav-link" onclick="navigateTo('screen-dashboard')">1. Dashboard</button>
   <button class="nav-link" onclick="navigateTo('screen-home')">2. Home Page</button>
   <button class="nav-link" onclick="navigateTo('screen-vote')">3. Voting</button>
@@ -721,905 +315,442 @@ body{
   <button class="nav-link" onclick="navigateTo('screen-dashboard-arriving')">14. Dashboard (Arriving)</button>
 </div>
 
-<!-- ===== FRIDGE WRAPPER ===== -->
 <div class="fridge-wrapper">
 <div class="fridge">
 
 <!-- ===== SCREEN 1: DASHBOARD ===== -->
 <div class="screen active" id="screen-dashboard">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
     <div class="dashboard-greeting">Good Afternoon!</div>
     <div class="dashboard-top">
       <div class="weather-card">
-        <div class="weather-icon">&#x26C5;</div>
-        <div class="weather-temp">58&#xB0;F</div>
+        <div class="weather-icon">⛅</div>
+        <div class="weather-temp">58°F</div>
         <div class="weather-label">Cloudy</div>
       </div>
       <div class="time-card">
-        <div class="time-icon">&#x1F553;</div>
+        <div class="time-icon">🕓</div>
         <div class="time-display">12:45pm</div>
         <div class="time-date">Wed, June 24</div>
       </div>
     </div>
     <div class="recipe-suggestions">
       <div class="recipe-title">Recipe Suggestions</div>
-      <div class="recipe-item">
-        <span class="recipe-name">Avocado Toast</span>
-        <button class="recipe-add-btn" onclick="addRecipeIngredients(['Bread','Avocado'])">Add Missing</button>
-      </div>
-      <div class="recipe-item">
-        <span class="recipe-name">Berry Smoothie</span>
-        <button class="recipe-add-btn" onclick="addRecipeIngredients(['Milk','Yogurt'])">Add Missing</button>
-      </div>
+      <div class="recipe-item"><span class="recipe-name">Avocado Toast</span><button class="recipe-add-btn" onclick="addRecipeIngredients(['Bread','Avocado'])">Add Missing</button></div>
+      <div class="recipe-item"><span class="recipe-name">Berry Smoothie</span><button class="recipe-add-btn" onclick="addRecipeIngredients(['Milk','Yogurt'])">Add Missing</button></div>
     </div>
     <div class="dashboard-bottom">
       <div class="market-list-card">
-        <div class="card-title">Your Market List :</div>
-        <div class="list-item"><span class="list-dot dot-green"></span> Avocado</div>
-        <div class="list-item"><span class="list-dot dot-red"></span> Strawberries</div>
-        <div class="list-item"><span class="list-dot dot-lime"></span> Lettuce</div>
-        <div class="list-item"><span class="list-dot dot-purple"></span> Blueberries</div>
+        <div class="card-title">Market List</div>
+        <div id="dashboard-market-preview"></div>
       </div>
       <div class="reminders-card">
-        <div class="reminder-divider">
-          <div class="card-title">Reminders</div>
-          <span style="color:var(--white-muted);cursor:pointer;font-size:32px">&#x22EE;</span>
-        </div>
-        <div class="reminder-item">
-          <div class="reminder-title">&#x2022; Weekly meeting</div>
-          <div class="reminder-time">16:15 pm</div>
-        </div>
-        <div class="reminder-item">
-          <div class="reminder-title">&#x2022; Laundry</div>
-          <div class="reminder-time">21:05 pm</div>
-        </div>
-        <div style="text-align:right;margin-top:12px">
-          <button class="add-btn">+</button>
-        </div>
+        <div class="reminder-divider"><div class="card-title">Reminders</div><span style="color:var(--white-muted);cursor:pointer;font-size:14px">⋮</span></div>
+        <div class="reminder-item"><div class="reminder-title">• Weekly meeting</div><div class="reminder-time">16:15 pm</div></div>
+        <div class="reminder-item"><div class="reminder-title">• Laundry</div><div class="reminder-time">21:05 pm</div></div>
+        <div style="text-align:right;margin-top:8px"><button class="add-btn">+</button></div>
       </div>
     </div>
-    <div class="alert-bar">
-      <span>&#x26A0;&#xFE0F;</span>
-      <span>Blueberries need to be used within the day!</span>
-    </div>
+    <div class="alert-bar"><span>⚠️</span><span>Blueberries need to be used within the day!</span></div>
   </div>
-  <div class="page-dots">
-    <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  </div>
+  <div class="page-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-home')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-home')">⬚</div>
+    <div class="app-icon" style="background:#E91E63">⚙</div>
+    <div class="app-icon" style="background:#00BCD4">♻</div>
+    <div class="app-icon" style="background:#FF9800">🎮</div>
+    <div class="app-icon" style="background:#4A148C">🎵</div>
+    <div class="app-icon" style="background:#F44336">▶</div>
   </div>
   <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button class="active">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-home')">&#x276E;</button>
-    <button>&#x1F514;</button>
+    <button>🎤</button><button>☰</button><button class="active">🏠</button><button onclick="navigateTo('screen-home')">❮</button><button>🔔</button>
   </div>
 </div>
 
 <!-- ===== SCREEN 2: HOME PAGE ===== -->
 <div class="screen" id="screen-home">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
     <div class="home-header">
       <div class="home-greeting">Welcome Back, Sam!</div>
-      <div class="live-badge" onclick="navigateTo('screen-preorder')">&#x1F7E2; Live Internal Camera</div>
+      <div class="live-badge" onclick="navigateTo('screen-preorder')">🟢 Live Camera</div>
     </div>
-    <div class="banner banner-green">
-      <span>&#x1F7E2;</span> Market voting ends in 24 hours
-    </div>
+    <div class="banner banner-green"><span>🟢</span> Market voting ends in 24 hours</div>
     <div class="home-section">
       <div class="voting-card">
         <div class="voting-header">
-          <div class="voting-icon">&#x1F4CA;</div>
-          <div class="voting-title">Market status for your neighborhood</div>
-          <span class="badge badge-green">24 Hours Left &#x1F552;</span>
+          <div class="voting-icon">📊</div>
+          <div class="voting-title">Market status for neighborhood</div>
+          <span class="badge badge-green">24h Left 🕒</span>
         </div>
-        <div class="vote-bar-row">
-          <span>Tues</span>
-          <div class="vote-bar"><div class="vote-bar-fill" style="width:75%;background:var(--gray)"></div></div>
-          <span class="vote-count">21 votes</span>
-        </div>
-        <div class="vote-bar-row">
-          <span>Wed</span>
-          <div class="vote-bar"><div class="vote-bar-fill" style="width:20%;background:var(--gray)"></div></div>
-          <span class="vote-count">5 votes</span>
-        </div>
-        <div class="vote-bar-row">
-          <span>Sat</span>
-          <div class="vote-bar"><div class="vote-bar-fill" style="width:25%;background:var(--gray)"></div></div>
-          <span class="vote-count">7 votes</span>
-        </div>
-        <button class="btn btn-green" style="margin-top:24px" onclick="navigateTo('screen-vote')">Vote Now</button>
+        <div class="vote-bar-row"><span>Tues</span><div class="vote-bar"><div class="vote-bar-fill" style="width:75%"></div></div><span class="vote-count">21 votes</span></div>
+        <div class="vote-bar-row"><span>Wed</span><div class="vote-bar"><div class="vote-bar-fill" style="width:20%"></div></div><span class="vote-count">5 votes</span></div>
+        <div class="vote-bar-row"><span>Sat</span><div class="vote-bar"><div class="vote-bar-fill" style="width:25%"></div></div><span class="vote-count">7 votes</span></div>
+        <button class="btn btn-green" style="margin-top:10px" onclick="navigateTo('screen-vote')">Vote Now</button>
       </div>
     </div>
     <div class="home-section">
       <div class="low-items">
-        <div class="low-items-title">You seem to be running low on:</div>
+        <div class="low-items-title">Running low on:</div>
         <div class="low-items-grid">
-          <div class="low-item"><span>&#x1F955;</span> Carrots</div>
-          <div class="low-item"><span>&#x1F345;</span> Tomatoes</div>
-          <div class="low-item"><span>&#x1F951;</span> Avocado</div>
-          <div class="low-item"><span>&#x1F96C;</span> Lettuce</div>
-          <div class="low-item"><span>&#x1FAD0;</span> Blueberries</div>
-          <div class="low-item"><span>&#x1F353;</span> Strawberries</div>
-          <div class="low-item"><span>&#x1F34E;</span> Apples</div>
-          <div class="low-item"><span>&#x1F34B;</span> Lemons</div>
+          <div class="low-item"><span>🥕</span> Carrots</div><div class="low-item"><span>🍅</span> Tomatoes</div>
+          <div class="low-item"><span>🥑</span> Avocado</div><div class="low-item"><span>🥬</span> Lettuce</div>
+          <div class="low-item"><span>🫐</span> Blueberries</div><div class="low-item"><span>🍓</span> Strawberries</div>
+          <div class="low-item"><span>🍎</span> Apples</div><div class="low-item"><span>🍋</span> Lemons</div>
         </div>
-        <button class="btn btn-outline" style="margin-bottom:16px" onclick="navigateTo('screen-market-list')">View Your Market List</button>
+        <button class="btn btn-outline" style="margin-bottom:8px" onclick="navigateTo('screen-market-list')">View Market List</button>
         <button class="auto-add-btn" onclick="autoAddLowItems()">Auto-Add All to Market List</button>
       </div>
     </div>
-    <div class="home-section">
-      <button class="btn btn-green" onclick="navigateTo('screen-preorder')">Start Pre-order</button>
-    </div>
+    <div class="home-section"><button class="btn btn-green" onclick="navigateTo('screen-preorder')">Start Pre-order</button></div>
   </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  </div>
+  <div class="page-dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
   <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">⬚</div>
+    <div class="app-icon" style="background:#E91E63">⚙</div>
+    <div class="app-icon" style="background:#00BCD4">♻</div>
+    <div class="app-icon" style="background:#FF9800">🎮</div>
+    <div class="app-icon" style="background:#4A148C">🎵</div>
+    <div class="app-icon" style="background:#F44336">▶</div>
   </div>
   <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
-    <button>&#x1F514;</button>
+    <button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-home-confirm')">❮</button><button>🔔</button>
   </div>
 </div>
 
 <!-- ===== SCREEN 3: VOTING ===== -->
 <div class="screen" id="screen-vote">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
     <div class="vote-screen-title">Vote</div>
-    <div class="banner banner-green" style="margin-bottom:0">
-      <span>&#x1F4CA;</span> Market status for your neighborhood
-      <span class="badge badge-green" style="margin-left:auto">24 Hours Left</span>
-    </div>
-    <div class="vote-day" onclick="selectDay(this,'monday')">
-      <div class="vote-day-left"><div class="radio" id="radio-monday"></div><span class="vote-day-name">Monday</span></div>
-      <div class="vote-day-right">
-        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:20%"></div></div>
-        <span class="vote-count-text">5 votes</span>
-      </div>
-    </div>
+    <div class="banner banner-green" style="margin-bottom:0"><span>📊</span> Market status<span class="badge badge-green" style="margin-left:auto">24h Left</span></div>
+    <div class="vote-day" onclick="selectDay(this,'monday')"><div class="vote-day-left"><div class="radio" id="radio-monday"></div><span class="vote-day-name">Monday</span></div><div class="vote-day-right"><div class="vote-progress"><div class="vote-progress-fill gray" style="width:20%"></div></div><span class="vote-count-text">5 votes</span></div></div>
     <div id="slots-monday" class="time-slots"></div>
-    <div class="vote-day" onclick="selectDay(this,'tuesday')">
-      <div class="vote-day-left"><div class="radio" id="radio-tuesday"></div><span class="vote-day-name">Tuesday</span></div>
-      <div class="vote-day-right">
-        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:75%"></div></div>
-        <span class="vote-count-text">21 votes</span>
-      </div>
-    </div>
-    <div id="slots-tuesday" class="time-slots">
-      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">10 AM</span><span class="time-slot-votes">11 votes</span></div>
-      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">3 PM</span><span class="time-slot-votes">2 votes</span></div>
-      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">6 PM</span><span class="time-slot-votes">4 votes</span></div>
-    </div>
-    <div class="vote-day" onclick="selectDay(this,'wednesday')">
-      <div class="vote-day-left"><div class="radio" id="radio-wednesday"></div><span class="vote-day-name">Wednesday</span></div>
-      <div class="vote-day-right">
-        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:18%"></div></div>
-        <span class="vote-count-text">5 votes</span>
-      </div>
-    </div>
+    <div class="vote-day" onclick="selectDay(this,'tuesday')"><div class="vote-day-left"><div class="radio" id="radio-tuesday"></div><span class="vote-day-name">Tuesday</span></div><div class="vote-day-right"><div class="vote-progress"><div class="vote-progress-fill gray" style="width:75%"></div></div><span class="vote-count-text">21 votes</span></div></div>
+    <div id="slots-tuesday" class="time-slots"><div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">10 AM</span><span class="time-slot-votes">11 votes</span></div><div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">3 PM</span><span class="time-slot-votes">2 votes</span></div><div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">6 PM</span><span class="time-slot-votes">4 votes</span></div></div>
+    <div class="vote-day" onclick="selectDay(this,'wednesday')"><div class="vote-day-left"><div class="radio" id="radio-wednesday"></div><span class="vote-day-name">Wednesday</span></div><div class="vote-day-right"><div class="vote-progress"><div class="vote-progress-fill gray" style="width:18%"></div></div><span class="vote-count-text">5 votes</span></div></div>
     <div id="slots-wednesday" class="time-slots"></div>
-    <div class="vote-day" onclick="selectDay(this,'thursday')">
-      <div class="vote-day-left"><div class="radio" id="radio-thursday"></div><span class="vote-day-name">Thursday</span></div>
-      <div class="vote-day-right">
-        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:8%"></div></div>
-        <span class="vote-count-text">2 votes</span>
-      </div>
-    </div>
+    <div class="vote-day" onclick="selectDay(this,'thursday')"><div class="vote-day-left"><div class="radio" id="radio-thursday"></div><span class="vote-day-name">Thursday</span></div><div class="vote-day-right"><div class="vote-progress"><div class="vote-progress-fill gray" style="width:8%"></div></div><span class="vote-count-text">2 votes</span></div></div>
     <div id="slots-thursday" class="time-slots"></div>
-    <div class="vote-day" onclick="selectDay(this,'friday')">
-      <div class="vote-day-left"><div class="radio" id="radio-friday"></div><span class="vote-day-name">Friday</span></div>
-      <div class="vote-day-right">
-        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:12%"></div></div>
-        <span class="vote-count-text">3 votes</span>
-      </div>
-    </div>
-    <div id="slots-friday" class="time-slots"></div>
-    <div class="vote-day" onclick="selectDay(this,'saturday')">
-      <div class="vote-day-left"><div class="radio" id="radio-saturday"></div><span class="vote-day-name">Saturday</span></div>
-      <div class="vote-day-right">
-        <div class="vote-progress"><div class="vote-progress-fill gray" style="width:25%"></div></div>
-        <span class="vote-count-text">7 votes</span>
-      </div>
-    </div>
-    <div id="slots-saturday" class="time-slots">
-      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">10 AM</span><span class="time-slot-votes">6 votes</span></div>
-      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">3 PM</span><span class="time-slot-votes">0 votes</span></div>
-      <div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">6 PM</span><span class="time-slot-votes">2 votes</span></div>
-    </div>
+    <div class="vote-day" onclick="selectDay(this,'saturday')"><div class="vote-day-left"><div class="radio" id="radio-saturday"></div><span class="vote-day-name">Saturday</span></div><div class="vote-day-right"><div class="vote-progress"><div class="vote-progress-fill gray" style="width:25%"></div></div><span class="vote-count-text">7 votes</span></div></div>
+    <div id="slots-saturday" class="time-slots"><div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">10 AM</span><span class="time-slot-votes">6 votes</span></div><div class="time-slot" onclick="selectSlot(this)"><span class="time-slot-name">3 PM</span><span class="time-slot-votes">0 votes</span></div></div>
   </div>
-  <div style="padding:24px 48px;flex-shrink:0">
-    <button class="btn btn-green" onclick="navigateTo('screen-vote-confirm')">Confirm Vote</button>
-  </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-home')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div style="padding:10px 18px;flex-shrink:0"><button class="btn btn-green" onclick="navigateTo('screen-vote-confirm')">Confirm Vote</button></div>
+  <div class="page-dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-home')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 4: VOTE CONFIRMED ===== -->
 <div class="screen" id="screen-vote-confirm">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area" style="display:flex;flex-direction:column">
     <div class="vote-screen-title">Vote</div>
     <div style="flex:1;display:flex;align-items:center;justify-content:center">
       <div class="vote-confirmed-card">
-        <div class="vote-check">&#x2713;</div>
+        <div class="vote-check">✓</div>
         <div class="vote-confirmed-title">Vote Confirmed</div>
-        <div class="vote-confirmed-sub">You will be notified once the confirmed market date is finalized.</div>
+        <div class="vote-confirmed-sub">You will be notified once the market date is finalized.</div>
         <button class="btn btn-green" onclick="navigateTo('screen-date-confirm')">Done</button>
       </div>
     </div>
   </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-vote')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="page-dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-vote')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 5: DATE CONFIRMATION ===== -->
 <div class="screen" id="screen-date-confirm">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
-    <div class="date-confirm-title">Health Mart Visit Confirmation</div>
-    <div class="banner banner-green">
-      <span>&#x1F69A;</span> Market arrives in approximately 14 mins - 0.4 miles away
-    </div>
+    <div class="date-confirm-title">Health Mart Visit</div>
+    <div class="banner banner-green"><span>🚚</span> Market arrives in ~14 mins — 0.4 miles away</div>
     <div class="date-card">
-      <div class="date-icon">&#x1F4CA;</div>
+      <div class="date-icon">📊</div>
       <div class="date-main">Tuesday, July 2nd</div>
       <div class="date-time">15:00 pm</div>
       <div class="date-progress"><div class="date-progress-fill"></div></div>
       <div class="date-votes">22 votes</div>
     </div>
   </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="page-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-home-confirm')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 6: HOME PAGE (Confirmed) ===== -->
 <div class="screen" id="screen-home-confirm">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
-    <div class="home-header">
-      <div class="home-greeting">Welcome Back, Sam!</div>
-      <div class="live-badge" onclick="navigateTo('screen-preorder')">&#x1F7E2; Live Internal Camera</div>
-    </div>
-    <div class="banner banner-green">
-      <span>&#x1F69A;</span> Market arrives in approximately 14 mins - 0.4 miles away
-    </div>
+    <div class="home-header"><div class="home-greeting">Welcome Back, Sam!</div><div class="live-badge" onclick="navigateTo('screen-preorder')">🟢 Live Camera</div></div>
+    <div class="banner banner-green"><span>🚚</span> Market arrives in ~14 mins — 0.4 miles away</div>
     <div class="home-section">
       <div class="market-visit-card">
         <div class="market-visit-title">Market Visit Confirmation</div>
-        <div style="font-size:72px;margin:12px 0">&#x1F4CA;</div>
-        <div style="font-size:48px;font-weight:700;color:var(--white);margin-bottom:8px">Tuesday, July 2nd</div>
-        <div style="font-size:30px;color:var(--white-dim)">15:00 pm</div>
+        <div style="font-size:28px;margin:8px 0">📊</div>
+        <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:3px">Tuesday, July 2nd</div>
+        <div style="font-size:12px;color:var(--white-dim)">15:00 pm</div>
       </div>
     </div>
     <div class="home-section">
       <div class="low-items">
-        <div class="low-items-title">You seem to be running low on:</div>
+        <div class="low-items-title">Running low on:</div>
         <div class="low-items-grid">
-          <div class="low-item"><span>&#x1F955;</span> Carrots</div>
-          <div class="low-item"><span>&#x1F345;</span> Tomatoes</div>
-          <div class="low-item"><span>&#x1F951;</span> Avocado</div>
-          <div class="low-item"><span>&#x1F96C;</span> Lettuce</div>
-          <div class="low-item"><span>&#x1FAD0;</span> Blueberries</div>
-          <div class="low-item"><span>&#x1F353;</span> Strawberries</div>
-          <div class="low-item"><span>&#x1F34E;</span> Apples</div>
-          <div class="low-item"><span>&#x1F34B;</span> Lemons</div>
+          <div class="low-item"><span>🥕</span> Carrots</div><div class="low-item"><span>🍅</span> Tomatoes</div>
+          <div class="low-item"><span>🥑</span> Avocado</div><div class="low-item"><span>🥬</span> Lettuce</div>
+          <div class="low-item"><span>🫐</span> Blueberries</div><div class="low-item"><span>🍓</span> Strawberries</div>
         </div>
-        <button class="btn btn-outline" style="margin-bottom:16px" onclick="navigateTo('screen-market-list')">View Your Market List</button>
+        <button class="btn btn-outline" style="margin-bottom:8px" onclick="navigateTo('screen-market-list')">View Market List</button>
         <button class="auto-add-btn" onclick="autoAddLowItems()">Auto-Add All to Market List</button>
       </div>
     </div>
-    <div class="home-section">
-      <button class="btn btn-green" onclick="navigateTo('screen-preorder')">Start Pre-order</button>
-    </div>
+    <div class="home-section"><button class="btn btn-green" onclick="navigateTo('screen-preorder')">Start Pre-order</button></div>
   </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-health-mart-list')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="page-dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-health-mart-list')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 7: PRE-ORDERING ===== -->
 <div class="screen" id="screen-preorder">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
-    <div class="preorder-alert">
-      &#x26A0; Blueberries and carrots are running critically low.<br>
-      Add them now and they'll be ready in your cart once a date is confirmed.
-    </div>
+    <div class="preorder-alert">⚠ Blueberries and carrots are critically low.<br>Add them now — ready in cart once date is confirmed.</div>
     <div class="camera-section">
-      <div class="camera-header">
-        <div class="camera-title">INTERNAL CAMERA</div>
-        <div class="live-dot">LIVE &#x25CF;</div>
-      </div>
+      <div class="camera-header"><div class="camera-title">INTERNAL CAMERA</div><div class="live-dot">LIVE ●</div></div>
       <div class="shelf-label">SHELF 1</div>
       <div class="shelf-grid">
-        <div class="shelf-item"><div style="background:#8B4513;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F34E;</div><div class="shelf-item-label">Apples</div></div>
-        <div class="shelf-item"><div style="background:#4A148C;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1FAD0;</div><div class="shelf-item-label">Blueberries</div></div>
-        <div class="shelf-item"><div style="background:#E65100;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F955;</div><div class="shelf-item-label">Carrots</div></div>
+        <div class="shelf-item"><div style="background:#8B4513;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">🍎</div><div class="shelf-item-label">Apples</div></div>
+        <div class="shelf-item"><div style="background:#4A148C;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">🫐</div><div class="shelf-item-label">Blueberries</div></div>
+        <div class="shelf-item"><div style="background:#E65100;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">🥕</div><div class="shelf-item-label">Carrots</div></div>
       </div>
       <div class="shelf-grid">
-        <div class="shelf-item"><div style="background:#F9A825;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F34B;</div><div class="shelf-item-label">Lemons</div></div>
-        <div class="shelf-item"><div style="background:#2E7D32;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F96C;</div><div class="shelf-item-label">Lettuce</div></div>
-        <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:18px"></div>
+        <div class="shelf-item"><div style="background:#F9A825;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">🍋</div><div class="shelf-item-label">Lemons</div></div>
+        <div class="shelf-item"><div style="background:#2E7D32;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">🥬</div><div class="shelf-item-label">Lettuce</div></div>
+        <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:7px"></div>
       </div>
       <button class="camera-expand" id="expand-btn" onclick="toggleShelves()">Tap to expand</button>
       <div id="extra-shelves" style="display:none">
         <div class="shelf-label">SHELF 2</div>
         <div class="shelf-grid">
-          <div class="shelf-item"><div style="background:#C62828;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F353;</div><div class="shelf-item-label">Strawberries</div></div>
-          <div class="shelf-item"><div style="background:#F5F5DC;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F95A;</div><div class="shelf-item-label">Eggs</div></div>
-          <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:18px"></div>
-        </div>
-        <div class="shelf-label">SHELF 3</div>
-        <div class="shelf-grid">
-          <div class="shelf-item"><div style="background:#388E3C;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px">&#x1F951;</div><div class="shelf-item-label">Avocados</div></div>
-          <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:18px"></div>
-          <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:18px"></div>
+          <div class="shelf-item"><div style="background:#C62828;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">🍓</div><div class="shelf-item-label">Strawberries</div></div>
+          <div class="shelf-item"><div style="background:#F5F5DC;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px">🥚</div><div class="shelf-item-label">Eggs</div></div>
+          <div class="shelf-item" style="opacity:0.3;background:var(--bg-card2);border-radius:7px"></div>
         </div>
       </div>
     </div>
     <div class="freshness-section">
-      <div class="freshness-header">
-        <div class="freshness-title">Freshness Breakdown</div>
-        <div class="freshness-sort">Sorted by urgency</div>
+      <div class="freshness-header"><div class="freshness-title">Freshness Breakdown</div><div class="freshness-sort">By urgency</div></div>
+      <div class="freshness-item">
+        <div class="freshness-left"><span class="freshness-emoji">🫐</span><div><div class="freshness-name">Blueberries</div><span class="toss-badge">Toss within one day</span></div></div>
+        <button class="freshness-add" id="add-blueberries-btn" onclick="addToListEnhanced(this,'Blueberries','🫐')">+ Add to list</button>
       </div>
       <div class="freshness-item">
-        <div class="freshness-left">
-          <span class="freshness-emoji">&#x1FAD0;</span>
-          <div>
-            <div class="freshness-name">Blueberries</div>
-            <span class="toss-badge">Toss within one day</span>
-          </div>
-        </div>
-        <button class="freshness-add" id="add-blueberries-btn" onclick="addToListEnhanced(this,'Blueberries')">+ Add to market list (3 added)</button>
-      </div>
-      <div class="freshness-item">
-        <div class="freshness-left">
-          <span class="freshness-emoji">&#x1F955;</span>
-          <div>
-            <div class="freshness-name">Carrots</div>
-            <span class="remaining-badge">2-3 days remaining</span>
-          </div>
-        </div>
-        <button class="freshness-add" id="add-carrots-btn" onclick="addToListEnhanced(this,'Carrots')">+ Add to market list (1 added)</button>
+        <div class="freshness-left"><span class="freshness-emoji">🥕</span><div><div class="freshness-name">Carrots</div><span class="remaining-badge">2–3 days remaining</span></div></div>
+        <button class="freshness-add" id="add-carrots-btn" onclick="addToListEnhanced(this,'Carrots','🥕')">+ Add to list</button>
       </div>
     </div>
-    <div style="padding:0 48px 26px">
-      <button class="btn btn-outline" onclick="navigateTo('screen-market-list')">View Your Market List</button>
-    </div>
+    <div style="padding:0 18px 10px"><button class="btn btn-outline" onclick="navigateTo('screen-market-list')">View Market List</button></div>
   </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="page-dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-home-confirm')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 8: MARKET LIST ===== -->
 <div class="screen" id="screen-market-list">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
     <div class="market-list-header">Your Market List</div>
-    <div class="market-list-note">These items will be ready in your cart once a date is confirmed.</div>
+    <div class="market-list-note">Items will be ready in cart once a date is confirmed.</div>
     <div class="search-section">
-      <input type="text" id="search-input-8" placeholder="Search items..." class="search-input" oninput="searchMarketList('8')">
+      <input type="text" id="search-input-8" placeholder="Search items..." class="search-input" oninput="renderMarketList()">
     </div>
     <div class="add-item-section">
-      <input type="text" id="new-item-input-8" placeholder="Add new item..." class="add-item-input">
-      <button onclick="addMarketItemFromInput('8')" class="add-item-btn">+</button>
+      <button class="add-item-pick-btn" onclick="openItemPicker()">+ Tap to add item...</button>
     </div>
     <div id="market-list-items-8"></div>
   </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-preorder')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="page-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-preorder')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 9: MARKET LIST (Confirmed) ===== -->
 <div class="screen" id="screen-market-list-confirmed">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
-    <div class="banner banner-green" style="margin-top:8px">
-      <span>&#x2713;</span> Market date has been confirmed!
-    </div>
+    <div class="banner banner-green" style="margin-top:8px"><span>✓</span> Market date confirmed!</div>
     <div class="market-list-header">Your Market List</div>
-    <div class="market-list-note">These items will be ready in your cart once a date is confirmed.</div>
+    <div class="market-list-note">Items ready in cart once date is confirmed.</div>
     <div class="search-section">
-      <input type="text" id="search-input-9" placeholder="Search items..." class="search-input" oninput="searchMarketList('9')">
+      <input type="text" id="search-input-9" placeholder="Search items..." class="search-input" oninput="renderMarketList()">
     </div>
     <div class="add-item-section">
-      <input type="text" id="new-item-input-9" placeholder="Add new item..." class="add-item-input">
-      <button onclick="addMarketItemFromInput('9')" class="add-item-btn">+</button>
+      <button class="add-item-pick-btn" onclick="openItemPicker()">+ Tap to add item...</button>
     </div>
     <div id="market-list-items-9"></div>
   </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="page-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-home-confirm')">❮</button><button>🔔</button></div>
 </div>
 
-<!-- ===== SCREEN 10: HEALTH MART (Browse All) ===== -->
+<!-- ===== SCREEN 10: HEALTH MART (All Items) ===== -->
 <div class="screen" id="screen-health-mart">
-  <div class="status-bar">
-    <span>12:45 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
-  <div class="deals-banner">
-    <span>&#x1F389;</span> 20% off bulk fruits! Expires in 2 hours
-  </div>
+  <div class="status-bar"><span>12:45 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
+  <div class="deals-banner"><span>🎉</span> 20% off bulk fruits! Expires in 2 hours</div>
   <div class="mart-header">
     <div class="mart-title">Health Mart</div>
     <div class="mart-actions">
-      <button class="mart-btn" onclick="navigateTo('screen-market-list-confirmed')">&#x1F4CB; Your market list</button>
-      <button class="mart-btn">&#x2699; Filter</button>
+      <button class="mart-btn" onclick="navigateTo('screen-market-list-confirmed')">📋 List</button>
+      <button class="mart-btn" onclick="navigateTo('screen-cart')">🛒 <span class="cart-count-badge" id="cart-badge-10">0</span></button>
     </div>
   </div>
   <div class="mart-tabs">
-    <button class="mart-tab" onclick="navigateTo('screen-health-mart-list')">&#x1F4CB; Market List Items</button>
-    <button class="mart-tab active">&#x1F6D2; All Items</button>
+    <button class="mart-tab" onclick="navigateTo('screen-health-mart-list')">📋 Market List</button>
+    <button class="mart-tab active">🛒 All Items</button>
   </div>
-  <div class="mart-layout">
-    <div class="mart-categories" id="mart-cats-10">
-      <div class="mart-cat active" data-category="vegetables" onclick="setCategory('vegetables')">
-        <div class="mart-cat-icon">&#x1F966;</div>
-        <div class="mart-cat-name">Vegetables</div>
-      </div>
-      <div class="mart-cat" data-category="fruits" onclick="setCategory('fruits')">
-        <div class="mart-cat-icon">&#x1F34E;</div>
-        <div class="mart-cat-name">Fruits</div>
-      </div>
-      <div class="mart-cat" data-category="dairy" onclick="setCategory('dairy')">
-        <div class="mart-cat-icon">&#x1F9C0;</div>
-        <div class="mart-cat-name">Dairy</div>
-      </div>
-      <div class="mart-cat" data-category="meat" onclick="setCategory('meat')">
-        <div class="mart-cat-icon">&#x1F969;</div>
-        <div class="mart-cat-name">Meat</div>
-      </div>
-    </div>
-    <div class="mart-products" id="mart-products-10"></div>
+  <div class="mart-cat-tabs" id="mart-cat-tabs-10">
+    <button class="mart-cat-tab active" data-category="vegetables" onclick="setCategory('vegetables')">🥦 Vegetables</button>
+    <button class="mart-cat-tab" data-category="dairy" onclick="setCategory('dairy')">🧀 Dairy</button>
+    <button class="mart-cat-tab" data-category="fruits" onclick="setCategory('fruits')">🍎 Fruits</button>
+    <button class="mart-cat-tab" data-category="meat" onclick="setCategory('meat')">🥩 Meat</button>
   </div>
-  <div style="padding:20px 48px;flex-shrink:0">
-    <button class="btn btn-green" onclick="navigateTo('screen-cart')">View Cart</button>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="mart-products" id="mart-products-10"></div>
+  <div style="padding:8px 18px;flex-shrink:0"><button class="btn btn-green" onclick="navigateTo('screen-cart')">View Cart</button></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-home-confirm')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 11: HEALTH MART (Market List Tab) ===== -->
 <div class="screen" id="screen-health-mart-list">
-  <div class="status-bar">
-    <span>12:45 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
-  <div class="deals-banner">
-    <span>&#x1F389;</span> 20% off bulk fruits! Expires in 2 hours
-  </div>
+  <div class="status-bar"><span>12:45 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
+  <div class="deals-banner"><span>🎉</span> 20% off bulk fruits! Expires in 2 hours</div>
   <div class="mart-header">
     <div class="mart-title">Health Mart</div>
     <div class="mart-actions">
-      <button class="mart-btn" onclick="navigateTo('screen-market-list-confirmed')">&#x1F4CB; Your market list</button>
-      <button class="mart-btn">&#x2699; Filter</button>
+      <button class="mart-btn" onclick="navigateTo('screen-market-list-confirmed')">📋 List</button>
+      <button class="mart-btn" onclick="navigateTo('screen-cart')">🛒 <span class="cart-count-badge" id="cart-badge-11">0</span></button>
     </div>
   </div>
   <div class="mart-tabs">
-    <button class="mart-tab active">&#x1F4CB; Market List Items</button>
-    <button class="mart-tab" onclick="navigateTo('screen-health-mart')">&#x1F6D2; All Items</button>
+    <button class="mart-tab active">📋 Market List</button>
+    <button class="mart-tab" onclick="navigateTo('screen-health-mart')">🛒 All Items</button>
   </div>
-  <div class="mart-layout">
-    <div class="mart-categories" id="mart-cats-11">
-      <div class="mart-cat active" data-category="vegetables" onclick="setCategory('vegetables')">
-        <div class="mart-cat-icon">&#x1F966;</div>
-        <div class="mart-cat-name">Vegetables</div>
-      </div>
-      <div class="mart-cat" data-category="fruits" onclick="setCategory('fruits')">
-        <div class="mart-cat-icon">&#x1F34E;</div>
-        <div class="mart-cat-name">Fruits</div>
-      </div>
-      <div class="mart-cat" data-category="dairy" onclick="setCategory('dairy')">
-        <div class="mart-cat-icon">&#x1F9C0;</div>
-        <div class="mart-cat-name">Dairy</div>
-      </div>
-      <div class="mart-cat" data-category="meat" onclick="setCategory('meat')">
-        <div class="mart-cat-icon">&#x1F969;</div>
-        <div class="mart-cat-name">Meat</div>
-      </div>
-    </div>
-    <div class="mart-products" id="mart-products-11"></div>
-  </div>
-  <div style="padding:20px 48px;flex-shrink:0">
-    <button class="btn btn-green" onclick="navigateTo('screen-cart')">View Cart</button>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-health-mart-list')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="mart-products" id="mart-products-11"></div>
+  <div style="padding:8px 18px;flex-shrink:0"><button class="btn btn-green" onclick="navigateTo('screen-cart')">View Cart</button></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-home-confirm')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 12: YOUR CART ===== -->
 <div class="screen" id="screen-cart">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
     <div class="cart-title">Your Cart</div>
     <div id="cart-items"></div>
     <div class="cart-summary">
       <div class="cart-row"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
       <div class="cart-row"><span>Taxes (2.5%)</span><span id="cart-tax">$0.00</span></div>
-      <div class="savings-row" id="cart-savings-row" style="display:none">
-        <span>&#x1F4B0; Bulk Savings (qty ≥ 5)</span><span id="cart-savings">-$1.20</span>
-      </div>
+      <div class="savings-row" id="cart-savings-row" style="display:none"><span>💰 Bulk Savings (qty ≥ 5)</span><span id="cart-savings">-$1.20</span></div>
       <div class="cart-total"><span>Total</span><span id="cart-total-amount">$0.00</span></div>
       <button class="btn btn-green" id="confirm-order-btn" onclick="navigateTo('screen-order-confirmed')">Confirm Pre-order</button>
     </div>
   </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-health-mart-list')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="page-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard')">🏠</button><button onclick="navigateTo('screen-health-mart-list')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 13: ORDER CONFIRMED ===== -->
 <div class="screen" id="screen-order-confirmed">
-  <div class="status-bar">
-    <span>12:43 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area" style="display:flex;flex-direction:column">
     <div class="order-title">Order Confirmed</div>
     <div class="order-card">
-      <div class="order-desc">Your QR code will be sent to your email, or you can use the QR code in the mobile app when picking up your order.</div>
+      <div class="order-desc">Your QR code will be sent to your email or use the mobile app at pickup.</div>
       <div class="qr-placeholder">
         <svg viewBox="0 0 200 200" width="100%" height="100%">
           <rect width="200" height="200" fill="white"/>
-          <rect x="10" y="10" width="50" height="50" fill="black"/>
-          <rect x="15" y="15" width="40" height="40" fill="white"/>
-          <rect x="20" y="20" width="30" height="30" fill="black"/>
-          <rect x="140" y="10" width="50" height="50" fill="black"/>
-          <rect x="145" y="15" width="40" height="40" fill="white"/>
-          <rect x="150" y="20" width="30" height="30" fill="black"/>
-          <rect x="10" y="140" width="50" height="50" fill="black"/>
-          <rect x="15" y="145" width="40" height="40" fill="white"/>
-          <rect x="20" y="150" width="30" height="30" fill="black"/>
-          <rect x="70" y="10" width="8" height="8" fill="black"/>
-          <rect x="85" y="10" width="8" height="8" fill="black"/>
-          <rect x="100" y="10" width="8" height="8" fill="black"/>
-          <rect x="115" y="15" width="8" height="8" fill="black"/>
-          <rect x="70" y="25" width="8" height="8" fill="black"/>
-          <rect x="90" y="30" width="8" height="8" fill="black"/>
-          <rect x="110" y="25" width="8" height="8" fill="black"/>
-          <rect x="70" y="70" width="8" height="8" fill="black"/>
-          <rect x="85" y="75" width="8" height="8" fill="black"/>
-          <rect x="100" y="70" width="8" height="8" fill="black"/>
-          <rect x="115" y="80" width="8" height="8" fill="black"/>
-          <rect x="130" y="70" width="8" height="8" fill="black"/>
-          <rect x="150" y="75" width="8" height="8" fill="black"/>
-          <rect x="170" y="70" width="8" height="8" fill="black"/>
-          <rect x="10" y="90" width="8" height="8" fill="black"/>
-          <rect x="30" y="95" width="8" height="8" fill="black"/>
-          <rect x="50" y="90" width="8" height="8" fill="black"/>
-          <rect x="70" y="95" width="8" height="8" fill="black"/>
-          <rect x="90" y="90" width="8" height="8" fill="black"/>
-          <rect x="110" y="95" width="8" height="8" fill="black"/>
-          <rect x="130" y="90" width="8" height="8" fill="black"/>
-          <rect x="150" y="95" width="8" height="8" fill="black"/>
-          <rect x="170" y="90" width="8" height="8" fill="black"/>
-          <rect x="70" y="130" width="8" height="8" fill="black"/>
-          <rect x="85" y="135" width="8" height="8" fill="black"/>
-          <rect x="100" y="130" width="8" height="8" fill="black"/>
-          <rect x="115" y="140" width="8" height="8" fill="black"/>
-          <rect x="130" y="135" width="8" height="8" fill="black"/>
-          <rect x="150" y="130" width="8" height="8" fill="black"/>
-          <rect x="70" y="150" width="8" height="8" fill="black"/>
-          <rect x="90" y="155" width="8" height="8" fill="black"/>
-          <rect x="110" y="150" width="8" height="8" fill="black"/>
-          <rect x="140" y="180" width="12" height="12" fill="black"/>
-          <rect x="160" y="175" width="8" height="8" fill="black"/>
-          <rect x="180" y="170" width="8" height="8" fill="black"/>
+          <rect x="10" y="10" width="50" height="50" fill="black"/><rect x="15" y="15" width="40" height="40" fill="white"/><rect x="20" y="20" width="30" height="30" fill="black"/>
+          <rect x="140" y="10" width="50" height="50" fill="black"/><rect x="145" y="15" width="40" height="40" fill="white"/><rect x="150" y="20" width="30" height="30" fill="black"/>
+          <rect x="10" y="140" width="50" height="50" fill="black"/><rect x="15" y="145" width="40" height="40" fill="white"/><rect x="20" y="150" width="30" height="30" fill="black"/>
+          <rect x="70" y="10" width="8" height="8" fill="black"/><rect x="85" y="10" width="8" height="8" fill="black"/><rect x="100" y="10" width="8" height="8" fill="black"/>
+          <rect x="70" y="70" width="8" height="8" fill="black"/><rect x="90" y="75" width="8" height="8" fill="black"/><rect x="110" y="70" width="8" height="8" fill="black"/>
+          <rect x="10" y="90" width="8" height="8" fill="black"/><rect x="30" y="95" width="8" height="8" fill="black"/><rect x="70" y="95" width="8" height="8" fill="black"/>
+          <rect x="70" y="130" width="8" height="8" fill="black"/><rect x="90" y="135" width="8" height="8" fill="black"/><rect x="110" y="130" width="8" height="8" fill="black"/>
+          <rect x="140" y="180" width="12" height="12" fill="black"/><rect x="160" y="175" width="8" height="8" fill="black"/>
         </svg>
       </div>
-      <div class="order-scan">Scan your QR code at pickup.</div>
+      <div class="order-scan">Scan QR code at pickup.</div>
     </div>
-    <div class="order-charge" id="order-charge-text">$0.00 will be charged to your account at the market pickup.</div>
+    <div class="order-charge" id="order-charge-text">$0.00 charged at market pickup.</div>
   </div>
-  <div class="page-dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div>
-  </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-dashboard-arriving')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button onclick="navigateTo('screen-dashboard-arriving')">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-cart')">&#x276E;</button>
-    <button>&#x1F514;</button>
-  </div>
+  <div class="page-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button onclick="navigateTo('screen-dashboard-arriving')">🏠</button><button onclick="navigateTo('screen-cart')">❮</button><button>🔔</button></div>
 </div>
 
 <!-- ===== SCREEN 14: DASHBOARD (Market Arriving) ===== -->
 <div class="screen" id="screen-dashboard-arriving">
-  <div class="status-bar">
-    <span>1:05 PM</span>
-    <span>Wednesday, June 24</span>
-    <div class="status-icons"><span>WiFi</span><span>&#x1F50B;</span></div>
-  </div>
+  <div class="status-bar"><span>1:05 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
     <div class="dashboard-greeting">Good Afternoon!</div>
     <div class="dashboard-top">
-      <div class="weather-card">
-        <div class="weather-icon">&#x26C5;</div>
-        <div class="weather-temp">56&#xB0;F</div>
-        <div class="weather-label">Cloudy</div>
-      </div>
-      <div class="time-card">
-        <div class="time-icon">&#x1F553;</div>
-        <div class="time-display">1:25pm</div>
-        <div class="time-date">Wed, June 24</div>
-      </div>
+      <div class="weather-card"><div class="weather-icon">⛅</div><div class="weather-temp">56°F</div><div class="weather-label">Cloudy</div></div>
+      <div class="time-card"><div class="time-icon">🕓</div><div class="time-display">1:25pm</div><div class="time-date">Wed, June 24</div></div>
     </div>
-    <div class="market-arriving-banner">
-      <div class="market-arriving-icon">&#x1F69A;</div>
-      <div class="market-arriving-text">Market arrives in approximately 14 mins - 0.4 miles away</div>
-    </div>
+    <div class="market-arriving-banner"><div class="market-arriving-icon">🚚</div><div class="market-arriving-text">Market arrives in ~14 mins — 0.4 miles away</div></div>
     <div class="dashboard-bottom">
-      <div class="market-list-card">
-        <div class="card-title">Your Market List :</div>
-        <div class="list-item"><span class="list-dot dot-green"></span> Avocado</div>
-        <div class="list-item"><span class="list-dot dot-red"></span> Strawberries</div>
-        <div class="list-item"><span class="list-dot dot-lime"></span> Lettuce</div>
-        <div class="list-item"><span class="list-dot dot-purple"></span> Blueberries</div>
-      </div>
+      <div class="market-list-card"><div class="card-title">Market List</div><div id="dashboard-market-preview-2"></div></div>
       <div class="reminders-card">
-        <div class="reminder-divider">
-          <div class="card-title">Reminders</div>
-          <span style="color:var(--white-muted);cursor:pointer;font-size:32px">&#x22EE;</span>
-        </div>
-        <div class="reminder-item">
-          <div class="reminder-title">&#x2022; Weekly meeting</div>
-          <div class="reminder-time">16:15 pm</div>
-        </div>
-        <div class="reminder-item">
-          <div class="reminder-title">&#x2022; Laundry</div>
-          <div class="reminder-time">21:05 pm</div>
-        </div>
-        <div style="text-align:right;margin-top:12px">
-          <button class="add-btn">+</button>
-        </div>
+        <div class="reminder-divider"><div class="card-title">Reminders</div><span style="color:var(--white-muted);cursor:pointer;font-size:14px">⋮</span></div>
+        <div class="reminder-item"><div class="reminder-title">• Weekly meeting</div><div class="reminder-time">16:15 pm</div></div>
+        <div class="reminder-item"><div class="reminder-title">• Laundry</div><div class="reminder-time">21:05 pm</div></div>
+        <div style="text-align:right;margin-top:8px"><button class="add-btn">+</button></div>
       </div>
     </div>
-    <div class="alert-bar">
-      <span>&#x26A0;&#xFE0F;</span>
-      <span>Blueberries need to be used within the day!</span>
+    <div class="alert-bar"><span>⚠️</span><span>Blueberries need to be used within the day!</span></div>
+  </div>
+  <div class="page-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="app-icons">
+    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-home-confirm')">⬚</div>
+    <div class="app-icon" style="background:#E91E63">⚙</div>
+    <div class="app-icon" style="background:#00BCD4">♻</div>
+    <div class="app-icon" style="background:#FF9800">🎮</div>
+    <div class="app-icon" style="background:#4A148C">🎵</div>
+    <div class="app-icon" style="background:#F44336">▶</div>
+  </div>
+  <div class="bottom-nav"><button>🎤</button><button>☰</button><button class="active">🏠</button><button onclick="navigateTo('screen-home-confirm')">❮</button><button>🔔</button></div>
+</div>
+
+<!-- VOICE FAB (visible on all screens) -->
+<button id="voice-fab" onclick="toggleVoicePanel()" title="Voice Commands">🎤</button>
+
+<!-- VOICE PANEL -->
+<div id="voice-panel">
+  <div class="vp-handle"></div>
+  <div class="vp-title">🎤 Voice Commands</div>
+  <div class="vp-scroll">
+    <div class="waveform idle" id="waveform">
+      <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+    </div>
+    <div class="vp-transcript" id="vp-transcript">Tap "Listen" to speak a command…</div>
+    <div class="vp-response" id="vp-response"></div>
+    <div class="vp-history" id="vp-history" style="display:none">
+      <div class="vp-history-title">Recent Commands</div>
+      <div id="vp-history-list"></div>
+    </div>
+    <div class="fridgeiq-card" id="fridgeiq-card">
+      <div class="fridgeiq-title">✨ FridgeIQ Suggestions</div>
+      <div id="fridgeiq-suggestions"><div style="font-size:10px;color:var(--white-muted)">Add items to see suggestions…</div></div>
     </div>
   </div>
-  <div class="page-dots">
-    <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="vp-controls">
+    <button class="vp-listen-btn" id="vp-listen-btn" onclick="startListening()">🎤 Listen</button>
+    <button class="vp-close-btn" onclick="toggleVoicePanel()">✕ Close</button>
   </div>
-  <div class="app-icons">
-    <div class="app-icon" style="background:#4CAF50" onclick="navigateTo('screen-home-confirm')">&#x2B1A;</div>
-    <div class="app-icon" style="background:#E91E63">&#x2699;</div>
-    <div class="app-icon" style="background:#00BCD4">&#x267B;</div>
-    <div class="app-icon" style="background:#FF9800">&#x1F3AE;</div>
-    <div class="app-icon" style="background:#4A148C">&#x1F3B5;</div>
-    <div class="app-icon" style="background:#F44336">&#x25B6;</div>
-  </div>
-  <div class="bottom-nav">
-    <button>&#x1F3A4;</button>
-    <button>&#x2630;</button>
-    <button class="active">&#x1F3E0;</button>
-    <button onclick="navigateTo('screen-home-confirm')">&#x276E;</button>
-    <button>&#x1F514;</button>
+</div>
+
+<!-- ITEM PICKER MODAL -->
+<div id="item-picker-overlay" onclick="handlePickerOverlayClick(event)">
+  <div id="item-picker-modal">
+    <div class="picker-handle"></div>
+    <div class="picker-title">Add to Market List</div>
+    <input type="text" class="picker-search" id="picker-search" placeholder="Search items..." oninput="renderPickerList()">
+    <div class="picker-list" id="picker-list"></div>
   </div>
 </div>
 
@@ -1628,66 +759,110 @@ body{
 
 <script>
 // =====================================================================
-// SHARED STATE
+// STATE + LOCALSTORAGE
 // =====================================================================
+const LS_KEY = 'healthhub_state';
 let nextItemId = 10;
 
 const state = {
   marketList: [
-    { id: 1, name: 'Blueberries', emoji: '&#x1FAD0;' },
-    { id: 2, name: 'Avocado',     emoji: '&#x1F951;' },
-    { id: 3, name: 'Strawberries',emoji: '&#x1F353;' },
-    { id: 4, name: 'Lettuce',     emoji: '&#x1F96C;' },
+    { id: 1, name: 'Blueberries', emoji: '🫐' },
+    { id: 2, name: 'Avocado',     emoji: '🥑' },
+    { id: 3, name: 'Strawberries',emoji: '🍓' },
+    { id: 4, name: 'Lettuce',     emoji: '🥬' },
   ],
-  // cart: { 'ProductName': { name, emoji, qty, price, category } }
   cart: {},
   activeCategory: 'vegetables',
 };
+
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(LS_KEY));
+    if (!saved) return;
+    if (Array.isArray(saved.marketList)) state.marketList = saved.marketList;
+    if (saved.cart && typeof saved.cart === 'object') state.cart = saved.cart;
+    if (saved.activeCategory) state.activeCategory = saved.activeCategory;
+    nextItemId = Math.max(nextItemId, ...(state.marketList.map(i => i.id + 1)), 10);
+  } catch(e) {}
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify({
+      marketList: state.marketList,
+      cart: state.cart,
+      activeCategory: state.activeCategory,
+    }));
+  } catch(e) {}
+}
 
 // =====================================================================
 // PRODUCT CATALOG
 // =====================================================================
 const PRODUCTS = {
   vegetables: [
-    { name: 'Tomatoes',  emoji: '&#x1F345;', stock: 18, price: 0.98 },
-    { name: 'Jalape\u00f1o', emoji: '&#x1F336;&#xFE0F;', stock: 10, price: 0.98 },
-    { name: 'Onions',    emoji: '&#x1F9C5;', stock: 10, price: 0.98 },
-    { name: 'Broccoli',  emoji: '&#x1F966;', stock: 10, price: 1.49 },
-    { name: 'Carrots',   emoji: '&#x1F955;', stock: 10, price: 0.98 },
-    { name: 'Lettuce',   emoji: '&#x1F96C;', stock: 10, price: 1.29 },
+    { name: 'Tomatoes',  emoji: '🍅', stock: 18, price: 0.98 },
+    { name: 'Jalapeño',  emoji: '🌶', stock: 10, price: 0.98 },
+    { name: 'Onions',    emoji: '🧅', stock: 10, price: 0.98 },
+    { name: 'Broccoli',  emoji: '🥦', stock: 10, price: 1.49 },
+    { name: 'Carrots',   emoji: '🥕', stock: 10, price: 0.98 },
+    { name: 'Lettuce',   emoji: '🥬', stock: 10, price: 1.29 },
   ],
   fruits: [
-    { name: 'Lemons',      emoji: '&#x1F34B;', stock: 10, price: 0.98 },
-    { name: 'Blueberries', emoji: '&#x1FAD0;', stock: 10, price: 3.99 },
-    { name: 'Strawberries',emoji: '&#x1F353;', stock: 10, price: 2.49 },
-    { name: 'Avocados',    emoji: '&#x1F951;', stock: 18, price: 1.49 },
-    { name: 'Apples',      emoji: '&#x1F34E;', stock: 10, price: 0.98 },
+    { name: 'Lemons',      emoji: '🍋', stock: 10, price: 0.98 },
+    { name: 'Blueberries', emoji: '🫐', stock: 10, price: 3.99 },
+    { name: 'Strawberries',emoji: '🍓', stock: 10, price: 2.49 },
+    { name: 'Avocados',    emoji: '🥑', stock: 18, price: 1.49 },
+    { name: 'Apples',      emoji: '🍎', stock: 10, price: 0.98 },
   ],
   dairy: [
-    { name: 'Eggs',   emoji: '&#x1F95A;', stock: 20, price: 3.99 },
-    { name: 'Cheese', emoji: '&#x1F9C0;', stock: 15, price: 4.99 },
-    { name: 'Butter', emoji: '&#x1F9C8;', stock: 8,  price: 3.49 },
-    { name: 'Yogurt', emoji: '&#x1F95B;', stock: 12, price: 2.49 },
+    { name: 'Eggs',   emoji: '🥚', stock: 20, price: 3.99 },
+    { name: 'Cheese', emoji: '🧀', stock: 15, price: 4.99 },
+    { name: 'Butter', emoji: '🧈', stock: 8,  price: 3.49 },
+    { name: 'Yogurt', emoji: '🥛', stock: 12, price: 2.49 },
   ],
   meat: [
-    { name: 'Chicken',     emoji: '&#x1F357;', stock: 10, price: 6.99 },
-    { name: 'Salmon',      emoji: '&#x1F41F;', stock: 8,  price: 9.99 },
-    { name: 'Ground Beef', emoji: '&#x1F969;', stock: 12, price: 5.99 },
+    { name: 'Chicken',     emoji: '🍗', stock: 10, price: 6.99 },
+    { name: 'Salmon',      emoji: '🐟', stock: 8,  price: 9.99 },
+    { name: 'Ground Beef', emoji: '🥩', stock: 12, price: 5.99 },
+    { name: 'Turkey',      emoji: '🦃', stock: 6,  price: 7.49 },
   ],
 };
+
+// Items for the picker modal
+const PICKABLE_ITEMS = [
+  { name: 'Blueberries', emoji: '🫐' },
+  { name: 'Avocado',     emoji: '🥑' },
+  { name: 'Strawberries',emoji: '🍓' },
+  { name: 'Lettuce',     emoji: '🥬' },
+  { name: 'Carrots',     emoji: '🥕' },
+  { name: 'Tomatoes',    emoji: '🍅' },
+  { name: 'Lemons',      emoji: '🍋' },
+  { name: 'Apples',      emoji: '🍎' },
+  { name: 'Onions',      emoji: '🧅' },
+  { name: 'Jalapeño',    emoji: '🌶' },
+  { name: 'Broccoli',    emoji: '🥦' },
+  { name: 'Eggs',        emoji: '🥚' },
+  { name: 'Cheese',      emoji: '🧀' },
+  { name: 'Chicken',     emoji: '🍗' },
+  { name: 'Salmon',      emoji: '🐟' },
+  { name: 'Beef',        emoji: '🥩' },
+  { name: 'Butter',      emoji: '🧈' },
+  { name: 'Yogurt',      emoji: '🥛' },
+  { name: 'Turkey',      emoji: '🦃' },
+];
 
 function getAllProducts() {
   return Object.entries(PRODUCTS).flatMap(([cat, items]) =>
     items.map(p => ({ ...p, category: cat }))
   );
 }
-
 function findProduct(name) {
-  return getAllProducts().find(p => p.name === name);
+  return getAllProducts().find(p => p.name.toLowerCase() === name.toLowerCase());
 }
 
 // =====================================================================
-// CART OPERATIONS
+// CART
 // =====================================================================
 function addToCart(productName) {
   const product = findProduct(productName);
@@ -1695,31 +870,38 @@ function addToCart(productName) {
   if (state.cart[productName]) {
     state.cart[productName].qty++;
   } else {
-    state.cart[productName] = {
-      name: productName,
-      emoji: product.emoji,
-      qty: 1,
-      price: product.price,
-      category: product.category,
-    };
+    state.cart[productName] = { name: productName, emoji: product.emoji, qty: 1, price: product.price, category: product.category };
   }
+  saveState();
   renderCart();
   renderHealthMart();
+  updateCartBadges();
 }
 
 function removeFromCart(productName) {
   delete state.cart[productName];
+  saveState();
   renderCart();
   renderHealthMart();
+  updateCartBadges();
 }
 
 function changeCartQty(productName, delta) {
   if (!state.cart[productName]) return;
-  const newQty = state.cart[productName].qty + delta;
-  if (newQty < 1) return;
-  state.cart[productName].qty = newQty;
+  const nq = state.cart[productName].qty + delta;
+  if (nq < 1) return;
+  state.cart[productName].qty = nq;
+  saveState();
   renderCart();
   renderHealthMart();
+}
+
+function updateCartBadges() {
+  const count = Object.keys(state.cart).length;
+  ['10','11'].forEach(s => {
+    const el = document.getElementById('cart-badge-' + s);
+    if (el) el.textContent = count;
+  });
 }
 
 // =====================================================================
@@ -1728,16 +910,15 @@ function changeCartQty(productName, delta) {
 function renderCart() {
   const container = document.getElementById('cart-items');
   if (!container) return;
-
   const items = Object.values(state.cart);
   container.innerHTML = '';
 
   if (items.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'cart-empty';
-    empty.textContent = 'Your cart is empty.\nAdd items from Health Mart.';
-    empty.style.whiteSpace = 'pre-line';
-    container.appendChild(empty);
+    const e = document.createElement('div');
+    e.className = 'cart-empty';
+    e.textContent = 'Your cart is empty.\nAdd items from Health Mart.';
+    e.style.whiteSpace = 'pre-line';
+    container.appendChild(e);
     updateCartTotals(0, 0, false);
     const btn = document.getElementById('confirm-order-btn');
     if (btn) btn.disabled = true;
@@ -1750,67 +931,55 @@ function renderCart() {
 
     const img = document.createElement('div');
     img.className = 'cart-item-img';
-    img.innerHTML = item.emoji;
+    img.textContent = item.emoji;
 
-    const details = document.createElement('div');
-    details.className = 'cart-item-details';
+    const det = document.createElement('div');
+    det.className = 'cart-item-details';
 
-    const header = document.createElement('div');
-    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between';
+    const hdr = document.createElement('div');
+    hdr.style.cssText = 'display:flex;align-items:center;justify-content:space-between';
 
-    const nameEl = document.createElement('div');
-    nameEl.className = 'cart-item-name';
-    nameEl.textContent = item.name;
+    const nm = document.createElement('div');
+    nm.className = 'cart-item-name';
+    nm.textContent = item.name;
 
-    const priceEl = document.createElement('div');
-    priceEl.className = 'cart-item-price-unit';
-    priceEl.textContent = '$' + item.price.toFixed(2) + '/lb';
+    const pu = document.createElement('div');
+    pu.className = 'cart-item-price-unit';
+    pu.textContent = '$' + item.price.toFixed(2) + '/lb';
 
-    header.appendChild(nameEl);
-    header.appendChild(priceEl);
+    hdr.appendChild(nm); hdr.appendChild(pu);
 
-    const qtyDiv = document.createElement('div');
-    qtyDiv.className = 'product-qty';
-    qtyDiv.style.margin = '14px 0';
+    const qd = document.createElement('div');
+    qd.className = 'product-qty';
+    qd.style.margin = '6px 0';
 
-    const minusBtn = document.createElement('button');
-    minusBtn.className = 'qty-btn';
-    minusBtn.textContent = '-';
-    minusBtn.onclick = () => changeCartQty(item.name, -1);
+    const mb = document.createElement('button');
+    mb.className = 'qty-btn'; mb.textContent = '-';
+    mb.onclick = () => changeCartQty(item.name, -1);
 
-    const qtySpan = document.createElement('span');
-    qtySpan.className = 'qty-val';
-    qtySpan.textContent = item.qty;
+    const qs = document.createElement('span');
+    qs.className = 'qty-val'; qs.textContent = item.qty;
 
-    const plusBtn = document.createElement('button');
-    plusBtn.className = 'qty-btn';
-    plusBtn.textContent = '+';
-    plusBtn.onclick = () => changeCartQty(item.name, 1);
+    const pb = document.createElement('button');
+    pb.className = 'qty-btn'; pb.textContent = '+';
+    pb.onclick = () => changeCartQty(item.name, 1);
 
-    qtyDiv.appendChild(minusBtn);
-    qtyDiv.appendChild(qtySpan);
-    qtyDiv.appendChild(plusBtn);
+    qd.appendChild(mb); qd.appendChild(qs); qd.appendChild(pb);
 
-    const totalEl = document.createElement('div');
-    totalEl.className = 'cart-item-total';
-    totalEl.textContent = '$' + (item.qty * item.price).toFixed(2);
+    const tot = document.createElement('div');
+    tot.className = 'cart-item-total';
+    tot.textContent = '$' + (item.qty * item.price).toFixed(2);
 
-    details.appendChild(header);
-    details.appendChild(qtyDiv);
-    details.appendChild(totalEl);
+    det.appendChild(hdr); det.appendChild(qd); det.appendChild(tot);
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'cart-delete';
-    deleteBtn.innerHTML = '&#x1F5D1;';
-    deleteBtn.onclick = () => removeFromCart(item.name);
+    const del = document.createElement('button');
+    del.className = 'cart-delete'; del.textContent = '🗑';
+    del.onclick = () => removeFromCart(item.name);
 
-    row.appendChild(img);
-    row.appendChild(details);
-    row.appendChild(deleteBtn);
+    row.appendChild(img); row.appendChild(det); row.appendChild(del);
     container.appendChild(row);
   });
 
-  // Compute totals
   const subtotal = items.reduce((s, i) => s + i.qty * i.price, 0);
   const hasBulk = items.some(i => i.qty >= 5);
   const tax = subtotal * 0.025;
@@ -1822,27 +991,16 @@ function renderCart() {
 }
 
 function updateCartTotals(subtotal, tax, hasBulk, savings) {
-  const stEl = document.getElementById('cart-subtotal');
-  const txEl = document.getElementById('cart-tax');
+  subtotal = subtotal || 0; tax = tax || 0; savings = savings || 0;
+  const total = Math.max(0, subtotal + tax - savings);
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  set('cart-subtotal', '$' + subtotal.toFixed(2));
+  set('cart-tax', '$' + tax.toFixed(2));
+  set('cart-savings', '-$' + savings.toFixed(2));
+  set('cart-total-amount', '$' + total.toFixed(2));
+  set('order-charge-text', '$' + total.toFixed(2) + ' will be charged at market pickup.');
   const svRow = document.getElementById('cart-savings-row');
-  const svEl = document.getElementById('cart-savings');
-  const ttEl = document.getElementById('cart-total-amount');
-  const ocEl = document.getElementById('order-charge-text');
-
-  if (!stEl) return;
-
-  subtotal = subtotal || 0;
-  tax = tax || 0;
-  savings = savings || 0;
-
-  const total = subtotal + tax - savings;
-
-  stEl.textContent = '$' + subtotal.toFixed(2);
-  txEl.textContent = '$' + tax.toFixed(2);
   if (svRow) svRow.style.display = hasBulk ? 'flex' : 'none';
-  if (svEl) svEl.textContent = '-$' + savings.toFixed(2);
-  ttEl.textContent = '$' + Math.max(0, total).toFixed(2);
-  if (ocEl) ocEl.textContent = '$' + Math.max(0, total).toFixed(2) + ' will be charged to your account at the market pickup.';
 }
 
 // =====================================================================
@@ -1850,12 +1008,13 @@ function updateCartTotals(subtotal, tax, hasBulk, savings) {
 // =====================================================================
 function setCategory(category) {
   state.activeCategory = category;
-  renderHealthMart();
+  saveState();
+  renderHealthMartScreen('10', false);
   updateCategoryUI();
 }
 
 function updateCategoryUI() {
-  document.querySelectorAll('.mart-cat').forEach(el => {
+  document.querySelectorAll('.mart-cat-tab').forEach(el => {
     el.classList.toggle('active', el.dataset.category === state.activeCategory);
   });
 }
@@ -1864,112 +1023,76 @@ function renderHealthMart() {
   renderHealthMartScreen('10', false);
   renderHealthMartScreen('11', true);
   updateCategoryUI();
+  updateCartBadges();
 }
 
-function renderHealthMartScreen(suffix, listModeOnly) {
+function renderHealthMartScreen(suffix, listMode) {
   const container = document.getElementById('mart-products-' + suffix);
   if (!container) return;
-
-  const marketListNames = state.marketList.map(i => i.name.toLowerCase());
-
-  let productsToShow;
-  if (listModeOnly) {
-    // Screen 11: show ALL market list items that exist in the catalog, across all categories
-    productsToShow = getAllProducts().filter(p =>
-      marketListNames.includes(p.name.toLowerCase())
-    );
+  const mlNames = state.marketList.map(i => i.name.toLowerCase());
+  let products;
+  if (listMode) {
+    products = getAllProducts().filter(p => mlNames.includes(p.name.toLowerCase()));
   } else {
-    // Screen 10: show products from the active category
-    productsToShow = (PRODUCTS[state.activeCategory] || []).map(p => ({
-      ...p, category: state.activeCategory
-    }));
+    products = (PRODUCTS[state.activeCategory] || []).map(p => ({ ...p, category: state.activeCategory }));
   }
-
   container.innerHTML = '';
-
-  if (productsToShow.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'mart-empty';
-    empty.textContent = listModeOnly
-      ? 'No market list items found in the catalog.'
-      : 'No products in this category.';
-    container.appendChild(empty);
+  if (products.length === 0) {
+    const e = document.createElement('div');
+    e.className = 'mart-empty';
+    e.textContent = listMode ? 'No market list items found in catalog.' : 'No products in this category.';
+    container.appendChild(e);
     return;
   }
-
-  productsToShow.forEach(product => {
+  products.forEach(product => {
     const inCart = state.cart[product.name];
     const card = document.createElement('div');
     card.className = 'product-card';
 
     const imgDiv = document.createElement('div');
     imgDiv.className = 'product-img';
-    imgDiv.innerHTML = product.emoji;
+    imgDiv.textContent = product.emoji;
 
-    const infoDiv = document.createElement('div');
-    infoDiv.className = 'product-info';
+    const info = document.createElement('div');
+    info.className = 'product-info';
 
-    const nameEl = document.createElement('div');
-    nameEl.className = 'product-name';
-    nameEl.textContent = product.name;
+    const nm = document.createElement('div');
+    nm.className = 'product-name'; nm.textContent = product.name;
 
-    const metaDiv = document.createElement('div');
-    metaDiv.className = 'product-meta';
+    const meta = document.createElement('div');
+    meta.className = 'product-meta';
 
-    const stockEl = document.createElement('span');
-    stockEl.className = 'product-stock';
-    stockEl.textContent = product.stock + ' left';
+    const stk = document.createElement('span');
+    stk.className = 'product-stock'; stk.textContent = product.stock + ' left';
 
-    const priceEl = document.createElement('span');
-    priceEl.className = 'product-price';
-    priceEl.textContent = '$' + product.price.toFixed(2) + '/lb';
+    const prc = document.createElement('span');
+    prc.className = 'product-price'; prc.textContent = '$' + product.price.toFixed(2) + '/lb';
 
-    metaDiv.appendChild(stockEl);
-    metaDiv.appendChild(priceEl);
+    meta.appendChild(stk); meta.appendChild(prc);
 
-    const qtyDiv = document.createElement('div');
-    qtyDiv.className = 'product-qty';
+    const qd = document.createElement('div');
+    qd.className = 'product-qty';
 
-    const minusBtn = document.createElement('button');
-    minusBtn.className = 'qty-btn';
-    minusBtn.textContent = '-';
-    minusBtn.onclick = () => {
-      if (inCart && inCart.qty > 1) {
-        state.cart[product.name].qty--;
-        renderCart();
-        renderHealthMart();
-      }
-    };
+    const mb = document.createElement('button');
+    mb.className = 'qty-btn'; mb.textContent = '-';
+    mb.onclick = () => { if (inCart && inCart.qty > 1) { state.cart[product.name].qty--; saveState(); renderCart(); renderHealthMart(); } };
 
-    const qtySpan = document.createElement('span');
-    qtySpan.className = 'qty-val';
-    qtySpan.textContent = inCart ? inCart.qty : 1;
+    const qs = document.createElement('span');
+    qs.className = 'qty-val'; qs.textContent = inCart ? inCart.qty : 1;
 
-    const plusBtn = document.createElement('button');
-    plusBtn.className = 'qty-btn';
-    plusBtn.textContent = '+';
-    plusBtn.onclick = () => {
-      addToCart(product.name);
-    };
+    const pb = document.createElement('button');
+    pb.className = 'qty-btn'; pb.textContent = '+';
+    pb.onclick = () => addToCart(product.name);
 
-    qtyDiv.appendChild(minusBtn);
-    qtyDiv.appendChild(qtySpan);
-    qtyDiv.appendChild(plusBtn);
+    qd.appendChild(mb); qd.appendChild(qs); qd.appendChild(pb);
 
     const addBtn = document.createElement('button');
     addBtn.className = inCart ? 'product-add added' : 'product-add';
-    addBtn.textContent = inCart ? 'Added ✓' : 'Add';
-    addBtn.onclick = () => {
-      if (!inCart) addToCart(product.name);
-    };
+    addBtn.textContent = inCart ? '✓ Added' : 'Add';
+    addBtn.onclick = () => { if (!inCart) addToCart(product.name); };
 
-    infoDiv.appendChild(nameEl);
-    infoDiv.appendChild(metaDiv);
-    infoDiv.appendChild(qtyDiv);
-    infoDiv.appendChild(addBtn);
-
-    card.appendChild(imgDiv);
-    card.appendChild(infoDiv);
+    info.appendChild(nm); info.appendChild(meta); info.appendChild(qd); info.appendChild(addBtn);
+    card.appendChild(imgDiv); card.appendChild(info);
     container.appendChild(card);
   });
 }
@@ -1978,53 +1101,54 @@ function renderHealthMartScreen(suffix, listModeOnly) {
 // RENDER: MARKET LIST
 // =====================================================================
 function renderMarketList() {
-  ['8', '9'].forEach(suffix => {
+  ['8','9'].forEach(suffix => {
     const container = document.getElementById('market-list-items-' + suffix);
     if (!container) return;
     container.innerHTML = '';
-    const query = (document.getElementById('search-input-' + suffix) || {}).value || '';
-    const q = query.toLowerCase();
-
+    const q = ((document.getElementById('search-input-' + suffix) || {}).value || '').toLowerCase();
     state.marketList.forEach(item => {
       if (q && !item.name.toLowerCase().includes(q)) return;
-
       const row = document.createElement('div');
       row.className = 'market-item';
-      row.dataset.name = item.name;
-
       const left = document.createElement('div');
       left.className = 'market-item-left';
-
-      const emojiSpan = document.createElement('span');
-      emojiSpan.className = 'market-item-emoji';
-      emojiSpan.innerHTML = item.emoji;
-
-      const nameSpan = document.createElement('span');
-      nameSpan.className = 'market-item-name';
-      nameSpan.textContent = item.name;
-
-      left.appendChild(emojiSpan);
-      left.appendChild(nameSpan);
-
-      const delBtn = document.createElement('button');
-      delBtn.className = 'delete-btn';
-      delBtn.innerHTML = '&#x1F5D1;';
-      delBtn.onclick = () => removeFromMarketList(item.id);
-
-      row.appendChild(left);
-      row.appendChild(delBtn);
+      const emo = document.createElement('span');
+      emo.className = 'market-item-emoji'; emo.textContent = item.emoji;
+      const nm = document.createElement('span');
+      nm.className = 'market-item-name'; nm.textContent = item.name;
+      left.appendChild(emo); left.appendChild(nm);
+      const del = document.createElement('button');
+      del.className = 'delete-btn'; del.textContent = '🗑';
+      del.onclick = () => removeFromMarketList(item.id);
+      row.appendChild(left); row.appendChild(del);
       container.appendChild(row);
     });
   });
-  // Refresh health mart list tab
   renderHealthMartScreen('11', true);
+  updateDashboardPreview();
+  updateFridgeIQ();
+  saveState();
+}
+
+function updateDashboardPreview() {
+  const colors = ['dot-green','dot-red','dot-lime','dot-purple','dot-orange','dot-pink'];
+  ['dashboard-market-preview','dashboard-market-preview-2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = '';
+    state.marketList.slice(0, 4).forEach((item, i) => {
+      const d = document.createElement('div');
+      d.className = 'list-item';
+      d.innerHTML = `<span class="list-dot ${colors[i % colors.length]}"></span> ${item.emoji} ${item.name}`;
+      el.appendChild(d);
+    });
+  });
 }
 
 function addToMarketList(name, emoji) {
   if (!name) return;
-  const exists = state.marketList.some(i => i.name.toLowerCase() === name.toLowerCase());
-  if (exists) return;
-  state.marketList.push({ id: nextItemId++, name, emoji: emoji || '&#x1F6D2;' });
+  if (state.marketList.some(i => i.name.toLowerCase() === name.toLowerCase())) return;
+  state.marketList.push({ id: nextItemId++, name, emoji: emoji || '🛒' });
   renderMarketList();
 }
 
@@ -2033,17 +1157,55 @@ function removeFromMarketList(id) {
   renderMarketList();
 }
 
-function addMarketItemFromInput(suffix) {
-  const input = document.getElementById('new-item-input-' + suffix);
-  if (!input) return;
-  const name = input.value.trim();
-  if (!name) return;
-  addToMarketList(name, '&#x1F6D2;');
-  input.value = '';
+// =====================================================================
+// ITEM PICKER MODAL
+// =====================================================================
+function openItemPicker() {
+  const overlay = document.getElementById('item-picker-overlay');
+  overlay.classList.add('open');
+  document.getElementById('picker-search').value = '';
+  renderPickerList();
 }
 
-function searchMarketList(suffix) {
-  renderMarketList(); // re-render with current search query applied
+function closeItemPicker() {
+  document.getElementById('item-picker-overlay').classList.remove('open');
+}
+
+function handlePickerOverlayClick(e) {
+  if (e.target === document.getElementById('item-picker-overlay')) closeItemPicker();
+}
+
+function renderPickerList() {
+  const q = document.getElementById('picker-search').value.toLowerCase();
+  const list = document.getElementById('picker-list');
+  list.innerHTML = '';
+  const filtered = q ? PICKABLE_ITEMS.filter(i => i.name.toLowerCase().includes(q)) : PICKABLE_ITEMS;
+  filtered.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'picker-item';
+    const alreadyIn = state.marketList.some(i => i.name.toLowerCase() === item.name.toLowerCase());
+    row.innerHTML = `<span class="picker-item-emoji">${item.emoji}</span><span class="picker-item-name">${item.name}</span>${alreadyIn ? '<span class="picker-item-check">✓</span>' : ''}`;
+    if (!alreadyIn) {
+      row.onclick = () => {
+        addToMarketList(item.name, item.emoji);
+        closeItemPicker();
+      };
+    } else {
+      row.style.opacity = '0.5';
+    }
+    list.appendChild(row);
+  });
+  // If query doesn't match any item, offer to add custom
+  if (q && !PICKABLE_ITEMS.some(i => i.name.toLowerCase() === q)) {
+    const custom = document.createElement('div');
+    custom.className = 'picker-item';
+    custom.innerHTML = `<span class="picker-item-emoji">🛒</span><span class="picker-item-name">Add "${q}" as custom item</span>`;
+    custom.onclick = () => {
+      addToMarketList(q.charAt(0).toUpperCase() + q.slice(1), '🛒');
+      closeItemPicker();
+    };
+    list.appendChild(custom);
+  }
 }
 
 // =====================================================================
@@ -2058,19 +1220,16 @@ function navigateTo(screenId) {
     if (scroll) scroll.scrollTop = 0;
   }
   document.querySelectorAll('.nav-link').forEach(l => {
-    l.classList.toggle('current',
-      l.getAttribute('onclick') && l.getAttribute('onclick').includes(screenId));
+    l.classList.toggle('current', (l.getAttribute('onclick') || '').includes(screenId));
   });
-  // Re-render dynamic screens when navigated to
   if (screenId === 'screen-cart') renderCart();
   if (screenId === 'screen-health-mart') renderHealthMartScreen('10', false);
   if (screenId === 'screen-health-mart-list') renderHealthMartScreen('11', true);
-  if (screenId === 'screen-market-list') renderMarketList();
-  if (screenId === 'screen-market-list-confirmed') renderMarketList();
+  if (screenId === 'screen-market-list' || screenId === 'screen-market-list-confirmed') renderMarketList();
 }
 
 // =====================================================================
-// VOTING INTERACTIONS
+// VOTING
 // =====================================================================
 const selectedDays = {};
 function selectDay(el, day) {
@@ -2088,78 +1247,260 @@ function selectDay(el, day) {
     if (slots && slots.children.length > 0) slots.classList.add('show');
     const fill = el.querySelector('.vote-progress-fill');
     if (fill) { fill.classList.remove('gray'); fill.classList.add('green'); }
-    const countEl = el.querySelector('.vote-count-text');
-    if (countEl) {
-      const current = parseInt(countEl.textContent);
-      countEl.textContent = (current + 1) + ' votes';
-    }
+    const cnt = el.querySelector('.vote-count-text');
+    if (cnt) cnt.textContent = (parseInt(cnt.textContent) + 1) + ' votes';
   }
 }
-
-function selectSlot(el) {
-  el.classList.toggle('selected');
-}
+function selectSlot(el) { el.classList.toggle('selected'); }
 
 // =====================================================================
-// PRE-ORDER / CAMERA
+// CAMERA / PRE-ORDER
 // =====================================================================
 function toggleShelves() {
   const extra = document.getElementById('extra-shelves');
   const btn = document.getElementById('expand-btn');
   if (!extra || !btn) return;
-  if (extra.style.display === 'none') {
-    extra.style.display = 'block';
-    btn.textContent = 'Tap to collapse';
-  } else {
-    extra.style.display = 'none';
-    btn.textContent = 'Tap to expand';
-  }
+  const show = extra.style.display === 'none';
+  extra.style.display = show ? 'block' : 'none';
+  btn.textContent = show ? 'Tap to collapse' : 'Tap to expand';
 }
 
-function addToListEnhanced(btn, itemName) {
-  btn.outerHTML = '<span class="freshness-added">&#x2713; Added to the list</span>';
-  addToMarketList(itemName, '&#x1F6D2;');
+function addToListEnhanced(btn, name, emoji) {
+  btn.outerHTML = '<span class="freshness-added">✓ Added to list</span>';
+  addToMarketList(name, emoji);
 }
 
 // =====================================================================
-// BULK ADD HELPERS
+// BULK HELPERS
 // =====================================================================
 function autoAddLowItems() {
-  const lowItems = [
-    { name: 'Carrots',     emoji: '&#x1F955;' },
-    { name: 'Tomatoes',    emoji: '&#x1F345;' },
-    { name: 'Avocado',     emoji: '&#x1F951;' },
-    { name: 'Lettuce',     emoji: '&#x1F96C;' },
-    { name: 'Blueberries', emoji: '&#x1FAD0;' },
-    { name: 'Strawberries',emoji: '&#x1F353;' },
-    { name: 'Apples',      emoji: '&#x1F34E;' },
-    { name: 'Lemons',      emoji: '&#x1F34B;' },
-  ];
-  lowItems.forEach(i => addToMarketList(i.name, i.emoji));
+  [['Carrots','🥕'],['Tomatoes','🍅'],['Avocado','🥑'],['Lettuce','🥬'],
+   ['Blueberries','🫐'],['Strawberries','🍓'],['Apples','🍎'],['Lemons','🍋']]
+    .forEach(([n,e]) => addToMarketList(n, e));
   alert('All low-stock items added to your market list!');
 }
 
 function addRecipeIngredients(ingredients) {
-  ingredients.forEach(name => addToMarketList(name, '&#x1F6D2;'));
-  alert('Missing ingredients added to your market list!');
+  ingredients.forEach(name => {
+    const found = PICKABLE_ITEMS.find(i => i.name.toLowerCase() === name.toLowerCase());
+    addToMarketList(name, found ? found.emoji : '🛒');
+  });
+  alert('Missing ingredients added!');
 }
 
 // =====================================================================
-// INITIALIZE
+// FRIDGEIQ
+// =====================================================================
+function getFridgeIQSuggestions() {
+  const all = [...state.marketList.map(i => i.name.toLowerCase()),
+               ...Object.keys(state.cart).map(n => n.toLowerCase())];
+  const has = name => all.includes(name.toLowerCase());
+  const suggestions = [];
+
+  if (has('Lettuce') && has('Avocado') && !has('Tomatoes'))
+    suggestions.push({ text: '🥗 Lettuce + Avocado detected — add Tomatoes to complete a salad', item: 'Tomatoes', emoji: '🍅' });
+  if ((has('Blueberries') || has('Strawberries')) && !has('Yogurt'))
+    suggestions.push({ text: '🧃 Berries in list — add Yogurt to make a smoothie bowl', item: 'Yogurt', emoji: '🥛' });
+  if (Object.keys(state.cart).length > 0 && !['Eggs','Chicken','Salmon','Ground Beef','Turkey'].some(p => has(p)))
+    suggestions.push({ text: '⚠️ No protein in your cart — consider Eggs or Chicken', item: 'Eggs', emoji: '🥚' });
+  if (has('Lemons') && has('Avocado') && !has('Broccoli'))
+    suggestions.push({ text: '🌿 Complete a healthy plate — add Broccoli', item: 'Broccoli', emoji: '🥦' });
+
+  return suggestions.slice(0, 2);
+}
+
+function updateFridgeIQ() {
+  const container = document.getElementById('fridgeiq-suggestions');
+  if (!container) return;
+  const suggestions = getFridgeIQSuggestions();
+  container.innerHTML = '';
+  if (suggestions.length === 0) {
+    container.innerHTML = '<div style="font-size:10px;color:var(--white-muted)">Looking good! No suggestions right now.</div>';
+    return;
+  }
+  suggestions.forEach(s => {
+    const row = document.createElement('div');
+    row.className = 'fridgeiq-suggestion';
+    const txt = document.createElement('div');
+    txt.className = 'fridgeiq-text'; txt.textContent = s.text;
+    const btn = document.createElement('button');
+    btn.className = 'fridgeiq-add-btn'; btn.textContent = '+ ' + s.item;
+    btn.onclick = () => { addToMarketList(s.item, s.emoji); updateFridgeIQ(); };
+    row.appendChild(txt); row.appendChild(btn);
+    container.appendChild(row);
+  });
+}
+
+// =====================================================================
+// VOICE PANEL
+// =====================================================================
+let recognition = null;
+let isListening = false;
+const voiceHistory = [];
+
+function toggleVoicePanel() {
+  const panel = document.getElementById('voice-panel');
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open')) {
+    updateFridgeIQ();
+    // Hide FAB when panel open (panel has close button)
+    document.getElementById('voice-fab').style.display = 'none';
+  } else {
+    stopListening();
+    document.getElementById('voice-fab').style.display = 'flex';
+  }
+}
+
+function startListening() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    showVpResponse('Voice recognition not supported. Try Chrome.');
+    return;
+  }
+  if (isListening) { stopListening(); return; }
+  recognition = new SR();
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recognition.onstart = () => {
+    isListening = true;
+    document.getElementById('vp-transcript').textContent = 'Listening…';
+    document.getElementById('waveform').classList.remove('idle');
+    const btn = document.getElementById('vp-listen-btn');
+    btn.textContent = '⏹ Stop'; btn.onclick = stopListening;
+  };
+
+  recognition.onresult = (event) => {
+    let interim = '', final = '';
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      const t = event.results[i][0].transcript;
+      if (event.results[i].isFinal) final += t; else interim += t;
+    }
+    document.getElementById('vp-transcript').textContent = final || interim || 'Listening…';
+    if (final) {
+      const resp = handleVoiceCommand(final.trim());
+      addVoiceHistory(final.trim());
+      showVpResponse(resp);
+      speak(resp);
+      stopListening();
+    }
+  };
+
+  recognition.onerror = recognition.onend = () => stopListening();
+  recognition.start();
+}
+
+function stopListening() {
+  if (recognition) { try { recognition.abort(); } catch(e) {} recognition = null; }
+  isListening = false;
+  const wf = document.getElementById('waveform');
+  if (wf) wf.classList.add('idle');
+  const btn = document.getElementById('vp-listen-btn');
+  if (btn) { btn.textContent = '🎤 Listen'; btn.onclick = startListening; }
+}
+
+function showVpResponse(text) {
+  const el = document.getElementById('vp-response');
+  if (!el) return;
+  el.textContent = text;
+  el.style.display = 'block';
+}
+
+function addVoiceHistory(text) {
+  voiceHistory.unshift(text);
+  if (voiceHistory.length > 3) voiceHistory.pop();
+  const listEl = document.getElementById('vp-history-list');
+  const histEl = document.getElementById('vp-history');
+  if (!listEl || !histEl) return;
+  histEl.style.display = 'block';
+  listEl.innerHTML = '';
+  voiceHistory.forEach(t => {
+    const d = document.createElement('div');
+    d.className = 'vp-history-item'; d.textContent = t;
+    listEl.appendChild(d);
+  });
+}
+
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+  }
+}
+
+function handleVoiceCommand(transcript) {
+  const t = transcript.toLowerCase();
+
+  if (/\badd\b/.test(t)) {
+    const m = t.match(/add\s+(.+)/);
+    if (m) {
+      const query = m[1].trim();
+      const found = PICKABLE_ITEMS.find(i => i.name.toLowerCase().includes(query));
+      if (found) { addToMarketList(found.name, found.emoji); return `Added ${found.name} to your market list.`; }
+      return `Couldn't find "${query}" in the catalog.`;
+    }
+  }
+
+  if (/\bremove\b/.test(t)) {
+    const m = t.match(/remove\s+(.+)/);
+    if (m) {
+      const query = m[1].trim();
+      const found = state.marketList.find(i => i.name.toLowerCase().includes(query));
+      if (found) { removeFromMarketList(found.id); return `Removed ${found.name} from your list.`; }
+      return `"${query}" not found in your list.`;
+    }
+  }
+
+  if (/how\s+many|how\s+much/.test(t)) {
+    const m = t.match(/how\s+(?:many|much)\s+(.+)/);
+    if (m) {
+      const query = m[1].trim();
+      const ci = Object.values(state.cart).find(i => i.name.toLowerCase().includes(query));
+      if (ci) { speak(`You have ${ci.qty} ${ci.name} in your cart.`); return `${ci.qty} ${ci.name} in your cart.`; }
+      return `${m[1]} is not in your cart.`;
+    }
+  }
+
+  if (/what.?s in|what is in|show fridge/.test(t)) {
+    const fridgeItems = 'Blueberries, Carrots, Apples, Lemons, Lettuce, Strawberries, Eggs, Avocados';
+    speak('Your fridge contains: ' + fridgeItems);
+    return 'Fridge: ' + fridgeItems;
+  }
+
+  if (/open\s+(.+)/.test(t)) {
+    const m = t.match(/open\s+(.+)/);
+    if (m) {
+      const sn = m[1].trim();
+      const map = { 'dashboard': 'screen-dashboard', 'home': 'screen-home', 'vote': 'screen-vote',
+        'market list': 'screen-market-list', 'health mart': 'screen-health-mart', 'cart': 'screen-cart' };
+      const found = Object.entries(map).find(([k]) => sn.includes(k));
+      if (found) { navigateTo(found[1]); toggleVoicePanel(); return `Opening ${found[0]}.`; }
+    }
+  }
+
+  return `Command not recognized. Try "Add Tomatoes", "Remove Lettuce", or "Open cart".`;
+}
+
+// =====================================================================
+// INIT
 // =====================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Seed demo cart
-  state.cart = {
-    'Tomatoes': { name: 'Tomatoes', emoji: '&#x1F345;', qty: 6, price: 0.98, category: 'vegetables' },
-    'Lemons':   { name: 'Lemons',   emoji: '&#x1F34B;', qty: 8, price: 0.98, category: 'fruits' },
-    'Blueberries': { name: 'Blueberries', emoji: '&#x1FAD0;', qty: 1, price: 3.99, category: 'fruits' },
-  };
+  loadState();
+
+  // Seed demo cart if empty
+  if (Object.keys(state.cart).length === 0) {
+    state.cart = {
+      'Tomatoes':    { name: 'Tomatoes',    emoji: '🍅', qty: 6, price: 0.98, category: 'vegetables' },
+      'Lemons':      { name: 'Lemons',      emoji: '🍋', qty: 8, price: 0.98, category: 'fruits' },
+      'Blueberries': { name: 'Blueberries', emoji: '🫐', qty: 1, price: 3.99, category: 'fruits' },
+    };
+  }
 
   renderMarketList();
   renderCart();
   renderHealthMart();
 
-  // Mark first nav link as current
   const firstLink = document.querySelector('.nav-link');
   if (firstLink) firstLink.classList.add('current');
 });
