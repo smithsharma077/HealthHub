@@ -488,7 +488,7 @@ html,body{background:#111;font-family:var(--font);min-height:100vh;display:flex;
       <div class="vote-confirmed-card">
         <div class="vote-check">✓</div>
         <div class="vote-confirmed-title">Vote Confirmed</div>
-        <div class="vote-confirmed-sub">You will be notified once the market date is finalized.</div>
+        <div class="vote-confirmed-sub" id="voted-summary-4">You will be notified once the market date is finalized.</div>
         <button class="btn btn-green" onclick="navigateTo('screen-date-confirm')">Done</button>
       </div>
     </div>
@@ -505,8 +505,8 @@ html,body{background:#111;font-family:var(--font);min-height:100vh;display:flex;
     <div class="banner banner-green"><span>🚚</span> Market arrives in ~14 mins — 0.4 miles away</div>
     <div class="date-card">
       <div class="date-icon">📊</div>
-      <div class="date-main">Tuesday, July 2nd</div>
-      <div class="date-time">15:00 pm</div>
+      <div class="date-main" id="voted-date-5">Tuesday, July 2nd</div>
+      <div class="date-time" id="voted-time-5">15:00 pm</div>
       <div class="date-progress"><div class="date-progress-fill"></div></div>
       <div class="date-votes">22 votes</div>
     </div>
@@ -525,8 +525,8 @@ html,body{background:#111;font-family:var(--font);min-height:100vh;display:flex;
       <div class="market-visit-card">
         <div class="market-visit-title">Market Visit Confirmation</div>
         <div style="font-size:28px;margin:8px 0">📊</div>
-        <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:3px">Tuesday, July 2nd</div>
-        <div style="font-size:12px;color:var(--white-dim)">15:00 pm</div>
+        <div id="voted-date-6" style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:3px">Tuesday, July 2nd</div>
+        <div id="voted-time-6" style="font-size:12px;color:var(--white-dim)">15:00 pm</div>
       </div>
     </div>
     <div class="home-section">
@@ -620,7 +620,7 @@ html,body{background:#111;font-family:var(--font);min-height:100vh;display:flex;
 <div class="screen" id="screen-market-list-confirmed">
   <div class="status-bar"><span>12:43 PM</span><span>Wed, June 24</span><div class="status-icons"><span>WiFi</span><span>🔋</span></div></div>
   <div class="scroll-area">
-    <div class="banner banner-green" style="margin-top:8px"><span>✓</span> Market date confirmed!</div>
+    <div class="banner banner-green" style="margin-top:8px"><span>✓</span> <span id="voted-summary-9">Market date confirmed!</span></div>
     <div class="market-list-header">Your Market List</div>
     <div class="market-list-note">Items ready in cart once date is confirmed.</div>
     <div class="search-section">
@@ -1299,6 +1299,7 @@ function selectDay(el, day) {
     if (fill) { fill.classList.remove('green'); fill.classList.add('gray'); }
   } else {
     selectedDays[day] = true;
+    localStorage.setItem('selectedMarketDay', day);
     radio.classList.add('selected');
     if (slots && slots.children.length > 0) slots.classList.add('show');
     const fill = el.querySelector('.vote-progress-fill');
@@ -1307,7 +1308,26 @@ function selectDay(el, day) {
     if (cnt) cnt.textContent = (parseInt(cnt.textContent) + 1) + ' votes';
   }
 }
-function selectSlot(el) { el.classList.toggle('selected'); }
+function selectSlot(el) {
+  el.classList.toggle('selected');
+  if (el.classList.contains('selected')) localStorage.setItem('selectedMarketTime', el.querySelector('.time-slot-name').textContent);
+}
+
+const DAY_DISPLAY = { monday:'Monday, June 30th', tuesday:'Tuesday, July 1st', wednesday:'Wednesday, July 2nd', thursday:'Thursday, July 3rd', saturday:'Saturday, July 5th' };
+const TIME_DISPLAY = { '10 AM':'10:00 am', '3 PM':'15:00 pm', '6 PM':'18:00 pm' };
+
+function updateVotedDateDisplay() {
+  const day = localStorage.getItem('selectedMarketDay');
+  const time = localStorage.getItem('selectedMarketTime');
+  const dayText = day ? (DAY_DISPLAY[day] || day) : 'Tuesday, July 2nd';
+  const timeText = time ? (TIME_DISPLAY[time] || time) : '15:00 pm';
+  ['voted-date-5','voted-date-6'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = dayText; });
+  ['voted-time-5','voted-time-6'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = timeText; });
+  const s4 = document.getElementById('voted-summary-4');
+  if (s4) s4.textContent = day ? 'Your vote: ' + dayText + ' at ' + timeText : 'You will be notified once the market date is finalized.';
+  const s9 = document.getElementById('voted-summary-9');
+  if (s9) s9.textContent = day ? 'Market date confirmed: ' + dayText + ' · ' + timeText : 'Market date confirmed!';
+}
 
 // =====================================================================
 // CAMERA / PRE-ORDER
